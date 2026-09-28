@@ -1,0 +1,32 @@
+complexity:
+  LongMethod:
+    allowedLines: 120
+  LargeClass:
+    allowedLines: 700
+    excludes: ['**/methods/**', '**/*Namespace.kt']
+  CyclomaticComplexMethod:
+    allowedComplexity: 50
+  TooManyFunctions:
+    allowedFunctionsPerFile: 20
+    allowedFunctionsPerClass: 30
+    allowedFunctionsPerInterface: 20
+    allowedFunctionsPerObject: 30
+    excludes: ['**/methods/**', '**/*Namespace.kt']
+  ComplexCondition:
+    allowedConditions: 6
+style:
+  MaxLineLength:
+    active: false
+  MagicNumber:
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreEnums: true
+  ReturnCount:
+    max: 4
+  ThrowsCount:
+    max: 6
+  LoopWithTooManyJumpStatements:
+    maxJumpCount: 4
+naming:
+  MatchingDeclarationName:
+    excludes: ['**/methods/*OperationsPart*.kt', '**/models/**']
