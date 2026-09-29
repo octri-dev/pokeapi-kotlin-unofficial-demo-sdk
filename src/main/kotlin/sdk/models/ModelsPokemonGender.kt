@@ -3,52 +3,33 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `GenderDetail` API schema.
- */
+/** Typed representation of the `GenderDetail` API schema. */
 data class GenderDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `pokemon_species_details` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species_details") val pokemonSpeciesDetails: List<GenderPokemonSpecies>,
-    /**
-     * Required array value serialized in the `required_for_evolution` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_for_evolution") val requiredForEvolution: List<PokemonSpeciesSummary>
+    /** Required array value serialized in the `pokemon_species_details` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species_details")
+    val pokemonSpeciesDetails: List<GenderPokemonSpecies>,
+    /** Required array value serialized in the `required_for_evolution` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_for_evolution")
+    val requiredForEvolution: List<PokemonSpeciesSummary>,
 )
 
-/**
- * Typed representation of the `GenderPokemonSpecies` API schema.
- */
+/** Typed representation of the `GenderPokemonSpecies` API schema. */
 data class GenderPokemonSpecies(
-    /**
-     * Required `integer` value serialized in the `rate` wire field.
-     */
+    /** Required `integer` value serialized in the `rate` wire field. */
     val rate: Int,
-    /**
-     * Required object value serialized in the `pokemon_species` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species") val pokemonSpecies: PokemonSpeciesSummary
+    /** Required object value serialized in the `pokemon_species` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species")
+    val pokemonSpecies: PokemonSpeciesSummary,
 )
 
-/**
- * Typed representation of the `GenderSummary` API schema.
- */
+/** Typed representation of the `GenderSummary` API schema. */
 data class GenderSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )

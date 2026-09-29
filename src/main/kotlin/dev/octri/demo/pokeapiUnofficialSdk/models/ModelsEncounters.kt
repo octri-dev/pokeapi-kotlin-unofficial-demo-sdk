@@ -3,248 +3,142 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk.models
 
-/**
- * Typed representation of the `EncounterConditionDetail` API schema.
- */
+/** Typed representation of the `EncounterConditionDetail` API schema. */
 data class EncounterConditionDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `values` wire field.
-     */
+    /** Required array value serialized in the `values` wire field. */
     val values: List<EncounterConditionValueSummary>,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<EncounterConditionName>
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<EncounterConditionName>,
 )
 
-/**
- * Typed representation of the `EncounterConditionName` API schema.
- */
+/** Typed representation of the `EncounterConditionName` API schema. */
 data class EncounterConditionName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `EncounterConditionSummary` API schema.
- */
+/** Typed representation of the `EncounterConditionSummary` API schema. */
 data class EncounterConditionSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `EncounterConditionValueDetail` API schema.
- */
+/** Typed representation of the `EncounterConditionValueDetail` API schema. */
 data class EncounterConditionValueDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `condition` wire field.
-     */
+    /** Required object value serialized in the `condition` wire field. */
     val condition: EncounterConditionSummary,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<EncounterConditionValueName>
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<EncounterConditionValueName>,
 )
 
-/**
- * Typed representation of the `EncounterConditionValueName` API schema.
- */
+/** Typed representation of the `EncounterConditionValueName` API schema. */
 data class EncounterConditionValueName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `EncounterMethodDetail` API schema.
- */
+/** Typed representation of the `EncounterMethodDetail` API schema. */
 data class EncounterMethodDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<EncounterMethodName>,
-    /**
-     * Optional `integer` value serialized in the `order` wire field.
-     */
-    val order: Int? = null
+    /** Optional `integer` value serialized in the `order` wire field. */
+    val order: Int? = null,
 )
 
-/**
- * Typed representation of the `EncounterMethodName` API schema.
- */
+/** Typed representation of the `EncounterMethodName` API schema. */
 data class EncounterMethodName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `PaginatedEncounterConditionSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedEncounterConditionSummaryList` API schema. */
 data class PaginatedEncounterConditionSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<EncounterConditionSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedEncounterConditionValueSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedEncounterConditionValueSummaryList` API schema. */
 data class PaginatedEncounterConditionValueSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<EncounterConditionValueSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedEncounterMethodSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedEncounterMethodSummaryList` API schema. */
 data class PaginatedEncounterMethodSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<EncounterMethodSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PokemonEncounterDetailResponse` API schema.
- */
+/** Typed representation of the `PokemonEncounterDetailResponse` API schema. */
 data class PokemonEncounterDetailResponse(
-    /**
-     * Required `integer` value serialized in the `chance` wire field.
-     */
+    /** Required `integer` value serialized in the `chance` wire field. */
     val chance: Int,
-    /**
-     * Required array value serialized in the `condition_values` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("condition_values") val conditionValues: List<EncounterConditionValueSummary>,
-    /**
-     * Required `integer` value serialized in the `max_level` wire field.
-     */
+    /** Required array value serialized in the `condition_values` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("condition_values")
+    val conditionValues: List<EncounterConditionValueSummary>,
+    /** Required `integer` value serialized in the `max_level` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("max_level") val maxLevel: Int,
-    /**
-     * Required object value serialized in the `method` wire field.
-     */
+    /** Required object value serialized in the `method` wire field. */
     val method: EncounterMethodSummary,
-    /**
-     * Required `integer` value serialized in the `min_level` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("min_level") val minLevel: Int
+    /** Required `integer` value serialized in the `min_level` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("min_level") val minLevel: Int,
 )
 
-/**
- * Typed representation of the `PokemonEncounterResponse` API schema.
- */
+/** Typed representation of the `PokemonEncounterResponse` API schema. */
 data class PokemonEncounterResponse(
-    /**
-     * Required object value serialized in the `location_area` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("location_area") val locationArea: LocationAreaSummary,
-    /**
-     * Required array value serialized in the `version_details` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_details") val versionDetails: List<PokemonEncounterVersionDetailResponse>
+    /** Required object value serialized in the `location_area` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("location_area")
+    val locationArea: LocationAreaSummary,
+    /** Required array value serialized in the `version_details` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_details")
+    val versionDetails: List<PokemonEncounterVersionDetailResponse>,
 )
 
-/**
- * Typed representation of the `PokemonEncounterVersionDetailResponse` API schema.
- */
+/** Typed representation of the `PokemonEncounterVersionDetailResponse` API schema. */
 data class PokemonEncounterVersionDetailResponse(
-    /**
-     * Required object value serialized in the `version` wire field.
-     */
+    /** Required object value serialized in the `version` wire field. */
     val version: VersionSummary,
-    /**
-     * Required `integer` value serialized in the `max_chance` wire field.
-     */
+    /** Required `integer` value serialized in the `max_chance` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("max_chance") val maxChance: Int,
-    /**
-     * Required array value serialized in the `encounter_details` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("encounter_details") val encounterDetails: List<PokemonEncounterDetailResponse>
+    /** Required array value serialized in the `encounter_details` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("encounter_details")
+    val encounterDetails: List<PokemonEncounterDetailResponse>,
 )

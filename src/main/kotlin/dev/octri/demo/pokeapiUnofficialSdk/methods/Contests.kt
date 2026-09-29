@@ -18,44 +18,84 @@ import dev.octri.demo.pokeapiUnofficialSdk.SuperContestEffectSummary
 
 object Contests {
 
-
     /**
-     * Lists contest types used to categorize how judges weigh a Pokémon's condition in contests. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists contest types used to categorize how judges weigh a Pokémon's condition in contests.
+     * Use `limit` and `offset` to control the result page, or filter by name with the locally
+     * available, case-insensitive `q` query.
      *
-     * Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
+     * Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests.
+     * Check out Bulbapedia for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun contestTypeList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedContestTypeSummaryList {
-        return SdkClient.request<PaginatedContestTypeSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/contest-type/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "contestTypeList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun contestTypeList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedContestTypeSummaryList {
+        return SdkClient.request<PaginatedContestTypeSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/contest-type/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "contestTypeList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists contest types used to categorize how judges weigh a Pokémon's condition in contests. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists contest types used to categorize how judges weigh a Pokémon's condition in contests.
+     * Use `limit` and `offset` to control the result page, or filter by name with the locally
+     * available, case-insensitive `q` query.
      *
-     * Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
+     * Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests.
+     * Check out Bulbapedia for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun contestTypeListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ContestTypeSummary) -> Boolean) {
-        var page: PaginatedContestTypeSummaryList = contestTypeList(clientConfig, limit, offset, q, options)
+    fun contestTypeListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ContestTypeSummary) -> Boolean,
+    ) {
+        var page: PaginatedContestTypeSummaryList =
+            contestTypeList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedContestTypeSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "contestTypeList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedContestTypeSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "contestTypeList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -65,74 +105,140 @@ object Contests {
         val hasMore: Boolean,
     )
 
-    fun contestTypeListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (ContestTypeListPage) -> Boolean) {
-        var page: PaginatedContestTypeSummaryList = contestTypeList(clientConfig, limit, offset, q, options)
+    fun contestTypeListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ContestTypeListPage) -> Boolean,
+    ) {
+        var page: PaginatedContestTypeSummaryList =
+            contestTypeList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(ContestTypeListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedContestTypeSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "contestTypeList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedContestTypeSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "contestTypeList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a contest type used to categorize how judges weigh a Pokémon's condition in contests. Use the `id` path parameter to view its name, associated berry flavor, and localized names.
+     * Retrieves a contest type used to categorize how judges weigh a Pokémon's condition in
+     * contests. Use the `id` path parameter to view its name, associated berry flavor, and
+     * localized names.
      *
-     * Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
+     * Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests.
+     * Check out Bulbapedia for greater detail.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun contestTypeRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): ContestTypeDetail {
-        return SdkClient.request<ContestTypeDetail>(SdkClient.RequestSpec("GET", "/api/v2/contest-type/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "contestTypeRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun contestTypeRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): ContestTypeDetail {
+        return SdkClient.request<ContestTypeDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/contest-type/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "contestTypeRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists effects that moves have when used in Pokémon contests. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists effects that moves have when used in Pokémon contests. Use `limit` and `offset` to
+     * control the result page, or filter by name with the locally available, case-insensitive `q`
+     * query.
      *
      * Contest effects refer to the effects of moves when used in contests.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun contestEffectList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedContestEffectSummaryList {
-        return SdkClient.request<PaginatedContestEffectSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/contest-effect/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "contestEffectList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun contestEffectList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedContestEffectSummaryList {
+        return SdkClient.request<PaginatedContestEffectSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/contest-effect/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "contestEffectList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists effects that moves have when used in Pokémon contests. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists effects that moves have when used in Pokémon contests. Use `limit` and `offset` to
+     * control the result page, or filter by name with the locally available, case-insensitive `q`
+     * query.
      *
      * Contest effects refer to the effects of moves when used in contests.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun contestEffectListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ContestEffectSummary) -> Boolean) {
-        var page: PaginatedContestEffectSummaryList = contestEffectList(clientConfig, limit, offset, q, options)
+    fun contestEffectListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ContestEffectSummary) -> Boolean,
+    ) {
+        var page: PaginatedContestEffectSummaryList =
+            contestEffectList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedContestEffectSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "contestEffectList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedContestEffectSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "contestEffectList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -142,74 +248,138 @@ object Contests {
         val hasMore: Boolean,
     )
 
-    fun contestEffectListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (ContestEffectListPage) -> Boolean) {
-        var page: PaginatedContestEffectSummaryList = contestEffectList(clientConfig, limit, offset, q, options)
+    fun contestEffectListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (ContestEffectListPage) -> Boolean,
+    ) {
+        var page: PaginatedContestEffectSummaryList =
+            contestEffectList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(ContestEffectListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedContestEffectSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "contestEffectList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedContestEffectSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "contestEffectList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves the effect of a move when used in a Pokémon contest. Use the `id` path parameter to view its appeal and jam values, effect entries, and localized flavor text.
+     * Retrieves the effect of a move when used in a Pokémon contest. Use the `id` path parameter to
+     * view its appeal and jam values, effect entries, and localized flavor text.
      *
      * Contest effects refer to the effects of moves when used in contests.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun contestEffectRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): ContestEffectDetail {
-        return SdkClient.request<ContestEffectDetail>(SdkClient.RequestSpec("GET", "/api/v2/contest-effect/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "contestEffectRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun contestEffectRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): ContestEffectDetail {
+        return SdkClient.request<ContestEffectDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/contest-effect/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "contestEffectRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists effects that moves have when used in Super Contests. Use `limit` and `offset` to control the results, or use `q` to search effect names case-insensitively; `q` is available only on the local API.
+     * Lists effects that moves have when used in Super Contests. Use `limit` and `offset` to
+     * control the results, or use `q` to search effect names case-insensitively; `q` is available
+     * only on the local API.
      *
      * Super contest effects refer to the effects of moves when used in super contests.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun superContestEffectList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedSuperContestEffectSummaryList {
-        return SdkClient.request<PaginatedSuperContestEffectSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/super-contest-effect/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "superContestEffectList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun superContestEffectList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedSuperContestEffectSummaryList {
+        return SdkClient.request<PaginatedSuperContestEffectSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/super-contest-effect/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "superContestEffectList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists effects that moves have when used in Super Contests. Use `limit` and `offset` to control the results, or use `q` to search effect names case-insensitively; `q` is available only on the local API.
+     * Lists effects that moves have when used in Super Contests. Use `limit` and `offset` to
+     * control the results, or use `q` to search effect names case-insensitively; `q` is available
+     * only on the local API.
      *
      * Super contest effects refer to the effects of moves when used in super contests.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun superContestEffectListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (SuperContestEffectSummary) -> Boolean) {
-        var page: PaginatedSuperContestEffectSummaryList = superContestEffectList(clientConfig, limit, offset, q, options)
+    fun superContestEffectListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (SuperContestEffectSummary) -> Boolean,
+    ) {
+        var page: PaginatedSuperContestEffectSummaryList =
+            superContestEffectList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedSuperContestEffectSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "superContestEffectList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedSuperContestEffectSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "superContestEffectList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -219,35 +389,59 @@ object Contests {
         val hasMore: Boolean,
     )
 
-    fun superContestEffectListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (SuperContestEffectListPage) -> Boolean) {
-        var page: PaginatedSuperContestEffectSummaryList = superContestEffectList(clientConfig, limit, offset, q, options)
+    fun superContestEffectListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (SuperContestEffectListPage) -> Boolean,
+    ) {
+        var page: PaginatedSuperContestEffectSummaryList =
+            superContestEffectList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(SuperContestEffectListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedSuperContestEffectSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "superContestEffectList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedSuperContestEffectSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "superContestEffectList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a Super Contest effect used by moves in Super Contests. Use the `id` path parameter to identify the effect, then inspect its appeal, flavor text entries, and associated moves.
+     * Retrieves a Super Contest effect used by moves in Super Contests. Use the `id` path parameter
+     * to identify the effect, then inspect its appeal, flavor text entries, and associated moves.
      *
      * Super contest effects refer to the effects of moves when used in super contests.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun superContestEffectRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): SuperContestEffectDetail {
-        return SdkClient.request<SuperContestEffectDetail>(SdkClient.RequestSpec("GET", "/api/v2/super-contest-effect/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "superContestEffectRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun superContestEffectRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): SuperContestEffectDetail {
+        return SdkClient.request<SuperContestEffectDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/super-contest-effect/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "superContestEffectRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

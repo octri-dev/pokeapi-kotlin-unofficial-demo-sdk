@@ -3,168 +3,363 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk
 
-
 class ItemsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists items available in the games, including objects that players can collect and use. Use `q` to filter items by name, or `limit` and `offset` to control the results page.
+     * Lists items available in the games, including objects that players can collect and use. Use
+     * `q` to filter items by name, or `limit` and `offset` to control the results page.
      *
-     * An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
+     * An item is an object in the games which the player can pick up, keep in their bag, and use in
+     * some manner. They have various uses, including healing, powering up, helping catch Pokémon,
+     * or to access a new area.
      */
-    fun list(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedItemSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemList(clientConfig, limit, offset, q, options)
+    fun list(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedItemSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists items available in the games, including objects that players can collect and use. Use `q` to filter items by name, or `limit` and `offset` to control the results page.
+     * Lists items available in the games, including objects that players can collect and use. Use
+     * `q` to filter items by name, or `limit` and `offset` to control the results page.
      *
-     * An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
+     * An item is an object in the games which the player can pick up, keep in their bag, and use in
+     * some manner. They have various uses, including healing, powering up, helping catch Pokémon,
+     * or to access a new area.
      */
-    fun listPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ItemSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun listPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ItemSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves an item and its game data, effects, and usage details. Use the `id` path parameter to view the item's category, attributes, prices, flavor text, and Pokémon that hold it.
+     * Retrieves an item and its game data, effects, and usage details. Use the `id` path parameter
+     * to view the item's category, attributes, prices, flavor text, and Pokémon that hold it.
      *
-     * An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
+     * An item is an object in the games which the player can pick up, keep in their bag, and use in
+     * some manner. They have various uses, including healing, powering up, helping catch Pokémon,
+     * or to access a new area.
      */
     fun retrieve(id: String, options: RequestOptions? = null): ItemDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists item categories, which determine where items are placed in a player's bag. Use `q` to filter categories by name, or `limit` and `offset` to control the results page.
+     * Lists item categories, which determine where items are placed in a player's bag. Use `q` to
+     * filter categories by name, or `limit` and `offset` to control the results page.
      *
      * Item categories determine where items will be placed in the players bag.
      */
-    fun categoryList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedItemCategorySummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemCategoryList(clientConfig, limit, offset, q, options)
+    fun categoryList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedItemCategorySummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemCategoryList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists item categories, which determine where items are placed in a player's bag. Use `q` to filter categories by name, or `limit` and `offset` to control the results page.
+     * Lists item categories, which determine where items are placed in a player's bag. Use `q` to
+     * filter categories by name, or `limit` and `offset` to control the results page.
      *
      * Item categories determine where items will be placed in the players bag.
      */
-    fun categoryListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ItemCategorySummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemCategoryListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun categoryListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ItemCategorySummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemCategoryListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves an item category and the items assigned to it. Use the `id` path parameter to view the category's localized names and the bag pocket where it is placed.
+     * Retrieves an item category and the items assigned to it. Use the `id` path parameter to view
+     * the category's localized names and the bag pocket where it is placed.
      *
      * Item categories determine where items will be placed in the players bag.
      */
     fun categoryRetrieve(id: String, options: RequestOptions? = null): ItemCategoryDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemCategoryRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemCategoryRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists attributes that define particular aspects of items, such as whether they are usable in battle or consumable. Use `q` to filter attributes by name, or `limit` and `offset` to control the results page.
+     * Lists attributes that define particular aspects of items, such as whether they are usable in
+     * battle or consumable. Use `q` to filter attributes by name, or `limit` and `offset` to
+     * control the results page.
      *
      * Item attributes define particular aspects of items, e.g."usable in battle" or "consumable".
      */
-    fun attributeList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedItemAttributeSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemAttributeList(clientConfig, limit, offset, q, options)
+    fun attributeList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedItemAttributeSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemAttributeList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists attributes that define particular aspects of items, such as whether they are usable in battle or consumable. Use `q` to filter attributes by name, or `limit` and `offset` to control the results page.
+     * Lists attributes that define particular aspects of items, such as whether they are usable in
+     * battle or consumable. Use `q` to filter attributes by name, or `limit` and `offset` to
+     * control the results page.
      *
      * Item attributes define particular aspects of items, e.g."usable in battle" or "consumable".
      */
-    fun attributeListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ItemAttributeSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemAttributeListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun attributeListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ItemAttributeSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemAttributeListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a single item attribute and its descriptions, names, and associated items. Use `id` to identify the attribute whose item property, such as battle usability or consumability, you want to inspect.
+     * Retrieves a single item attribute and its descriptions, names, and associated items. Use `id`
+     * to identify the attribute whose item property, such as battle usability or consumability, you
+     * want to inspect.
      *
      * Item attributes define particular aspects of items, e.g."usable in battle" or "consumable".
      */
     fun attributeRetrieve(id: String, options: RequestOptions? = null): ItemAttributeDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemAttributeRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemAttributeRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists item fling effects, which describe the effects of the move Fling when used with different items. Use `limit` and `offset` to control the result page, or `q` to filter by name with a case-insensitive query.
+     * Lists item fling effects, which describe the effects of the move Fling when used with
+     * different items. Use `limit` and `offset` to control the result page, or `q` to filter by
+     * name with a case-insensitive query.
      *
      * The various effects of the move"Fling" when used with different items.
      */
-    fun flingEffectList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedItemFlingEffectSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemFlingEffectList(clientConfig, limit, offset, q, options)
+    fun flingEffectList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedItemFlingEffectSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemFlingEffectList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists item fling effects, which describe the effects of the move Fling when used with different items. Use `limit` and `offset` to control the result page, or `q` to filter by name with a case-insensitive query.
+     * Lists item fling effects, which describe the effects of the move Fling when used with
+     * different items. Use `limit` and `offset` to control the result page, or `q` to filter by
+     * name with a case-insensitive query.
      *
      * The various effects of the move"Fling" when used with different items.
      */
-    fun flingEffectListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ItemFlingEffectSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemFlingEffectListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun flingEffectListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ItemFlingEffectSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemFlingEffectListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a single item fling effect and its effect entries and associated items. Use `id` to identify the effect of the move Fling that you want to inspect.
+     * Retrieves a single item fling effect and its effect entries and associated items. Use `id` to
+     * identify the effect of the move Fling that you want to inspect.
      *
      * The various effects of the move"Fling" when used with different items.
      */
     fun flingEffectRetrieve(id: String, options: RequestOptions? = null): ItemFlingEffectDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemFlingEffectRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemFlingEffectRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists item pockets, which group items by category in a player's bag. Use `limit` and `offset` to control the result page, or `q` to filter pockets by name with a case-insensitive query.
+     * Lists item pockets, which group items by category in a player's bag. Use `limit` and `offset`
+     * to control the result page, or `q` to filter pockets by name with a case-insensitive query.
      *
      * Pockets within the players bag used for storing items by category.
      */
-    fun pocketList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedItemPocketSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemPocketList(clientConfig, limit, offset, q, options)
+    fun pocketList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedItemPocketSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemPocketList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists item pockets, which group items by category in a player's bag. Use `limit` and `offset` to control the result page, or `q` to filter pockets by name with a case-insensitive query.
+     * Lists item pockets, which group items by category in a player's bag. Use `limit` and `offset`
+     * to control the result page, or `q` to filter pockets by name with a case-insensitive query.
      *
      * Pockets within the players bag used for storing items by category.
      */
-    fun pocketListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (ItemPocketSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemPocketListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun pocketListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (ItemPocketSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemPocketListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a single item pocket and its item categories and localized names. Use `id` to identify the pocket that groups the categories you want to inspect.
+     * Retrieves a single item pocket and its item categories and localized names. Use `id` to
+     * identify the pocket that groups the categories you want to inspect.
      *
      * Pockets within the players bag used for storing items by category.
      */
     fun pocketRetrieve(id: String, options: RequestOptions? = null): ItemPocketDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemPocketRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.itemPocketRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists currencies used to buy items. Use `limit` and `offset` to control the result page, or `q` to filter currencies by name with a case-insensitive query.
+     * Lists currencies used to buy items. Use `limit` and `offset` to control the result page, or
+     * `q` to filter currencies by name with a case-insensitive query.
      *
      * Currencies used to buy items.
      */
-    fun currencyList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedCurrencySummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.currencyList(clientConfig, limit, offset, q, options)
+    fun currencyList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedCurrencySummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.currencyList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists currencies used to buy items. Use `limit` and `offset` to control the result page, or `q` to filter currencies by name with a case-insensitive query.
+     * Lists currencies used to buy items. Use `limit` and `offset` to control the result page, or
+     * `q` to filter currencies by name with a case-insensitive query.
      *
      * Currencies used to buy items.
      */
-    fun currencyListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (CurrencySummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.currencyListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun currencyListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (CurrencySummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Items.currencyListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a single currency used to buy items, including its localized names. Use `id` to identify the currency whose details you want to inspect.
+     * Retrieves a single currency used to buy items, including its localized names. Use `id` to
+     * identify the currency whose details you want to inspect.
      *
      * Currencies used to buy items.
      */
     fun currencyRetrieve(id: String, options: RequestOptions? = null): CurrencyDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.currencyRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Items.currencyRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
-
 }

@@ -3,240 +3,135 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `BerryDetail` API schema.
- */
+/** Typed representation of the `BerryDetail` API schema. */
 data class BerryDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `firmness` wire field.
-     */
+    /** Required object value serialized in the `firmness` wire field. */
     val firmness: BerryFirmnessSummary,
-    /**
-     * Required array value serialized in the `flavors` wire field.
-     */
+    /** Required array value serialized in the `flavors` wire field. */
     val flavors: List<BerryFlavorMap>,
-    /**
-     * Required object value serialized in the `item` wire field.
-     */
+    /** Required object value serialized in the `item` wire field. */
     val item: ItemSummary,
-    /**
-     * Required object value serialized in the `natural_gift_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("natural_gift_type") val naturalGiftType: TypeSummary,
-    /**
-     * Optional `integer` value serialized in the `growth_time` wire field.
-     */
+    /** Required object value serialized in the `natural_gift_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("natural_gift_type")
+    val naturalGiftType: TypeSummary,
+    /** Optional `integer` value serialized in the `growth_time` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("growth_time") val growthTime: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `max_harvest` wire field.
-     */
+    /** Optional `integer` value serialized in the `max_harvest` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("max_harvest") val maxHarvest: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `natural_gift_power` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("natural_gift_power") val naturalGiftPower: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `size` wire field.
-     */
+    /** Optional `integer` value serialized in the `natural_gift_power` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("natural_gift_power")
+    val naturalGiftPower: Int? = null,
+    /** Optional `integer` value serialized in the `size` wire field. */
     val size: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `smoothness` wire field.
-     */
+    /** Optional `integer` value serialized in the `smoothness` wire field. */
     val smoothness: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `soil_dryness` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("soil_dryness") val soilDryness: Int? = null
+    /** Optional `integer` value serialized in the `soil_dryness` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("soil_dryness") val soilDryness: Int? = null,
 )
 
-/**
- * Typed representation of the `BerryFirmnessDetail` API schema.
- */
+/** Typed representation of the `BerryFirmnessDetail` API schema. */
 data class BerryFirmnessDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `berries` wire field.
-     */
+    /** Required array value serialized in the `berries` wire field. */
     val berries: List<BerrySummary>,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<BerryFirmnessName>
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<BerryFirmnessName>,
 )
 
-/**
- * Typed representation of the `BerryFirmnessName` API schema.
- */
+/** Typed representation of the `BerryFirmnessName` API schema. */
 data class BerryFirmnessName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `BerryFirmnessSummary` API schema.
- */
+/** Typed representation of the `BerryFirmnessSummary` API schema. */
 data class BerryFirmnessSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `BerryFlavorBerryMap` API schema.
- */
+/** Typed representation of the `BerryFlavorBerryMap` API schema. */
 data class BerryFlavorBerryMap(
-    /**
-     * Required `integer` value serialized in the `potency` wire field.
-     */
+    /** Required `integer` value serialized in the `potency` wire field. */
     val potency: Int,
-    /**
-     * Required object value serialized in the `berry` wire field.
-     */
-    val berry: BerrySummary
+    /** Required object value serialized in the `berry` wire field. */
+    val berry: BerrySummary,
 )
 
-/**
- * Typed representation of the `BerryFlavorDetail` API schema.
- */
+/** Typed representation of the `BerryFlavorDetail` API schema. */
 data class BerryFlavorDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `berries` wire field.
-     */
+    /** Required array value serialized in the `berries` wire field. */
     val berries: List<BerryFlavorBerryMap>,
-    /**
-     * Required object value serialized in the `contest_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("contest_type") val contestType: ContestTypeSummary,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<BerryFlavorName>
+    /** Required object value serialized in the `contest_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("contest_type")
+    val contestType: ContestTypeSummary,
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<BerryFlavorName>,
 )
 
-/**
- * Typed representation of the `BerryFlavorMap` API schema.
- */
+/** Typed representation of the `BerryFlavorMap` API schema. */
 data class BerryFlavorMap(
-    /**
-     * Required `integer` value serialized in the `potency` wire field.
-     */
+    /** Required `integer` value serialized in the `potency` wire field. */
     val potency: Int,
-    /**
-     * Required object value serialized in the `flavor` wire field.
-     */
-    val flavor: BerryFlavorSummary
+    /** Required object value serialized in the `flavor` wire field. */
+    val flavor: BerryFlavorSummary,
 )
 
-/**
- * Typed representation of the `BerryFlavorName` API schema.
- */
+/** Typed representation of the `BerryFlavorName` API schema. */
 data class BerryFlavorName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `PaginatedBerryFirmnessSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedBerryFirmnessSummaryList` API schema. */
 data class PaginatedBerryFirmnessSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<BerryFirmnessSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedBerryFlavorSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedBerryFlavorSummaryList` API schema. */
 data class PaginatedBerryFlavorSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<BerryFlavorSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedBerrySummaryList` API schema.
- */
+/** Typed representation of the `PaginatedBerrySummaryList` API schema. */
 data class PaginatedBerrySummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<BerrySummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )

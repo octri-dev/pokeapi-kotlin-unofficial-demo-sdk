@@ -20,44 +20,84 @@ import dev.octri.demo.pokeapiUnofficialSdk.Validation
 
 object Encounters {
 
-
     /**
-     * Lists methods by which players can encounter Pokémon in the wild, such as walking through tall grass. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists methods by which players can encounter Pokémon in the wild, such as walking through
+     * tall grass. Use `limit` and `offset` to control the result page, or filter by name with the
+     * locally available, case-insensitive `q` query.
      *
-     * Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
+     * Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall
+     * grass. Check out Bulbapedia for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun encounterMethodList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEncounterMethodSummaryList {
-        return SdkClient.request<PaginatedEncounterMethodSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/encounter-method/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "encounterMethodList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun encounterMethodList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEncounterMethodSummaryList {
+        return SdkClient.request<PaginatedEncounterMethodSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/encounter-method/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "encounterMethodList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists methods by which players can encounter Pokémon in the wild, such as walking through tall grass. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists methods by which players can encounter Pokémon in the wild, such as walking through
+     * tall grass. Use `limit` and `offset` to control the result page, or filter by name with the
+     * locally available, case-insensitive `q` query.
      *
-     * Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
+     * Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall
+     * grass. Check out Bulbapedia for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun encounterMethodListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EncounterMethodSummary) -> Boolean) {
-        var page: PaginatedEncounterMethodSummaryList = encounterMethodList(clientConfig, limit, offset, q, options)
+    fun encounterMethodListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EncounterMethodSummary) -> Boolean,
+    ) {
+        var page: PaginatedEncounterMethodSummaryList =
+            encounterMethodList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedEncounterMethodSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "encounterMethodList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEncounterMethodSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "encounterMethodList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -67,74 +107,139 @@ object Encounters {
         val hasMore: Boolean,
     )
 
-    fun encounterMethodListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EncounterMethodListPage) -> Boolean) {
-        var page: PaginatedEncounterMethodSummaryList = encounterMethodList(clientConfig, limit, offset, q, options)
+    fun encounterMethodListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EncounterMethodListPage) -> Boolean,
+    ) {
+        var page: PaginatedEncounterMethodSummaryList =
+            encounterMethodList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(EncounterMethodListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedEncounterMethodSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "encounterMethodList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEncounterMethodSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "encounterMethodList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a method by which players can encounter Pokémon in the wild. Use the `id` path parameter to view its name, optional order value, and localized names.
+     * Retrieves a method by which players can encounter Pokémon in the wild. Use the `id` path
+     * parameter to view its name, optional order value, and localized names.
      *
-     * Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
+     * Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall
+     * grass. Check out Bulbapedia for greater detail.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun encounterMethodRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EncounterMethodDetail {
-        return SdkClient.request<EncounterMethodDetail>(SdkClient.RequestSpec("GET", "/api/v2/encounter-method/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "encounterMethodRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun encounterMethodRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EncounterMethodDetail {
+        return SdkClient.request<EncounterMethodDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/encounter-method/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "encounterMethodRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists conditions that affect which Pokémon might appear in the wild, such as the time of day. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists conditions that affect which Pokémon might appear in the wild, such as the time of day.
+     * Use `limit` and `offset` to control the result page, or filter by name with the locally
+     * available, case-insensitive `q` query.
      *
      * Conditions which affect what pokemon might appear in the wild, e.g., day or night.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun encounterConditionList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEncounterConditionSummaryList {
-        return SdkClient.request<PaginatedEncounterConditionSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/encounter-condition/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "encounterConditionList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun encounterConditionList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEncounterConditionSummaryList {
+        return SdkClient.request<PaginatedEncounterConditionSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/encounter-condition/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "encounterConditionList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists conditions that affect which Pokémon might appear in the wild, such as the time of day. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists conditions that affect which Pokémon might appear in the wild, such as the time of day.
+     * Use `limit` and `offset` to control the result page, or filter by name with the locally
+     * available, case-insensitive `q` query.
      *
      * Conditions which affect what pokemon might appear in the wild, e.g., day or night.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun encounterConditionListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EncounterConditionSummary) -> Boolean) {
-        var page: PaginatedEncounterConditionSummaryList = encounterConditionList(clientConfig, limit, offset, q, options)
+    fun encounterConditionListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EncounterConditionSummary) -> Boolean,
+    ) {
+        var page: PaginatedEncounterConditionSummaryList =
+            encounterConditionList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedEncounterConditionSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "encounterConditionList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEncounterConditionSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "encounterConditionList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -144,74 +249,141 @@ object Encounters {
         val hasMore: Boolean,
     )
 
-    fun encounterConditionListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EncounterConditionListPage) -> Boolean) {
-        var page: PaginatedEncounterConditionSummaryList = encounterConditionList(clientConfig, limit, offset, q, options)
+    fun encounterConditionListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EncounterConditionListPage) -> Boolean,
+    ) {
+        var page: PaginatedEncounterConditionSummaryList =
+            encounterConditionList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(EncounterConditionListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedEncounterConditionSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "encounterConditionList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEncounterConditionSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "encounterConditionList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a specific encounter condition, such as a time of day that affects which Pokémon may appear in the wild. Use `id` to identify the condition whose values and localized names you need.
+     * Retrieves a specific encounter condition, such as a time of day that affects which Pokémon
+     * may appear in the wild. Use `id` to identify the condition whose values and localized names
+     * you need.
      *
      * Conditions which affect what pokemon might appear in the wild, e.g., day or night.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun encounterConditionRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EncounterConditionDetail {
-        return SdkClient.request<EncounterConditionDetail>(SdkClient.RequestSpec("GET", "/api/v2/encounter-condition/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "encounterConditionRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun encounterConditionRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EncounterConditionDetail {
+        return SdkClient.request<EncounterConditionDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/encounter-condition/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "encounterConditionRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists encounter condition values, which represent the possible states of an encounter condition, such as day or night. Use `limit` and `offset` to control the result page, or use `q` to search names case-insensitively; `q` is available only on local deployments.
+     * Lists encounter condition values, which represent the possible states of an encounter
+     * condition, such as day or night. Use `limit` and `offset` to control the result page, or use
+     * `q` to search names case-insensitively; `q` is available only on local deployments.
      *
-     * Encounter condition values are the various states that an encounter condition can have, i.e., time of day can be either day or night.
+     * Encounter condition values are the various states that an encounter condition can have, i.e.,
+     * time of day can be either day or night.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun encounterConditionValueList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEncounterConditionValueSummaryList {
-        return SdkClient.request<PaginatedEncounterConditionValueSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/encounter-condition-value/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "encounterConditionValueList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun encounterConditionValueList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEncounterConditionValueSummaryList {
+        return SdkClient.request<PaginatedEncounterConditionValueSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/encounter-condition-value/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "encounterConditionValueList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists encounter condition values, which represent the possible states of an encounter condition, such as day or night. Use `limit` and `offset` to control the result page, or use `q` to search names case-insensitively; `q` is available only on local deployments.
+     * Lists encounter condition values, which represent the possible states of an encounter
+     * condition, such as day or night. Use `limit` and `offset` to control the result page, or use
+     * `q` to search names case-insensitively; `q` is available only on local deployments.
      *
-     * Encounter condition values are the various states that an encounter condition can have, i.e., time of day can be either day or night.
+     * Encounter condition values are the various states that an encounter condition can have, i.e.,
+     * time of day can be either day or night.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun encounterConditionValueListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EncounterConditionValueSummary) -> Boolean) {
-        var page: PaginatedEncounterConditionValueSummaryList = encounterConditionValueList(clientConfig, limit, offset, q, options)
+    fun encounterConditionValueListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EncounterConditionValueSummary) -> Boolean,
+    ) {
+        var page: PaginatedEncounterConditionValueSummaryList =
+            encounterConditionValueList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedEncounterConditionValueSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "encounterConditionValueList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEncounterConditionValueSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "encounterConditionValueList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -221,52 +393,87 @@ object Encounters {
         val hasMore: Boolean,
     )
 
-    fun encounterConditionValueListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EncounterConditionValueListPage) -> Boolean) {
-        var page: PaginatedEncounterConditionValueSummaryList = encounterConditionValueList(clientConfig, limit, offset, q, options)
+    fun encounterConditionValueListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EncounterConditionValueListPage) -> Boolean,
+    ) {
+        var page: PaginatedEncounterConditionValueSummaryList =
+            encounterConditionValueList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(EncounterConditionValueListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedEncounterConditionValueSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "encounterConditionValueList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEncounterConditionValueSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "encounterConditionValueList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a specific encounter condition value, such as the day or night state of an encounter condition. Use `id` to identify the value and retrieve its associated condition and localized names.
+     * Retrieves a specific encounter condition value, such as the day or night state of an
+     * encounter condition. Use `id` to identify the value and retrieve its associated condition and
+     * localized names.
      *
-     * Encounter condition values are the various states that an encounter condition can have, i.e., time of day can be either day or night.
+     * Encounter condition values are the various states that an encounter condition can have, i.e.,
+     * time of day can be either day or night.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun encounterConditionValueRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EncounterConditionValueDetail {
-        return SdkClient.request<EncounterConditionValueDetail>(SdkClient.RequestSpec("GET", "/api/v2/encounter-condition-value/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "encounterConditionValueRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun encounterConditionValueRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EncounterConditionValueDetail {
+        return SdkClient.request<EncounterConditionValueDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/encounter-condition-value/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "encounterConditionValueRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists encounter location data for a Pokémon identified by its ID. Use `pokemon_id` to select the Pokémon; the value must contain digits only.
+     * Lists encounter location data for a Pokémon identified by its ID. Use `pokemon_id` to select
+     * the Pokémon; the value must contain digits only.
      *
      * Handles Pokemon Encounters as a sub-resource.
      */
-    fun pokemonEncountersList(clientConfig: ClientConfig, pokemonId: String, options: RequestOptions? = null): List<PokemonEncounterResponse> {
+    fun pokemonEncountersList(
+        clientConfig: ClientConfig,
+        pokemonId: String,
+        options: RequestOptions? = null,
+    ): List<PokemonEncounterResponse> {
         Validation.validatePattern("pokemon_id", pokemonId, "^\\d+$")
 
-        return SdkClient.request<List<PokemonEncounterResponse>>(SdkClient.RequestSpec("GET", "/api/v2/pokemon/${SdkClient.encodePathSegment(pokemonId)}/encounters", config = clientConfig, operationId = "pokemonEncountersList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<List<PokemonEncounterResponse>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/pokemon/${SdkClient.encodePathSegment(pokemonId)}/encounters",
+                    config = clientConfig,
+                    operationId = "pokemonEncountersList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

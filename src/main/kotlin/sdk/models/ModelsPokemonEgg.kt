@@ -3,52 +3,31 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `EggGroupDetail` API schema.
- */
+/** Typed representation of the `EggGroupDetail` API schema. */
 data class EggGroupDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<EggGroupName>,
-    /**
-     * Required array value serialized in the `pokemon_species` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species") val pokemonSpecies: List<PokemonSpeciesSummary>
+    /** Required array value serialized in the `pokemon_species` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species")
+    val pokemonSpecies: List<PokemonSpeciesSummary>,
 )
 
-/**
- * Typed representation of the `EggGroupName` API schema.
- */
+/** Typed representation of the `EggGroupName` API schema. */
 data class EggGroupName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `EggGroupSummary` API schema.
- */
+/** Typed representation of the `EggGroupSummary` API schema. */
 data class EggGroupSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )

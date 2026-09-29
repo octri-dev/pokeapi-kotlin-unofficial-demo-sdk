@@ -3,386 +3,231 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `EvolutionChainDetail` API schema.
- */
+/** Typed representation of the `EvolutionChainDetail` API schema. */
 data class EvolutionChainDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required object value serialized in the `baby_trigger_item` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("baby_trigger_item") val babyTriggerItem: ItemSummary,
-    /**
-     * Required API value serialized in the `chain` wire field.
-     */
-    val chain: EvolutionChainLink
+    /** Required object value serialized in the `baby_trigger_item` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("baby_trigger_item")
+    val babyTriggerItem: ItemSummary,
+    /** Required API value serialized in the `chain` wire field. */
+    val chain: EvolutionChainLink,
 )
 
-/**
- * Typed representation of the `EvolutionChainLink` API schema.
- */
+/** Typed representation of the `EvolutionChainLink` API schema. */
 data class EvolutionChainLink(
-    /**
-     * Required `boolean` value serialized in the `is_baby` wire field.
-     */
+    /** Required `boolean` value serialized in the `is_baby` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_baby") val isBaby: Boolean,
-    /**
-     * Required object value serialized in the `species` wire field.
-     */
+    /** Required object value serialized in the `species` wire field. */
     val species: PokemonSpeciesSummary,
-    /**
-     * Required array value serialized in the `evolution_details` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("evolution_details") val evolutionDetails: List<PokemonEvolution>,
-    /**
-     * Required array value serialized in the `evolves_to` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("evolves_to") val evolvesTo: List<Map<String, Any>>
+    /** Required array value serialized in the `evolution_details` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("evolution_details")
+    val evolutionDetails: List<PokemonEvolution>,
+    /** Required array value serialized in the `evolves_to` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("evolves_to")
+    val evolvesTo: List<Map<String, Any>>,
 )
 
-/**
- * Typed representation of the `EvolutionConditionExpression` API schema.
- */
+/** Typed representation of the `EvolutionConditionExpression` API schema. */
 data class EvolutionConditionExpression(
-    /**
-     * Evaluatable RPN condition expression using evolution variables (e.g. 'EC 100 % 0 ==')
-     */
+    /** Evaluatable RPN condition expression using evolution variables (e.g. 'EC 100 % 0 ==') */
     val expression: String,
-    /**
-     * Percentage chance of evolution under this condition (0-100)
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("percentage_chance") val percentageChance: Double?,
-    /**
-     * Evolution variables referenced in the expression
-     */
-    val variables: List<EvolutionVariableSummary>
+    /** Percentage chance of evolution under this condition (0-100) */
+    @com.fasterxml.jackson.annotation.JsonProperty("percentage_chance")
+    val percentageChance: Double?,
+    /** Evolution variables referenced in the expression */
+    val variables: List<EvolutionVariableSummary>,
 )
 
-/**
- * Typed representation of the `EvolutionTriggerDetail` API schema.
- */
+/** Typed representation of the `EvolutionTriggerDetail` API schema. */
 data class EvolutionTriggerDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<EvolutionTriggerName>,
-    /**
-     * Required array value serialized in the `pokemon_species` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species") val pokemonSpecies: List<PokemonSpeciesSummary>
+    /** Required array value serialized in the `pokemon_species` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species")
+    val pokemonSpecies: List<PokemonSpeciesSummary>,
 )
 
-/**
- * Typed representation of the `EvolutionTriggerName` API schema.
- */
+/** Typed representation of the `EvolutionTriggerName` API schema. */
 data class EvolutionTriggerName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
-)
-
-/**
- * Typed representation of the `EvolutionTriggerSummary` API schema.
- */
-data class EvolutionTriggerSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
-    val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
-)
-
-/**
- * Typed representation of the `EvolutionVariableDescription` API schema.
- */
-data class EvolutionVariableDescription(
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
+    /** Required object value serialized in the `language` wire field. */
     val language: LanguageSummary,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
 )
 
-/**
- * Typed representation of the `EvolutionVariableDetail` API schema.
- */
-data class EvolutionVariableDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
-    val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+/** Typed representation of the `EvolutionTriggerSummary` API schema. */
+data class EvolutionTriggerSummary(
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `symbol` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
+)
+
+/** Typed representation of the `EvolutionVariableDescription` API schema. */
+data class EvolutionVariableDescription(
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
+)
+
+/** Typed representation of the `EvolutionVariableDetail` API schema. */
+data class EvolutionVariableDetail(
+    /** Required `integer` value serialized in the `id` wire field. */
+    val id: Int,
+    /** Required `string` value serialized in the `name` wire field. */
+    val name: String,
+    /** Required `string` value serialized in the `symbol` wire field. */
     val symbol: String,
-    /**
-     * Required object value serialized in the `version_group` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_group") val versionGroup: VersionGroupSummary,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required object value serialized in the `version_group` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_group")
+    val versionGroup: VersionGroupSummary,
+    /** Required array value serialized in the `names` wire field. */
     val names: List<EvolutionVariableName>,
-    /**
-     * Required array value serialized in the `descriptions` wire field.
-     */
+    /** Required array value serialized in the `descriptions` wire field. */
     val descriptions: List<EvolutionVariableDescription>,
-    /**
-     * Optional `string` value serialized in the `data_type` wire field.
-     */
+    /** Optional `string` value serialized in the `data_type` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("data_type") val dataType: String? = null,
     /**
-     * Where the value comes from: 'pokemon' for data stored on the Pokemon (e.g. EC, PID), 'player-input' for an action taken by the player while evolving (e.g. SPIN_DIR, SPIN_SEC)
+     * Where the value comes from: 'pokemon' for data stored on the Pokemon (e.g. EC, PID),
+     * 'player-input' for an action taken by the player while evolving (e.g. SPIN_DIR, SPIN_SEC)
      */
-    val source: String? = null
+    val source: String? = null,
 )
 
-/**
- * Typed representation of the `EvolutionVariableName` API schema.
- */
+/** Typed representation of the `EvolutionVariableName` API schema. */
 data class EvolutionVariableName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `EvolutionVariableSummary` API schema.
- */
+/** Typed representation of the `EvolutionVariableSummary` API schema. */
 data class EvolutionVariableSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `PaginatedEvolutionChainSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedEvolutionChainSummaryList` API schema. */
 data class PaginatedEvolutionChainSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<EvolutionChainSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedEvolutionTriggerSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedEvolutionTriggerSummaryList` API schema. */
 data class PaginatedEvolutionTriggerSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<EvolutionTriggerSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedEvolutionVariableSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedEvolutionVariableSummaryList` API schema. */
 data class PaginatedEvolutionVariableSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<EvolutionVariableSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PokemonEvolution` API schema.
- */
+/** Typed representation of the `PokemonEvolution` API schema. */
 data class PokemonEvolution(
-    /**
-     * Required object value serialized in the `version_group` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_group") val versionGroup: VersionGroupSummary,
-    /**
-     * Required object value serialized in the `item` wire field.
-     */
+    /** Required object value serialized in the `version_group` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_group")
+    val versionGroup: VersionGroupSummary,
+    /** Required object value serialized in the `item` wire field. */
     val item: ItemSummary,
-    /**
-     * Required object value serialized in the `trigger` wire field.
-     */
+    /** Required object value serialized in the `trigger` wire field. */
     val trigger: EvolutionTriggerSummary,
-    /**
-     * Required object value serialized in the `held_item` wire field.
-     */
+    /** Required object value serialized in the `held_item` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("held_item") val heldItem: ItemSummary,
-    /**
-     * Required object value serialized in the `known_move` wire field.
-     */
+    /** Required object value serialized in the `known_move` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("known_move") val knownMove: MoveSummary,
-    /**
-     * Required object value serialized in the `known_move_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("known_move_type") val knownMoveType: TypeSummary,
-    /**
-     * Required object value serialized in the `location` wire field.
-     */
+    /** Required object value serialized in the `known_move_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("known_move_type")
+    val knownMoveType: TypeSummary,
+    /** Required object value serialized in the `location` wire field. */
     val location: LocationSummary,
-    /**
-     * Required object value serialized in the `party_species` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("party_species") val partySpecies: PokemonSpeciesSummary,
-    /**
-     * Required object value serialized in the `party_type` wire field.
-     */
+    /** Required object value serialized in the `party_species` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("party_species")
+    val partySpecies: PokemonSpeciesSummary,
+    /** Required object value serialized in the `party_type` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("party_type") val partyType: TypeSummary,
-    /**
-     * Required object value serialized in the `trade_species` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("trade_species") val tradeSpecies: PokemonSpeciesSummary,
-    /**
-     * Required object value serialized in the `region` wire field.
-     */
+    /** Required object value serialized in the `trade_species` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("trade_species")
+    val tradeSpecies: PokemonSpeciesSummary,
+    /** Required object value serialized in the `region` wire field. */
     val region: RegionSummary,
-    /**
-     * Required object value serialized in the `required_pokemon_form` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_pokemon_form") val requiredPokemonForm: PokemonFormSummary,
-    /**
-     * Required object value serialized in the `evolved_pokemon_form` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("evolved_pokemon_form") val evolvedPokemonForm: PokemonFormSummary,
-    /**
-     * Required object value serialized in the `used_move` wire field.
-     */
+    /** Required object value serialized in the `required_pokemon_form` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_pokemon_form")
+    val requiredPokemonForm: PokemonFormSummary,
+    /** Required object value serialized in the `evolved_pokemon_form` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("evolved_pokemon_form")
+    val evolvedPokemonForm: PokemonFormSummary,
+    /** Required object value serialized in the `used_move` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("used_move") val usedMove: MoveSummary,
-    /**
-     * Required array value serialized in the `allowed_natures` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_natures") val allowedNatures: List<NatureSummary>,
-    /**
-     * Required API value serialized in the `condition_expression` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("condition_expression") val conditionExpression: EvolutionConditionExpression?,
-    /**
-     * Optional `boolean` value serialized in the `is_default` wire field.
-     */
+    /** Required array value serialized in the `allowed_natures` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_natures")
+    val allowedNatures: List<NatureSummary>,
+    /** Required API value serialized in the `condition_expression` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("condition_expression")
+    val conditionExpression: EvolutionConditionExpression?,
+    /** Optional `boolean` value serialized in the `is_default` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_default") val isDefault: Boolean? = null,
-    /**
-     * Optional `integer` value serialized in the `gender` wire field.
-     */
+    /** Optional `integer` value serialized in the `gender` wire field. */
     val gender: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `min_level` wire field.
-     */
+    /** Optional `integer` value serialized in the `min_level` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("min_level") val minLevel: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `min_happiness` wire field.
-     */
+    /** Optional `integer` value serialized in the `min_happiness` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("min_happiness") val minHappiness: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `min_beauty` wire field.
-     */
+    /** Optional `integer` value serialized in the `min_beauty` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("min_beauty") val minBeauty: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `min_affection` wire field.
-     */
+    /** Optional `integer` value serialized in the `min_affection` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("min_affection") val minAffection: Int? = null,
-    /**
-     * Optional `boolean` value serialized in the `near_special_rock` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("near_special_rock") val nearSpecialRock: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `needs_multiplayer` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("needs_multiplayer") val needsMultiplayer: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `needs_overworld_rain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("needs_overworld_rain") val needsOverworldRain: Boolean? = null,
-    /**
-     * Optional `integer` value serialized in the `relative_physical_stats` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("relative_physical_stats") val relativePhysicalStats: Int? = null,
-    /**
-     * Optional `string` value serialized in the `time_of_day` wire field.
-     */
+    /** Optional `boolean` value serialized in the `near_special_rock` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("near_special_rock")
+    val nearSpecialRock: Boolean? = null,
+    /** Optional `boolean` value serialized in the `needs_multiplayer` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("needs_multiplayer")
+    val needsMultiplayer: Boolean? = null,
+    /** Optional `boolean` value serialized in the `needs_overworld_rain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("needs_overworld_rain")
+    val needsOverworldRain: Boolean? = null,
+    /** Optional `integer` value serialized in the `relative_physical_stats` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("relative_physical_stats")
+    val relativePhysicalStats: Int? = null,
+    /** Optional `string` value serialized in the `time_of_day` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("time_of_day") val timeOfDay: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `turn_upside_down` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("turn_upside_down") val turnUpsideDown: Boolean? = null,
-    /**
-     * Optional `integer` value serialized in the `min_move_count` wire field.
-     */
+    /** Optional `boolean` value serialized in the `turn_upside_down` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("turn_upside_down")
+    val turnUpsideDown: Boolean? = null,
+    /** Optional `integer` value serialized in the `min_move_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("min_move_count") val minMoveCount: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `min_steps` wire field.
-     */
+    /** Optional `integer` value serialized in the `min_steps` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("min_steps") val minSteps: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `min_damage_taken` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("min_damage_taken") val minDamageTaken: Int? = null
+    /** Optional `integer` value serialized in the `min_damage_taken` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("min_damage_taken")
+    val minDamageTaken: Int? = null,
 )

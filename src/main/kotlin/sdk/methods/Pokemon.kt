@@ -152,9 +152,17 @@ object Pokemon {
     )
 
     /**
-     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use `limit` and `offset` to select a result window, and `q` to filter by name when running a local API instance.
+     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use
+     * `limit` and `offset` to select a result window, and `q` to filter by name when running a
+     * local API instance.
      */
-    fun abilityList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedAbilitySummaryList =
+    fun abilityList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedAbilitySummaryList =
         sdk.methods.PokemonAbilityListOperation.abilityList(
             clientConfig,
             limit,
@@ -164,9 +172,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use `limit` and `offset` to select a result window, and `q` to filter by name when running a local API instance.
+     * Iterates through all pages: Lists abilities, which provide passive effects for Pokémon in
+     * battle or in the overworld. Use `limit` and `offset` to select a result window, and `q` to
+     * filter by name when running a local API instance.
      */
-    fun abilityListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (AbilitySummary) -> Boolean) =
+    fun abilityListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (AbilitySummary) -> Boolean,
+    ) =
         sdk.methods.PokemonAbilityListOperation.abilityListPaginated(
             clientConfig,
             limit,
@@ -177,9 +194,18 @@ object Pokemon {
         )
 
     /**
-     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use `limit` and `offset` to select a result window, and `q` to filter by name when running a local API instance.
+     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use
+     * `limit` and `offset` to select a result window, and `q` to filter by name when running a
+     * local API instance.
      */
-    fun abilityListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (AbilityListPage) -> Boolean) =
+    fun abilityListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (AbilityListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonAbilityListOperation.abilityListPages(
             clientConfig,
             limit,
@@ -190,9 +216,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a single ability and its Pokémon, generation, effect, and localized text data. Supply the ability's `id` as a string or integer to look up the record.
+     * Retrieves a single ability and its Pokémon, generation, effect, and localized text data.
+     * Supply the ability's `id` as a string or integer to look up the record.
      */
-    fun abilityRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): AbilityDetail =
+    fun abilityRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): AbilityDetail =
         sdk.methods.PokemonAbilityRetrieveOperation.abilityRetrieve(
             clientConfig,
             id,
@@ -200,9 +231,17 @@ object Pokemon {
         )
 
     /**
-     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics by name on a local API instance.
+     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value
+     * (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics
+     * by name on a local API instance.
      */
-    fun characteristicList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedCharacteristicSummaryList =
+    fun characteristicList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedCharacteristicSummaryList =
         sdk.methods.PokemonCharacteristicListOperation.characteristicList(
             clientConfig,
             limit,
@@ -212,9 +251,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists characteristics that indicate which stat contains a Pokémon's highest individual value (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics by name on a local API instance.
+     * Iterates through all pages: Lists characteristics that indicate which stat contains a
+     * Pokémon's highest individual value (IV). Use `limit` and `offset` to select a result window,
+     * and `q` to filter characteristics by name on a local API instance.
      */
-    fun characteristicListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (CharacteristicSummary) -> Boolean) =
+    fun characteristicListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (CharacteristicSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonCharacteristicListOperation.characteristicListPaginated(
             clientConfig,
             limit,
@@ -225,9 +273,18 @@ object Pokemon {
         )
 
     /**
-     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics by name on a local API instance.
+     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value
+     * (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics
+     * by name on a local API instance.
      */
-    fun characteristicListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (CharacteristicListPage) -> Boolean) =
+    fun characteristicListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (CharacteristicListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonCharacteristicListOperation.characteristicListPages(
             clientConfig,
             limit,
@@ -238,9 +295,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves the characteristic that describes which stat contains a Pokémon's highest IV. Use the `id` path parameter to select a characteristic and read its gene modulo, possible values, highest stat, and localized descriptions.
+     * Retrieves the characteristic that describes which stat contains a Pokémon's highest IV. Use
+     * the `id` path parameter to select a characteristic and read its gene modulo, possible values,
+     * highest stat, and localized descriptions.
      */
-    fun characteristicRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): CharacteristicDetail =
+    fun characteristicRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): CharacteristicDetail =
         sdk.methods.PokemonCharacteristicRetrieveOperation.characteristicRetrieve(
             clientConfig,
             id,
@@ -248,9 +311,17 @@ object Pokemon {
         )
 
     /**
-     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to
+     * control the result page, or filter by name with the locally available, case-insensitive `q`
+     * query.
      */
-    fun eggGroupList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEggGroupSummaryList =
+    fun eggGroupList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEggGroupSummaryList =
         sdk.methods.PokemonEggGroupListOperation.eggGroupList(
             clientConfig,
             limit,
@@ -260,9 +331,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Iterates through all pages: Lists egg groups, which determine which Pokémon can interbreed.
+     * Use `limit` and `offset` to control the result page, or filter by name with the locally
+     * available, case-insensitive `q` query.
      */
-    fun eggGroupListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EggGroupSummary) -> Boolean) =
+    fun eggGroupListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EggGroupSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonEggGroupListOperation.eggGroupListPaginated(
             clientConfig,
             limit,
@@ -273,9 +353,18 @@ object Pokemon {
         )
 
     /**
-     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to
+     * control the result page, or filter by name with the locally available, case-insensitive `q`
+     * query.
      */
-    fun eggGroupListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EggGroupListPage) -> Boolean) =
+    fun eggGroupListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EggGroupListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonEggGroupListOperation.eggGroupListPages(
             clientConfig,
             limit,
@@ -286,9 +375,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves an egg group that determines which Pokémon can interbreed. Use the `id` path parameter to view the group's name, localized names, and associated Pokémon species.
+     * Retrieves an egg group that determines which Pokémon can interbreed. Use the `id` path
+     * parameter to view the group's name, localized names, and associated Pokémon species.
      */
-    fun eggGroupRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EggGroupDetail =
+    fun eggGroupRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EggGroupDetail =
         sdk.methods.PokemonEggGroupRetrieveOperation.eggGroupRetrieve(
             clientConfig,
             id,
@@ -296,9 +390,17 @@ object Pokemon {
         )
 
     /**
-     * Lists genders used to describe Pokémon, including gender differences relevant to breeding, appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists genders used to describe Pokémon, including gender differences relevant to breeding,
+     * appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the
+     * results page.
      */
-    fun genderList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedGenderSummaryList =
+    fun genderList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedGenderSummaryList =
         sdk.methods.PokemonGenderListOperation.genderList(
             clientConfig,
             limit,
@@ -308,9 +410,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists genders used to describe Pokémon, including gender differences relevant to breeding, appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Iterates through all pages: Lists genders used to describe Pokémon, including gender
+     * differences relevant to breeding, appearance, and evolution. Use `q` to filter by name, or
+     * `limit` and `offset` to control the results page.
      */
-    fun genderListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (GenderSummary) -> Boolean) =
+    fun genderListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (GenderSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonGenderListOperation.genderListPaginated(
             clientConfig,
             limit,
@@ -321,9 +432,18 @@ object Pokemon {
         )
 
     /**
-     * Lists genders used to describe Pokémon, including gender differences relevant to breeding, appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists genders used to describe Pokémon, including gender differences relevant to breeding,
+     * appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the
+     * results page.
      */
-    fun genderListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (GenderListPage) -> Boolean) =
+    fun genderListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (GenderListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonGenderListOperation.genderListPages(
             clientConfig,
             limit,
@@ -334,9 +454,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a gender and its associated Pokémon species data. Use the `id` path parameter to view the species details and the evolution conditions associated with that gender.
+     * Retrieves a gender and its associated Pokémon species data. Use the `id` path parameter to
+     * view the species details and the evolution conditions associated with that gender.
      */
-    fun genderRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): GenderDetail =
+    fun genderRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): GenderDetail =
         sdk.methods.PokemonGenderRetrieveOperation.genderRetrieve(
             clientConfig,
             id,
@@ -344,9 +469,16 @@ object Pokemon {
         )
 
     /**
-     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to
+     * filter by name, or `limit` and `offset` to control the results page.
      */
-    fun growthRateList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedGrowthRateSummaryList =
+    fun growthRateList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedGrowthRateSummaryList =
         sdk.methods.PokemonGrowthRateListOperation.growthRateList(
             clientConfig,
             limit,
@@ -356,9 +488,17 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Iterates through all pages: Lists growth rates that describe how Pokémon gain levels through
+     * experience. Use `q` to filter by name, or `limit` and `offset` to control the results page.
      */
-    fun growthRateListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (GrowthRateSummary) -> Boolean) =
+    fun growthRateListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (GrowthRateSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonGrowthRateListOperation.growthRateListPaginated(
             clientConfig,
             limit,
@@ -369,9 +509,17 @@ object Pokemon {
         )
 
     /**
-     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to
+     * filter by name, or `limit` and `offset` to control the results page.
      */
-    fun growthRateListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (GrowthRateListPage) -> Boolean) =
+    fun growthRateListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (GrowthRateListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonGrowthRateListOperation.growthRateListPages(
             clientConfig,
             limit,
@@ -382,9 +530,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a growth rate and the experience data associated with it. Use the `id` path parameter to view its formula, localized descriptions, level thresholds, and associated Pokémon species.
+     * Retrieves a growth rate and the experience data associated with it. Use the `id` path
+     * parameter to view its formula, localized descriptions, level thresholds, and associated
+     * Pokémon species.
      */
-    fun growthRateRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): GrowthRateDetail =
+    fun growthRateRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): GrowthRateDetail =
         sdk.methods.PokemonGrowthRateRetrieveOperation.growthRateRetrieve(
             clientConfig,
             id,
@@ -392,9 +546,17 @@ object Pokemon {
         )
 
     /**
-     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the
+     * results by name with a case-insensitive query; this filter is available locally but not at
+     * pokeapi.co.
      */
-    fun moveDamageClassList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveDamageClassSummaryList =
+    fun moveDamageClassList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveDamageClassSummaryList =
         sdk.methods.PokemonMoveDamageClassListOperation.moveDamageClassList(
             clientConfig,
             limit,
@@ -404,9 +566,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Iterates through all pages: Lists move damage classes, such as physical, special, or
+     * non-damaging. Use `q` to filter the results by name with a case-insensitive query; this
+     * filter is available locally but not at pokeapi.co.
      */
-    fun moveDamageClassListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveDamageClassSummary) -> Boolean) =
+    fun moveDamageClassListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveDamageClassSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonMoveDamageClassListOperation.moveDamageClassListPaginated(
             clientConfig,
             limit,
@@ -417,9 +588,18 @@ object Pokemon {
         )
 
     /**
-     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the
+     * results by name with a case-insensitive query; this filter is available locally but not at
+     * pokeapi.co.
      */
-    fun moveDamageClassListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveDamageClassListPage) -> Boolean) =
+    fun moveDamageClassListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveDamageClassListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonMoveDamageClassListOperation.moveDamageClassListPages(
             clientConfig,
             limit,
@@ -430,9 +610,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a move damage class, such as physical, special, or non-damaging. Use the class identifier to look up its descriptions, localized names, and associated moves.
+     * Retrieves a move damage class, such as physical, special, or non-damaging. Use the class
+     * identifier to look up its descriptions, localized names, and associated moves.
      */
-    fun moveDamageClassRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveDamageClassDetail =
+    fun moveDamageClassRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveDamageClassDetail =
         sdk.methods.PokemonMoveDamageClassRetrieveOperation.moveDamageClassRetrieve(
             clientConfig,
             id,
@@ -440,9 +625,16 @@ object Pokemon {
         )
 
     /**
-     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by
+     * name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
      */
-    fun natureList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedNatureSummaryList =
+    fun natureList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedNatureSummaryList =
         sdk.methods.PokemonNatureListOperation.natureList(
             clientConfig,
             limit,
@@ -452,9 +644,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Iterates through all pages: Lists natures, which influence how a Pokémon's stats grow. Use
+     * `q` to filter the results by name with a case-insensitive query; this filter is available
+     * locally but not at pokeapi.co.
      */
-    fun natureListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (NatureSummary) -> Boolean) =
+    fun natureListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (NatureSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonNatureListOperation.natureListPaginated(
             clientConfig,
             limit,
@@ -465,9 +666,17 @@ object Pokemon {
         )
 
     /**
-     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by
+     * name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
      */
-    fun natureListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (NatureListPage) -> Boolean) =
+    fun natureListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (NatureListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonNatureListOperation.natureListPages(
             clientConfig,
             limit,
@@ -478,9 +687,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a nature record describing its effects on Pokémon stats, flavor preferences, and other attributes. Use the nature identifier to look up its stat changes, preferred flavors, and related preferences.
+     * Retrieves a nature record describing its effects on Pokémon stats, flavor preferences, and
+     * other attributes. Use the nature identifier to look up its stat changes, preferred flavors,
+     * and related preferences.
      */
-    fun natureRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): NatureDetail =
+    fun natureRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): NatureDetail =
         sdk.methods.PokemonNatureRetrieveOperation.natureRetrieve(
             clientConfig,
             id,
@@ -488,9 +703,17 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and `offset` to paginate the results, or use `q` to search Pokémon names when running the API locally.
+     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and
+     * `offset` to paginate the results, or use `q` to search Pokémon names when running the API
+     * locally.
      */
-    fun pokemonList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonSummaryList =
+    fun pokemonList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonSummaryList =
         sdk.methods.PokemonListOperation.pokemonList(
             clientConfig,
             limit,
@@ -500,9 +723,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and `offset` to paginate the results, or use `q` to search Pokémon names when running the API locally.
+     * Iterates through all pages: Lists Pokémon records representing individual Pokémon and their
+     * variants. Use `limit` and `offset` to paginate the results, or use `q` to search Pokémon
+     * names when running the API locally.
      */
-    fun pokemonListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonSummary) -> Boolean) =
+    fun pokemonListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonListOperation.pokemonListPaginated(
             clientConfig,
             limit,
@@ -513,9 +745,18 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and `offset` to paginate the results, or use `q` to search Pokémon names when running the API locally.
+     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and
+     * `offset` to paginate the results, or use `q` to search Pokémon names when running the API
+     * locally.
      */
-    fun pokemonListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokemonListPage) -> Boolean) =
+    fun pokemonListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokemonListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonListOperation.pokemonListPages(
             clientConfig,
             limit,
@@ -526,9 +767,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon record with its species, abilities, forms, moves, and other game data. Use the Pokémon identifier to distinguish a specific Pokémon variant from its species record.
+     * Retrieves a Pokémon record with its species, abilities, forms, moves, and other game data.
+     * Use the Pokémon identifier to distinguish a specific Pokémon variant from its species record.
      */
-    fun pokemonRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokemonDetail =
+    fun pokemonRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokemonDetail =
         sdk.methods.PokemonRetrieveOperation.pokemonRetrieve(
             clientConfig,
             id,
@@ -536,9 +782,16 @@ object Pokemon {
         )
 
     /**
-     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the results, or use `q` to search color names when running the API locally.
+     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search color names when running the API locally.
      */
-    fun pokemonColorList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonColorSummaryList =
+    fun pokemonColorList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonColorSummaryList =
         sdk.methods.PokemonColorListOperation.pokemonColorList(
             clientConfig,
             limit,
@@ -548,9 +801,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the results, or use `q` to search color names when running the API locally.
+     * Iterates through all pages: Lists colors used to sort Pokémon in a Pokédex. Use `limit` and
+     * `offset` to paginate the results, or use `q` to search color names when running the API
+     * locally.
      */
-    fun pokemonColorListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonColorSummary) -> Boolean) =
+    fun pokemonColorListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonColorSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonColorListOperation.pokemonColorListPaginated(
             clientConfig,
             limit,
@@ -561,9 +823,17 @@ object Pokemon {
         )
 
     /**
-     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the results, or use `q` to search color names when running the API locally.
+     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search color names when running the API locally.
      */
-    fun pokemonColorListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokemonColorListPage) -> Boolean) =
+    fun pokemonColorListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokemonColorListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonColorListOperation.pokemonColorListPages(
             clientConfig,
             limit,
@@ -574,9 +844,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon color record and the species associated with that color. Use the color identifier to look up its localized names and related Pokémon species.
+     * Retrieves a Pokémon color record and the species associated with that color. Use the color
+     * identifier to look up its localized names and related Pokémon species.
      */
-    fun pokemonColorRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokemonColorDetail =
+    fun pokemonColorRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokemonColorDetail =
         sdk.methods.PokemonColorRetrieveOperation.pokemonColorRetrieve(
             clientConfig,
             id,
@@ -584,9 +859,16 @@ object Pokemon {
         )
 
     /**
-     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the results, or use `q` to search form names when running the API locally.
+     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search form names when running the API locally.
      */
-    fun pokemonFormList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonFormSummaryList =
+    fun pokemonFormList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonFormSummaryList =
         sdk.methods.PokemonFormListOperation.pokemonFormList(
             clientConfig,
             limit,
@@ -596,9 +878,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the results, or use `q` to search form names when running the API locally.
+     * Iterates through all pages: Lists cosmetic forms in which Pokémon can appear. Use `limit` and
+     * `offset` to paginate the results, or use `q` to search form names when running the API
+     * locally.
      */
-    fun pokemonFormListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonFormSummary) -> Boolean) =
+    fun pokemonFormListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonFormSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonFormListOperation.pokemonFormListPaginated(
             clientConfig,
             limit,
@@ -609,9 +900,17 @@ object Pokemon {
         )
 
     /**
-     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the results, or use `q` to search form names when running the API locally.
+     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search form names when running the API locally.
      */
-    fun pokemonFormListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokemonFormListPage) -> Boolean) =
+    fun pokemonFormListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokemonFormListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonFormListOperation.pokemonFormListPages(
             clientConfig,
             limit,
@@ -622,9 +921,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon form, which represents a cosmetic variation of a Pokémon. Use `id` to select the form and inspect its Pokémon, version group, types, localized names, and trigger conditions.
+     * Retrieves a Pokémon form, which represents a cosmetic variation of a Pokémon. Use `id` to
+     * select the form and inspect its Pokémon, version group, types, localized names, and trigger
+     * conditions.
      */
-    fun pokemonFormRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokemonFormDetail =
+    fun pokemonFormRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokemonFormDetail =
         sdk.methods.PokemonFormRetrieveOperation.pokemonFormRetrieve(
             clientConfig,
             id,
@@ -632,9 +937,17 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q` to filter by name; `q` is available only on local installations.
+     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated
+     * for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q`
+     * to filter by name; `q` is available only on local installations.
      */
-    fun pokemonHabitatList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonHabitatSummaryList =
+    fun pokemonHabitatList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonHabitatSummaryList =
         sdk.methods.PokemonHabitatListOperation.pokemonHabitatList(
             clientConfig,
             limit,
@@ -644,9 +957,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q` to filter by name; `q` is available only on local installations.
+     * Iterates through all pages: Lists Pokémon habitats, which describe terrain where Pokémon can
+     * be found or areas designated for rare or legendary Pokémon. Use `limit` and `offset` to page
+     * through results, or use `q` to filter by name; `q` is available only on local installations.
      */
-    fun pokemonHabitatListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonHabitatSummary) -> Boolean) =
+    fun pokemonHabitatListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonHabitatSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonHabitatListOperation.pokemonHabitatListPaginated(
             clientConfig,
             limit,
@@ -657,9 +979,18 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q` to filter by name; `q` is available only on local installations.
+     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated
+     * for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q`
+     * to filter by name; `q` is available only on local installations.
      */
-    fun pokemonHabitatListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokemonHabitatListPage) -> Boolean) =
+    fun pokemonHabitatListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokemonHabitatListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonHabitatListOperation.pokemonHabitatListPages(
             clientConfig,
             limit,
@@ -670,9 +1001,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon habitat, which describes terrain where Pokémon can be found or an area designated for rare or legendary Pokémon. Use `id` to select a habitat and view its localized names and associated Pokémon species.
+     * Retrieves a Pokémon habitat, which describes terrain where Pokémon can be found or an area
+     * designated for rare or legendary Pokémon. Use `id` to select a habitat and view its localized
+     * names and associated Pokémon species.
      */
-    fun pokemonHabitatRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokemonHabitatDetail =
+    fun pokemonHabitatRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokemonHabitatDetail =
         sdk.methods.PokemonHabitatRetrieveOperation.pokemonHabitatRetrieve(
             clientConfig,
             id,
@@ -680,9 +1017,16 @@ object Pokemon {
         )
 
     /**
-     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through results, or use `q` to filter shapes by name; `q` is available only on local installations.
+     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through
+     * results, or use `q` to filter shapes by name; `q` is available only on local installations.
      */
-    fun pokemonShapeList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonShapeSummaryList =
+    fun pokemonShapeList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonShapeSummaryList =
         sdk.methods.PokemonShapeListOperation.pokemonShapeList(
             clientConfig,
             limit,
@@ -692,9 +1036,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through results, or use `q` to filter shapes by name; `q` is available only on local installations.
+     * Iterates through all pages: Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and
+     * `offset` to page through results, or use `q` to filter shapes by name; `q` is available only
+     * on local installations.
      */
-    fun pokemonShapeListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonShapeSummary) -> Boolean) =
+    fun pokemonShapeListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonShapeSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonShapeListOperation.pokemonShapeListPaginated(
             clientConfig,
             limit,
@@ -705,9 +1058,17 @@ object Pokemon {
         )
 
     /**
-     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through results, or use `q` to filter shapes by name; `q` is available only on local installations.
+     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through
+     * results, or use `q` to filter shapes by name; `q` is available only on local installations.
      */
-    fun pokemonShapeListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokemonShapeListPage) -> Boolean) =
+    fun pokemonShapeListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokemonShapeListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonShapeListOperation.pokemonShapeListPages(
             clientConfig,
             limit,
@@ -718,9 +1079,14 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon shape used to sort Pokémon in a Pokédex. Use `id` to select a shape and view its localized names, alternative shape names, and associated Pokémon species.
+     * Retrieves a Pokémon shape used to sort Pokémon in a Pokédex. Use `id` to select a shape and
+     * view its localized names, alternative shape names, and associated Pokémon species.
      */
-    fun pokemonShapeRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokemonShapeDetail =
+    fun pokemonShapeRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokemonShapeDetail =
         sdk.methods.PokemonShapeRetrieveOperation.pokemonShapeRetrieve(
             clientConfig,
             id,
@@ -728,9 +1094,17 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon species, whose shared attributes apply across the varieties within each species. Use `limit` and `offset` to page through results, or use `q` to filter species by name; `q` is available only on local installations.
+     * Lists Pokémon species, whose shared attributes apply across the varieties within each
+     * species. Use `limit` and `offset` to page through results, or use `q` to filter species by
+     * name; `q` is available only on local installations.
      */
-    fun pokemonSpeciesList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonSpeciesSummaryList =
+    fun pokemonSpeciesList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonSpeciesSummaryList =
         sdk.methods.PokemonSpeciesListOperation.pokemonSpeciesList(
             clientConfig,
             limit,
@@ -740,9 +1114,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists Pokémon species, whose shared attributes apply across the varieties within each species. Use `limit` and `offset` to page through results, or use `q` to filter species by name; `q` is available only on local installations.
+     * Iterates through all pages: Lists Pokémon species, whose shared attributes apply across the
+     * varieties within each species. Use `limit` and `offset` to page through results, or use `q`
+     * to filter species by name; `q` is available only on local installations.
      */
-    fun pokemonSpeciesListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonSpeciesSummary) -> Boolean) =
+    fun pokemonSpeciesListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonSpeciesSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonSpeciesListOperation.pokemonSpeciesListPaginated(
             clientConfig,
             limit,
@@ -753,9 +1136,18 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon species, whose shared attributes apply across the varieties within each species. Use `limit` and `offset` to page through results, or use `q` to filter species by name; `q` is available only on local installations.
+     * Lists Pokémon species, whose shared attributes apply across the varieties within each
+     * species. Use `limit` and `offset` to page through results, or use `q` to filter species by
+     * name; `q` is available only on local installations.
      */
-    fun pokemonSpeciesListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokemonSpeciesListPage) -> Boolean) =
+    fun pokemonSpeciesListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokemonSpeciesListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonSpeciesListOperation.pokemonSpeciesListPages(
             clientConfig,
             limit,
@@ -766,9 +1158,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon species, whose attributes are shared across its Pokémon varieties. Use `id` to select a species and inspect its generation, growth rate, habitat, egg groups, Pokédex numbers, and other species attributes.
+     * Retrieves a Pokémon species, whose attributes are shared across its Pokémon varieties. Use
+     * `id` to select a species and inspect its generation, growth rate, habitat, egg groups,
+     * Pokédex numbers, and other species attributes.
      */
-    fun pokemonSpeciesRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokemonSpeciesDetail =
+    fun pokemonSpeciesRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokemonSpeciesDetail =
         sdk.methods.PokemonSpeciesRetrieveOperation.pokemonSpeciesRetrieve(
             clientConfig,
             id,
@@ -776,9 +1174,17 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by name; `q` is available only on local installations.
+     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in
+     * Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by
+     * name; `q` is available only on local installations.
      */
-    fun pokeathlonStatList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokeathlonStatSummaryList =
+    fun pokeathlonStatList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokeathlonStatSummaryList =
         sdk.methods.PokemonPokeathlonStatListOperation.pokeathlonStatList(
             clientConfig,
             limit,
@@ -788,9 +1194,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by name; `q` is available only on local installations.
+     * Iterates through all pages: Lists Pokéathlon stats, which describe different attributes of a
+     * Pokémon's performance in Pokéathlons. Use `limit` and `offset` to page through results, or
+     * use `q` to filter stats by name; `q` is available only on local installations.
      */
-    fun pokeathlonStatListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokeathlonStatSummary) -> Boolean) =
+    fun pokeathlonStatListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokeathlonStatSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonPokeathlonStatListOperation.pokeathlonStatListPaginated(
             clientConfig,
             limit,
@@ -801,9 +1216,18 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by name; `q` is available only on local installations.
+     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in
+     * Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by
+     * name; `q` is available only on local installations.
      */
-    fun pokeathlonStatListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PokeathlonStatListPage) -> Boolean) =
+    fun pokeathlonStatListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PokeathlonStatListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonPokeathlonStatListOperation.pokeathlonStatListPages(
             clientConfig,
             limit,
@@ -814,9 +1238,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokéathlon stat, which represents an attribute of a Pokémon's performance in Pokéathlons. Use `id` to select a stat and view its localized names and the natures that affect it.
+     * Retrieves a Pokéathlon stat, which represents an attribute of a Pokémon's performance in
+     * Pokéathlons. Use `id` to select a stat and view its localized names and the natures that
+     * affect it.
      */
-    fun pokeathlonStatRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PokeathlonStatDetail =
+    fun pokeathlonStatRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PokeathlonStatDetail =
         sdk.methods.PokemonPokeathlonStatRetrieveOperation.pokeathlonStatRetrieve(
             clientConfig,
             id,
@@ -824,9 +1254,17 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon gain levels. Use `limit` and `offset` to control the results, or use `q` to search names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon
+     * gain levels. Use `limit` and `offset` to control the results, or use `q` to search names
+     * case-insensitively; `q` is available only on the local API.
      */
-    fun statList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedStatSummaryList =
+    fun statList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedStatSummaryList =
         sdk.methods.PokemonStatListOperation.statList(
             clientConfig,
             limit,
@@ -836,9 +1274,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon gain levels. Use `limit` and `offset` to control the results, or use `q` to search names case-insensitively; `q` is available only on the local API.
+     * Iterates through all pages: Lists Pokémon stats, which determine aspects of battles and have
+     * values that grow as Pokémon gain levels. Use `limit` and `offset` to control the results, or
+     * use `q` to search names case-insensitively; `q` is available only on the local API.
      */
-    fun statListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (StatSummary) -> Boolean) =
+    fun statListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (StatSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonStatListOperation.statListPaginated(
             clientConfig,
             limit,
@@ -849,9 +1296,18 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon gain levels. Use `limit` and `offset` to control the results, or use `q` to search names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon
+     * gain levels. Use `limit` and `offset` to control the results, or use `q` to search names
+     * case-insensitively; `q` is available only on the local API.
      */
-    fun statListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (StatListPage) -> Boolean) =
+    fun statListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (StatListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonStatListOperation.statListPages(
             clientConfig,
             limit,
@@ -862,9 +1318,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon stat record describing a stat's battle effects and related data. Use the `id` path parameter to identify the stat, then inspect its damage class, affecting moves, natures, and items, and associated characteristics.
+     * Retrieves a Pokémon stat record describing a stat's battle effects and related data. Use the
+     * `id` path parameter to identify the stat, then inspect its damage class, affecting moves,
+     * natures, and items, and associated characteristics.
      */
-    fun statRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): StatDetail =
+    fun statRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): StatDetail =
         sdk.methods.PokemonStatRetrieveOperation.statRetrieve(
             clientConfig,
             id,
@@ -872,9 +1334,17 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit` and `offset` to control the results, or use `q` to search type names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit`
+     * and `offset` to control the results, or use `q` to search type names case-insensitively; `q`
+     * is available only on the local API.
      */
-    fun typeList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedTypeSummaryList =
+    fun typeList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedTypeSummaryList =
         sdk.methods.PokemonTypeListOperation.typeList(
             clientConfig,
             limit,
@@ -884,9 +1354,18 @@ object Pokemon {
         )
 
     /**
-     * Iterates through all pages: Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit` and `offset` to control the results, or use `q` to search type names case-insensitively; `q` is available only on the local API.
+     * Iterates through all pages: Lists Pokémon types, which describe type properties for Pokémon
+     * and their moves. Use `limit` and `offset` to control the results, or use `q` to search type
+     * names case-insensitively; `q` is available only on the local API.
      */
-    fun typeListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (TypeSummary) -> Boolean) =
+    fun typeListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (TypeSummary) -> Boolean,
+    ) =
         sdk.methods.PokemonTypeListOperation.typeListPaginated(
             clientConfig,
             limit,
@@ -897,9 +1376,18 @@ object Pokemon {
         )
 
     /**
-     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit` and `offset` to control the results, or use `q` to search type names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit`
+     * and `offset` to control the results, or use `q` to search type names case-insensitively; `q`
+     * is available only on the local API.
      */
-    fun typeListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (TypeListPage) -> Boolean) =
+    fun typeListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (TypeListPage) -> Boolean,
+    ) =
         sdk.methods.PokemonTypeListOperation.typeListPages(
             clientConfig,
             limit,
@@ -910,9 +1398,15 @@ object Pokemon {
         )
 
     /**
-     * Retrieves a Pokémon type and its relationships with other types. Use the `id` path parameter to identify the type, then inspect its damage relations, generation, Pokémon, moves, and move damage class.
+     * Retrieves a Pokémon type and its relationships with other types. Use the `id` path parameter
+     * to identify the type, then inspect its damage relations, generation, Pokémon, moves, and move
+     * damage class.
      */
-    fun typeRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): TypeDetail =
+    fun typeRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): TypeDetail =
         sdk.methods.PokemonTypeRetrieveOperation.typeRetrieve(
             clientConfig,
             id,

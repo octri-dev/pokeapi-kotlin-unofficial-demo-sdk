@@ -3,190 +3,348 @@
 
 package sdk
 
-
 class PokemonNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use `limit` and `offset` to select a result window, and `q` to filter by name when running a local API instance.
+     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use
+     * `limit` and `offset` to select a result window, and `q` to filter by name when running a
+     * local API instance.
      *
-     * Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have multiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
+     * Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have
+     * multiple possible abilities but can have only one ability at a time. Check out Bulbapedia for
+     * greater detail.
      */
-    fun abilityList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedAbilitySummaryList {
+    fun abilityList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedAbilitySummaryList {
         return sdk.methods.Pokemon.abilityList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use `limit` and `offset` to select a result window, and `q` to filter by name when running a local API instance.
+     * Lists abilities, which provide passive effects for Pokémon in battle or in the overworld. Use
+     * `limit` and `offset` to select a result window, and `q` to filter by name when running a
+     * local API instance.
      *
-     * Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have multiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
+     * Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have
+     * multiple possible abilities but can have only one ability at a time. Check out Bulbapedia for
+     * greater detail.
      */
-    fun abilityListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (AbilitySummary) -> Boolean) {
+    fun abilityListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (AbilitySummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.abilityListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a single ability and its Pokémon, generation, effect, and localized text data. Supply the ability's `id` as a string or integer to look up the record.
+     * Retrieves a single ability and its Pokémon, generation, effect, and localized text data.
+     * Supply the ability's `id` as a string or integer to look up the record.
      *
-     * Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have multiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
+     * Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have
+     * multiple possible abilities but can have only one ability at a time. Check out Bulbapedia for
+     * greater detail.
      */
     fun abilityRetrieve(id: String, options: RequestOptions? = null): AbilityDetail {
         return sdk.methods.Pokemon.abilityRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics by name on a local API instance.
+     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value
+     * (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics
+     * by name on a local API instance.
      *
-     * Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
+     * Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's
+     * Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo).
+     * Check out Bulbapedia for greater detail.
      */
-    fun characteristicList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedCharacteristicSummaryList {
+    fun characteristicList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedCharacteristicSummaryList {
         return sdk.methods.Pokemon.characteristicList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics by name on a local API instance.
+     * Lists characteristics that indicate which stat contains a Pokémon's highest individual value
+     * (IV). Use `limit` and `offset` to select a result window, and `q` to filter characteristics
+     * by name on a local API instance.
      *
-     * Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
+     * Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's
+     * Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo).
+     * Check out Bulbapedia for greater detail.
      */
-    fun characteristicListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (CharacteristicSummary) -> Boolean) {
-        sdk.methods.Pokemon.characteristicListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun characteristicListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (CharacteristicSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.characteristicListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves the characteristic that describes which stat contains a Pokémon's highest IV. Use the `id` path parameter to select a characteristic and read its gene modulo, possible values, highest stat, and localized descriptions.
+     * Retrieves the characteristic that describes which stat contains a Pokémon's highest IV. Use
+     * the `id` path parameter to select a characteristic and read its gene modulo, possible values,
+     * highest stat, and localized descriptions.
      *
-     * Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
+     * Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's
+     * Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo).
+     * Check out Bulbapedia for greater detail.
      */
     fun characteristicRetrieve(id: String, options: RequestOptions? = null): CharacteristicDetail {
         return sdk.methods.Pokemon.characteristicRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to
+     * control the result page, or filter by name with the locally available, case-insensitive `q`
+     * query.
      *
-     * Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
+     * Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may
+     * belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
      */
-    fun eggGroupList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEggGroupSummaryList {
+    fun eggGroupList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEggGroupSummaryList {
         return sdk.methods.Pokemon.eggGroupList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to control the result page, or filter by name with the locally available, case-insensitive `q` query.
+     * Lists egg groups, which determine which Pokémon can interbreed. Use `limit` and `offset` to
+     * control the result page, or filter by name with the locally available, case-insensitive `q`
+     * query.
      *
-     * Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
+     * Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may
+     * belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
      */
-    fun eggGroupListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EggGroupSummary) -> Boolean) {
+    fun eggGroupListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EggGroupSummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.eggGroupListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves an egg group that determines which Pokémon can interbreed. Use the `id` path parameter to view the group's name, localized names, and associated Pokémon species.
+     * Retrieves an egg group that determines which Pokémon can interbreed. Use the `id` path
+     * parameter to view the group's name, localized names, and associated Pokémon species.
      *
-     * Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
+     * Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may
+     * belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
      */
     fun eggGroupRetrieve(id: String, options: RequestOptions? = null): EggGroupDetail {
         return sdk.methods.Pokemon.eggGroupRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists genders used to describe Pokémon, including gender differences relevant to breeding, appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists genders used to describe Pokémon, including gender differences relevant to breeding,
+     * appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the
+     * results page.
      *
-     * Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
+     * Genders were introduced in Generation II for the purposes of breeding Pokémon but can also
+     * result in visual differences or even different evolutionary lines. Check out Bulbapedia for
+     * greater detail.
      */
-    fun genderList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedGenderSummaryList {
+    fun genderList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedGenderSummaryList {
         return sdk.methods.Pokemon.genderList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists genders used to describe Pokémon, including gender differences relevant to breeding, appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists genders used to describe Pokémon, including gender differences relevant to breeding,
+     * appearance, and evolution. Use `q` to filter by name, or `limit` and `offset` to control the
+     * results page.
      *
-     * Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
+     * Genders were introduced in Generation II for the purposes of breeding Pokémon but can also
+     * result in visual differences or even different evolutionary lines. Check out Bulbapedia for
+     * greater detail.
      */
-    fun genderListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (GenderSummary) -> Boolean) {
+    fun genderListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (GenderSummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.genderListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a gender and its associated Pokémon species data. Use the `id` path parameter to view the species details and the evolution conditions associated with that gender.
+     * Retrieves a gender and its associated Pokémon species data. Use the `id` path parameter to
+     * view the species details and the evolution conditions associated with that gender.
      *
-     * Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
+     * Genders were introduced in Generation II for the purposes of breeding Pokémon but can also
+     * result in visual differences or even different evolutionary lines. Check out Bulbapedia for
+     * greater detail.
      */
     fun genderRetrieve(id: String, options: RequestOptions? = null): GenderDetail {
         return sdk.methods.Pokemon.genderRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to
+     * filter by name, or `limit` and `offset` to control the results page.
      *
-     * Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia for greater detail.
+     * Growth rates are the speed with which Pokémon gain levels through experience. Check out
+     * Bulbapedia for greater detail.
      */
-    fun growthRateList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedGrowthRateSummaryList {
+    fun growthRateList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedGrowthRateSummaryList {
         return sdk.methods.Pokemon.growthRateList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to filter by name, or `limit` and `offset` to control the results page.
+     * Lists growth rates that describe how Pokémon gain levels through experience. Use `q` to
+     * filter by name, or `limit` and `offset` to control the results page.
      *
-     * Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia for greater detail.
+     * Growth rates are the speed with which Pokémon gain levels through experience. Check out
+     * Bulbapedia for greater detail.
      */
-    fun growthRateListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (GrowthRateSummary) -> Boolean) {
-        sdk.methods.Pokemon.growthRateListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun growthRateListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (GrowthRateSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.growthRateListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a growth rate and the experience data associated with it. Use the `id` path parameter to view its formula, localized descriptions, level thresholds, and associated Pokémon species.
+     * Retrieves a growth rate and the experience data associated with it. Use the `id` path
+     * parameter to view its formula, localized descriptions, level thresholds, and associated
+     * Pokémon species.
      *
-     * Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia for greater detail.
+     * Growth rates are the speed with which Pokémon gain levels through experience. Check out
+     * Bulbapedia for greater detail.
      */
     fun growthRateRetrieve(id: String, options: RequestOptions? = null): GrowthRateDetail {
         return sdk.methods.Pokemon.growthRateRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the
+     * results by name with a case-insensitive query; this filter is available locally but not at
+     * pokeapi.co.
      *
      * Damage classes moves can have, e.g. physical, special, or non-damaging.
      */
-    fun moveDamageClassList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveDamageClassSummaryList {
+    fun moveDamageClassList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveDamageClassSummaryList {
         return sdk.methods.Pokemon.moveDamageClassList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move damage classes, such as physical, special, or non-damaging. Use `q` to filter the
+     * results by name with a case-insensitive query; this filter is available locally but not at
+     * pokeapi.co.
      *
      * Damage classes moves can have, e.g. physical, special, or non-damaging.
      */
-    fun moveDamageClassListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveDamageClassSummary) -> Boolean) {
-        sdk.methods.Pokemon.moveDamageClassListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun moveDamageClassListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveDamageClassSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.moveDamageClassListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a move damage class, such as physical, special, or non-damaging. Use the class identifier to look up its descriptions, localized names, and associated moves.
+     * Retrieves a move damage class, such as physical, special, or non-damaging. Use the class
+     * identifier to look up its descriptions, localized names, and associated moves.
      *
      * Damage classes moves can have, e.g. physical, special, or non-damaging.
      */
-    fun moveDamageClassRetrieve(id: String, options: RequestOptions? = null): MoveDamageClassDetail {
+    fun moveDamageClassRetrieve(
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveDamageClassDetail {
         return sdk.methods.Pokemon.moveDamageClassRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by
+     * name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Natures influence how a Pokémon's stats grow. See Bulbapedia for greater detail.
      */
-    fun natureList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedNatureSummaryList {
+    fun natureList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedNatureSummaryList {
         return sdk.methods.Pokemon.natureList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists natures, which influence how a Pokémon's stats grow. Use `q` to filter the results by
+     * name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Natures influence how a Pokémon's stats grow. See Bulbapedia for greater detail.
      */
-    fun natureListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (NatureSummary) -> Boolean) {
+    fun natureListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (NatureSummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.natureListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a nature record describing its effects on Pokémon stats, flavor preferences, and other attributes. Use the nature identifier to look up its stat changes, preferred flavors, and related preferences.
+     * Retrieves a nature record describing its effects on Pokémon stats, flavor preferences, and
+     * other attributes. Use the nature identifier to look up its stat changes, preferred flavors,
+     * and related preferences.
      *
      * Natures influence how a Pokémon's stats grow. See Bulbapedia for greater detail.
      */
@@ -195,133 +353,264 @@ class PokemonNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and `offset` to paginate the results, or use `q` to search Pokémon names when running the API locally.
+     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and
+     * `offset` to paginate the results, or use `q` to search Pokémon names when running the API
+     * locally.
      *
-     * Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a specific species but may take on a variant which makes it differ from other Pokémon of the same species, such as base stats, available abilities and typings. See Bulbapedia) for greater detail.
+     * Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught
+     * using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a
+     * specific species but may take on a variant which makes it differ from other Pokémon of the
+     * same species, such as base stats, available abilities and typings. See Bulbapedia) for
+     * greater detail.
      */
-    fun list(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonSummaryList {
+    fun list(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonSummaryList {
         return sdk.methods.Pokemon.pokemonList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and `offset` to paginate the results, or use `q` to search Pokémon names when running the API locally.
+     * Lists Pokémon records representing individual Pokémon and their variants. Use `limit` and
+     * `offset` to paginate the results, or use `q` to search Pokémon names when running the API
+     * locally.
      *
-     * Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a specific species but may take on a variant which makes it differ from other Pokémon of the same species, such as base stats, available abilities and typings. See Bulbapedia) for greater detail.
+     * Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught
+     * using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a
+     * specific species but may take on a variant which makes it differ from other Pokémon of the
+     * same species, such as base stats, available abilities and typings. See Bulbapedia) for
+     * greater detail.
      */
-    fun listPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonSummary) -> Boolean) {
+    fun listPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonSummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.pokemonListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a Pokémon record with its species, abilities, forms, moves, and other game data. Use the Pokémon identifier to distinguish a specific Pokémon variant from its species record.
+     * Retrieves a Pokémon record with its species, abilities, forms, moves, and other game data.
+     * Use the Pokémon identifier to distinguish a specific Pokémon variant from its species record.
      *
-     * Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a specific species but may take on a variant which makes it differ from other Pokémon of the same species, such as base stats, available abilities and typings. See Bulbapedia) for greater detail.
+     * Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught
+     * using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a
+     * specific species but may take on a variant which makes it differ from other Pokémon of the
+     * same species, such as base stats, available abilities and typings. See Bulbapedia) for
+     * greater detail.
      */
     fun retrieve(id: String, options: RequestOptions? = null): PokemonDetail {
         return sdk.methods.Pokemon.pokemonRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the results, or use `q` to search color names when running the API locally.
+     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search color names when running the API locally.
      *
-     * Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
+     * Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the
+     * color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that
+     * are primarily orange are listed as red or brown.
      */
-    fun colorList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonColorSummaryList {
+    fun colorList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonColorSummaryList {
         return sdk.methods.Pokemon.pokemonColorList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the results, or use `q` to search color names when running the API locally.
+     * Lists colors used to sort Pokémon in a Pokédex. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search color names when running the API locally.
      *
-     * Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
+     * Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the
+     * color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that
+     * are primarily orange are listed as red or brown.
      */
-    fun colorListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonColorSummary) -> Boolean) {
-        sdk.methods.Pokemon.pokemonColorListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun colorListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonColorSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.pokemonColorListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokémon color record and the species associated with that color. Use the color identifier to look up its localized names and related Pokémon species.
+     * Retrieves a Pokémon color record and the species associated with that color. Use the color
+     * identifier to look up its localized names and related Pokémon species.
      *
-     * Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
+     * Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the
+     * color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that
+     * are primarily orange are listed as red or brown.
      */
     fun colorRetrieve(id: String, options: RequestOptions? = null): PokemonColorDetail {
         return sdk.methods.Pokemon.pokemonColorRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the results, or use `q` to search form names when running the API locally.
+     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search form names when running the API locally.
      *
-     * Some Pokémon may appear in one of multiple, visually different forms. These differences are purely cosmetic. For variations within a Pokémon species, which do differ in more than just visuals, the 'Pokémon' entity is used to represent such a variety.
+     * Some Pokémon may appear in one of multiple, visually different forms. These differences are
+     * purely cosmetic. For variations within a Pokémon species, which do differ in more than just
+     * visuals, the 'Pokémon' entity is used to represent such a variety.
      */
-    fun formList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonFormSummaryList {
+    fun formList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonFormSummaryList {
         return sdk.methods.Pokemon.pokemonFormList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the results, or use `q` to search form names when running the API locally.
+     * Lists cosmetic forms in which Pokémon can appear. Use `limit` and `offset` to paginate the
+     * results, or use `q` to search form names when running the API locally.
      *
-     * Some Pokémon may appear in one of multiple, visually different forms. These differences are purely cosmetic. For variations within a Pokémon species, which do differ in more than just visuals, the 'Pokémon' entity is used to represent such a variety.
+     * Some Pokémon may appear in one of multiple, visually different forms. These differences are
+     * purely cosmetic. For variations within a Pokémon species, which do differ in more than just
+     * visuals, the 'Pokémon' entity is used to represent such a variety.
      */
-    fun formListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonFormSummary) -> Boolean) {
-        sdk.methods.Pokemon.pokemonFormListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun formListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonFormSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.pokemonFormListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokémon form, which represents a cosmetic variation of a Pokémon. Use `id` to select the form and inspect its Pokémon, version group, types, localized names, and trigger conditions.
+     * Retrieves a Pokémon form, which represents a cosmetic variation of a Pokémon. Use `id` to
+     * select the form and inspect its Pokémon, version group, types, localized names, and trigger
+     * conditions.
      *
-     * Some Pokémon may appear in one of multiple, visually different forms. These differences are purely cosmetic. For variations within a Pokémon species, which do differ in more than just visuals, the 'Pokémon' entity is used to represent such a variety.
+     * Some Pokémon may appear in one of multiple, visually different forms. These differences are
+     * purely cosmetic. For variations within a Pokémon species, which do differ in more than just
+     * visuals, the 'Pokémon' entity is used to represent such a variety.
      */
     fun formRetrieve(id: String, options: RequestOptions? = null): PokemonFormDetail {
         return sdk.methods.Pokemon.pokemonFormRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q` to filter by name; `q` is available only on local installations.
+     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated
+     * for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q`
+     * to filter by name; `q` is available only on local installations.
      *
-     * Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
+     * Habitats are generally different terrain Pokémon can be found in but can also be areas
+     * designated for rare or legendary Pokémon.
      */
-    fun habitatList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonHabitatSummaryList {
+    fun habitatList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonHabitatSummaryList {
         return sdk.methods.Pokemon.pokemonHabitatList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q` to filter by name; `q` is available only on local installations.
+     * Lists Pokémon habitats, which describe terrain where Pokémon can be found or areas designated
+     * for rare or legendary Pokémon. Use `limit` and `offset` to page through results, or use `q`
+     * to filter by name; `q` is available only on local installations.
      *
-     * Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
+     * Habitats are generally different terrain Pokémon can be found in but can also be areas
+     * designated for rare or legendary Pokémon.
      */
-    fun habitatListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonHabitatSummary) -> Boolean) {
-        sdk.methods.Pokemon.pokemonHabitatListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun habitatListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonHabitatSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.pokemonHabitatListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokémon habitat, which describes terrain where Pokémon can be found or an area designated for rare or legendary Pokémon. Use `id` to select a habitat and view its localized names and associated Pokémon species.
+     * Retrieves a Pokémon habitat, which describes terrain where Pokémon can be found or an area
+     * designated for rare or legendary Pokémon. Use `id` to select a habitat and view its localized
+     * names and associated Pokémon species.
      *
-     * Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
+     * Habitats are generally different terrain Pokémon can be found in but can also be areas
+     * designated for rare or legendary Pokémon.
      */
     fun habitatRetrieve(id: String, options: RequestOptions? = null): PokemonHabitatDetail {
         return sdk.methods.Pokemon.pokemonHabitatRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through results, or use `q` to filter shapes by name; `q` is available only on local installations.
+     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through
+     * results, or use `q` to filter shapes by name; `q` is available only on local installations.
      *
      * Shapes used for sorting Pokémon in a Pokédex.
      */
-    fun shapeList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonShapeSummaryList {
+    fun shapeList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonShapeSummaryList {
         return sdk.methods.Pokemon.pokemonShapeList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through results, or use `q` to filter shapes by name; `q` is available only on local installations.
+     * Lists shapes used to sort Pokémon in a Pokédex. Use `limit` and `offset` to page through
+     * results, or use `q` to filter shapes by name; `q` is available only on local installations.
      *
      * Shapes used for sorting Pokémon in a Pokédex.
      */
-    fun shapeListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonShapeSummary) -> Boolean) {
-        sdk.methods.Pokemon.pokemonShapeListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun shapeListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonShapeSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.pokemonShapeListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokémon shape used to sort Pokémon in a Pokédex. Use `id` to select a shape and view its localized names, alternative shape names, and associated Pokémon species.
+     * Retrieves a Pokémon shape used to sort Pokémon in a Pokédex. Use `id` to select a shape and
+     * view its localized names, alternative shape names, and associated Pokémon species.
      *
      * Shapes used for sorting Pokémon in a Pokédex.
      */
@@ -330,111 +619,216 @@ class PokemonNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Lists Pokémon species, whose shared attributes apply across the varieties within each species. Use `limit` and `offset` to page through results, or use `q` to filter species by name; `q` is available only on local installations.
+     * Lists Pokémon species, whose shared attributes apply across the varieties within each
+     * species. Use `limit` and `offset` to page through results, or use `q` to filter species by
+     * name; `q` is available only on local installations.
      *
-     * A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
+     * A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species
+     * are shared across all varieties of Pokémon within the species. A good example is Wormadam;
+     * Wormadam is the species which can be found in three different varieties, Wormadam-Trash,
+     * Wormadam-Sandy and Wormadam-Plant.
      */
-    fun speciesList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokemonSpeciesSummaryList {
+    fun speciesList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokemonSpeciesSummaryList {
         return sdk.methods.Pokemon.pokemonSpeciesList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists Pokémon species, whose shared attributes apply across the varieties within each species. Use `limit` and `offset` to page through results, or use `q` to filter species by name; `q` is available only on local installations.
+     * Lists Pokémon species, whose shared attributes apply across the varieties within each
+     * species. Use `limit` and `offset` to page through results, or use `q` to filter species by
+     * name; `q` is available only on local installations.
      *
-     * A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
+     * A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species
+     * are shared across all varieties of Pokémon within the species. A good example is Wormadam;
+     * Wormadam is the species which can be found in three different varieties, Wormadam-Trash,
+     * Wormadam-Sandy and Wormadam-Plant.
      */
-    fun speciesListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokemonSpeciesSummary) -> Boolean) {
-        sdk.methods.Pokemon.pokemonSpeciesListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun speciesListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokemonSpeciesSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.pokemonSpeciesListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokémon species, whose attributes are shared across its Pokémon varieties. Use `id` to select a species and inspect its generation, growth rate, habitat, egg groups, Pokédex numbers, and other species attributes.
+     * Retrieves a Pokémon species, whose attributes are shared across its Pokémon varieties. Use
+     * `id` to select a species and inspect its generation, growth rate, habitat, egg groups,
+     * Pokédex numbers, and other species attributes.
      *
-     * A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
+     * A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species
+     * are shared across all varieties of Pokémon within the species. A good example is Wormadam;
+     * Wormadam is the species which can be found in three different varieties, Wormadam-Trash,
+     * Wormadam-Sandy and Wormadam-Plant.
      */
     fun speciesRetrieve(id: String, options: RequestOptions? = null): PokemonSpeciesDetail {
         return sdk.methods.Pokemon.pokemonSpeciesRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by name; `q` is available only on local installations.
+     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in
+     * Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by
+     * name; `q` is available only on local installations.
      *
-     * Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
+     * Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In
+     * Pokéathlons, competitions happen on different courses; one for each of the different
+     * Pokéathlon stats. See Bulbapedia for greater detail.
      */
-    fun pokeathlonStatList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokeathlonStatSummaryList {
+    fun pokeathlonStatList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokeathlonStatSummaryList {
         return sdk.methods.Pokemon.pokeathlonStatList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by name; `q` is available only on local installations.
+     * Lists Pokéathlon stats, which describe different attributes of a Pokémon's performance in
+     * Pokéathlons. Use `limit` and `offset` to page through results, or use `q` to filter stats by
+     * name; `q` is available only on local installations.
      *
-     * Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
+     * Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In
+     * Pokéathlons, competitions happen on different courses; one for each of the different
+     * Pokéathlon stats. See Bulbapedia for greater detail.
      */
-    fun pokeathlonStatListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokeathlonStatSummary) -> Boolean) {
-        sdk.methods.Pokemon.pokeathlonStatListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun pokeathlonStatListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokeathlonStatSummary) -> Boolean,
+    ) {
+        sdk.methods.Pokemon.pokeathlonStatListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokéathlon stat, which represents an attribute of a Pokémon's performance in Pokéathlons. Use `id` to select a stat and view its localized names and the natures that affect it.
+     * Retrieves a Pokéathlon stat, which represents an attribute of a Pokémon's performance in
+     * Pokéathlons. Use `id` to select a stat and view its localized names and the natures that
+     * affect it.
      *
-     * Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
+     * Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In
+     * Pokéathlons, competitions happen on different courses; one for each of the different
+     * Pokéathlon stats. See Bulbapedia for greater detail.
      */
     fun pokeathlonStatRetrieve(id: String, options: RequestOptions? = null): PokeathlonStatDetail {
         return sdk.methods.Pokemon.pokeathlonStatRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon gain levels. Use `limit` and `offset` to control the results, or use `q` to search names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon
+     * gain levels. Use `limit` and `offset` to control the results, or use `q` to search names
+     * case-insensitively; `q` is available only on the local API.
      *
-     * Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
+     * Stats determine certain aspects of battles. Each Pokémon has a value for each stat which
+     * grows as they gain levels and can be altered momentarily by effects in battles.
      */
-    fun statList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedStatSummaryList {
+    fun statList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedStatSummaryList {
         return sdk.methods.Pokemon.statList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon gain levels. Use `limit` and `offset` to control the results, or use `q` to search names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon stats, which determine aspects of battles and have values that grow as Pokémon
+     * gain levels. Use `limit` and `offset` to control the results, or use `q` to search names
+     * case-insensitively; `q` is available only on the local API.
      *
-     * Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
+     * Stats determine certain aspects of battles. Each Pokémon has a value for each stat which
+     * grows as they gain levels and can be altered momentarily by effects in battles.
      */
-    fun statListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (StatSummary) -> Boolean) {
+    fun statListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (StatSummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.statListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a Pokémon stat record describing a stat's battle effects and related data. Use the `id` path parameter to identify the stat, then inspect its damage class, affecting moves, natures, and items, and associated characteristics.
+     * Retrieves a Pokémon stat record describing a stat's battle effects and related data. Use the
+     * `id` path parameter to identify the stat, then inspect its damage class, affecting moves,
+     * natures, and items, and associated characteristics.
      *
-     * Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
+     * Stats determine certain aspects of battles. Each Pokémon has a value for each stat which
+     * grows as they gain levels and can be altered momentarily by effects in battles.
      */
     fun statRetrieve(id: String, options: RequestOptions? = null): StatDetail {
         return sdk.methods.Pokemon.statRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit` and `offset` to control the results, or use `q` to search type names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit`
+     * and `offset` to control the results, or use `q` to search type names case-insensitively; `q`
+     * is available only on the local API.
      *
-     * Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
+     * Types are properties for Pokémon and their moves. Each type has three properties: which types
+     * of Pokémon it is super effective against, which types of Pokémon it is not very effective
+     * against, and which types of Pokémon it is completely ineffective against.
      */
-    fun typeList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedTypeSummaryList {
+    fun typeList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedTypeSummaryList {
         return sdk.methods.Pokemon.typeList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit` and `offset` to control the results, or use `q` to search type names case-insensitively; `q` is available only on the local API.
+     * Lists Pokémon types, which describe type properties for Pokémon and their moves. Use `limit`
+     * and `offset` to control the results, or use `q` to search type names case-insensitively; `q`
+     * is available only on the local API.
      *
-     * Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
+     * Types are properties for Pokémon and their moves. Each type has three properties: which types
+     * of Pokémon it is super effective against, which types of Pokémon it is not very effective
+     * against, and which types of Pokémon it is completely ineffective against.
      */
-    fun typeListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (TypeSummary) -> Boolean) {
+    fun typeListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (TypeSummary) -> Boolean,
+    ) {
         sdk.methods.Pokemon.typeListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a Pokémon type and its relationships with other types. Use the `id` path parameter to identify the type, then inspect its damage relations, generation, Pokémon, moves, and move damage class.
+     * Retrieves a Pokémon type and its relationships with other types. Use the `id` path parameter
+     * to identify the type, then inspect its damage relations, generation, Pokémon, moves, and move
+     * damage class.
      *
-     * Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
+     * Types are properties for Pokémon and their moves. Each type has three properties: which types
+     * of Pokémon it is super effective against, which types of Pokémon it is not very effective
+     * against, and which types of Pokémon it is completely ineffective against.
      */
     fun typeRetrieve(id: String, options: RequestOptions? = null): TypeDetail {
         return sdk.methods.Pokemon.typeRetrieve(clientConfig, id, options)
     }
-
 }

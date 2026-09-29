@@ -3,564 +3,321 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk.models
 
-/**
- * Typed representation of the `CurrencyDetail` API schema.
- */
+/** Typed representation of the `CurrencyDetail` API schema. */
 data class CurrencyDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<CurrencyName>
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<CurrencyName>,
 )
 
-/**
- * Typed representation of the `CurrencyName` API schema.
- */
+/** Typed representation of the `CurrencyName` API schema. */
 data class CurrencyName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
-)
-
-/**
- * Typed representation of the `CurrencySummary` API schema.
- */
-data class CurrencySummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
-    val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
-)
-
-/**
- * Typed representation of the `ItemAttributeDescription` API schema.
- */
-data class ItemAttributeDescription(
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
+    /** Required object value serialized in the `language` wire field. */
     val language: LanguageSummary,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
 )
 
-/**
- * Typed representation of the `ItemAttributeDetail` API schema.
- */
+/** Typed representation of the `CurrencySummary` API schema. */
+data class CurrencySummary(
+    /** Required `string` value serialized in the `name` wire field. */
+    val name: String,
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
+)
+
+/** Typed representation of the `ItemAttributeDescription` API schema. */
+data class ItemAttributeDescription(
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
+)
+
+/** Typed representation of the `ItemAttributeDetail` API schema. */
 data class ItemAttributeDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `descriptions` wire field.
-     */
+    /** Required array value serialized in the `descriptions` wire field. */
     val descriptions: List<ItemAttributeDescription>,
-    /**
-     * Required array value serialized in the `items` wire field.
-     */
+    /** Required array value serialized in the `items` wire field. */
     val items: List<ItemSummary>,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<ItemAttributeName>
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<ItemAttributeName>,
 )
 
-/**
- * Typed representation of the `ItemAttributeName` API schema.
- */
+/** Typed representation of the `ItemAttributeName` API schema. */
 data class ItemAttributeName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemAttributeSummary` API schema.
- */
+/** Typed representation of the `ItemAttributeSummary` API schema. */
 data class ItemAttributeSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `ItemCategoryDetail` API schema.
- */
+/** Typed representation of the `ItemCategoryDetail` API schema. */
 data class ItemCategoryDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `items` wire field.
-     */
+    /** Required array value serialized in the `items` wire field. */
     val items: List<ItemSummary>,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<ItemCategoryName>,
-    /**
-     * Required object value serialized in the `pocket` wire field.
-     */
-    val pocket: ItemPocketSummary
+    /** Required object value serialized in the `pocket` wire field. */
+    val pocket: ItemPocketSummary,
 )
 
-/**
- * Typed representation of the `ItemCategoryName` API schema.
- */
+/** Typed representation of the `ItemCategoryName` API schema. */
 data class ItemCategoryName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemCategorySummary` API schema.
- */
+/** Typed representation of the `ItemCategorySummary` API schema. */
 data class ItemCategorySummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `ItemDetail` API schema.
- */
+/** Typed representation of the `ItemDetail` API schema. */
 data class ItemDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `fling_effect` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("fling_effect") val flingEffect: ItemFlingEffectSummary,
-    /**
-     * Required array value serialized in the `attributes` wire field.
-     */
+    /** Required object value serialized in the `fling_effect` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("fling_effect")
+    val flingEffect: ItemFlingEffectSummary,
+    /** Required array value serialized in the `attributes` wire field. */
     val attributes: List<ItemAttributeSummary>,
-    /**
-     * Required object value serialized in the `category` wire field.
-     */
+    /** Required object value serialized in the `category` wire field. */
     val category: ItemCategorySummary,
-    /**
-     * Required array value serialized in the `effect_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries") val effectEntries: List<ItemEffectText>,
-    /**
-     * Required array value serialized in the `flavor_text_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries") val flavorTextEntries: List<ItemFlavorText>,
-    /**
-     * Required array value serialized in the `game_indices` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("game_indices") val gameIndices: List<ItemGameIndex>,
-    /**
-     * Required array value serialized in the `prices` wire field.
-     */
+    /** Required array value serialized in the `effect_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries")
+    val effectEntries: List<ItemEffectText>,
+    /** Required array value serialized in the `flavor_text_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries")
+    val flavorTextEntries: List<ItemFlavorText>,
+    /** Required array value serialized in the `game_indices` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("game_indices")
+    val gameIndices: List<ItemGameIndex>,
+    /** Required array value serialized in the `prices` wire field. */
     val prices: List<ItemPrice>,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<ItemName>,
-    /**
-     * Required array value serialized in the `held_by_pokemon` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("held_by_pokemon") val heldByPokemon: List<PokemonHeldItem>,
-    /**
-     * Required API value serialized in the `sprites` wire field.
-     */
+    /** Required array value serialized in the `held_by_pokemon` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("held_by_pokemon")
+    val heldByPokemon: List<PokemonHeldItem>,
+    /** Required API value serialized in the `sprites` wire field. */
     val sprites: ItemSprites,
-    /**
-     * Required API value serialized in the `baby_trigger_for` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("baby_trigger_for") val babyTriggerFor: EvolutionChainSummary?,
-    /**
-     * Required array value serialized in the `machines` wire field.
-     */
+    /** Required API value serialized in the `baby_trigger_for` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("baby_trigger_for")
+    val babyTriggerFor: EvolutionChainSummary?,
+    /** Required array value serialized in the `machines` wire field. */
     val machines: List<ItemMachine>,
-    /**
-     * Optional `integer` value serialized in the `fling_power` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("fling_power") val flingPower: Int? = null
+    /** Optional `integer` value serialized in the `fling_power` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("fling_power") val flingPower: Int? = null,
 )
 
-/**
- * Typed representation of the `ItemEffectText` API schema.
- */
+/** Typed representation of the `ItemEffectText` API schema. */
 data class ItemEffectText(
-    /**
-     * Required `string` value serialized in the `effect` wire field.
-     */
+    /** Required `string` value serialized in the `effect` wire field. */
     val effect: String,
-    /**
-     * Required `string` value serialized in the `short_effect` wire field.
-     */
+    /** Required `string` value serialized in the `short_effect` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("short_effect") val shortEffect: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemFlavorText` API schema.
- */
+/** Typed representation of the `ItemFlavorText` API schema. */
 data class ItemFlavorText(
-    /**
-     * Required `string` value serialized in the `text` wire field.
-     */
+    /** Required `string` value serialized in the `text` wire field. */
     val text: String,
-    /**
-     * Required object value serialized in the `version_group` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_group") val versionGroup: VersionGroupSummary,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `version_group` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_group")
+    val versionGroup: VersionGroupSummary,
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemFlingEffectDetail` API schema.
- */
+/** Typed representation of the `ItemFlingEffectDetail` API schema. */
 data class ItemFlingEffectDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `effect_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries") val effectEntries: List<ItemFlingEffectEffectText>,
-    /**
-     * Required array value serialized in the `items` wire field.
-     */
-    val items: List<ItemSummary>
+    /** Required array value serialized in the `effect_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries")
+    val effectEntries: List<ItemFlingEffectEffectText>,
+    /** Required array value serialized in the `items` wire field. */
+    val items: List<ItemSummary>,
 )
 
-/**
- * Typed representation of the `ItemFlingEffectEffectText` API schema.
- */
+/** Typed representation of the `ItemFlingEffectEffectText` API schema. */
 data class ItemFlingEffectEffectText(
-    /**
-     * Required `string` value serialized in the `effect` wire field.
-     */
+    /** Required `string` value serialized in the `effect` wire field. */
     val effect: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemFlingEffectSummary` API schema.
- */
+/** Typed representation of the `ItemFlingEffectSummary` API schema. */
 data class ItemFlingEffectSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `ItemGameIndex` API schema.
- */
+/** Typed representation of the `ItemGameIndex` API schema. */
 data class ItemGameIndex(
-    /**
-     * Required `integer` value serialized in the `game_index` wire field.
-     */
+    /** Required `integer` value serialized in the `game_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("game_index") val gameIndex: Int,
-    /**
-     * Required object value serialized in the `generation` wire field.
-     */
-    val generation: GenerationSummary
+    /** Required object value serialized in the `generation` wire field. */
+    val generation: GenerationSummary,
 )
 
-/**
- * Typed representation of the `ItemName` API schema.
- */
+/** Typed representation of the `ItemName` API schema. */
 data class ItemName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemPocketDetail` API schema.
- */
+/** Typed representation of the `ItemPocketDetail` API schema. */
 data class ItemPocketDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required array value serialized in the `categories` wire field.
-     */
+    /** Required array value serialized in the `categories` wire field. */
     val categories: List<ItemCategorySummary>,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<ItemPocketName>
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<ItemPocketName>,
 )
 
-/**
- * Typed representation of the `ItemPocketName` API schema.
- */
+/** Typed representation of the `ItemPocketName` API schema. */
 data class ItemPocketName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ItemPocketSummary` API schema.
- */
+/** Typed representation of the `ItemPocketSummary` API schema. */
 data class ItemPocketSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Typed representation of the `ItemPrice` API schema.
- */
+/** Typed representation of the `ItemPrice` API schema. */
 data class ItemPrice(
-    /**
-     * Required object value serialized in the `currency` wire field.
-     */
+    /** Required object value serialized in the `currency` wire field. */
     val currency: CurrencySummary,
-    /**
-     * Required object value serialized in the `version_group` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_group") val versionGroup: VersionGroupSummary,
-    /**
-     * Optional `integer` value serialized in the `purchase_price` wire field.
-     */
+    /** Required object value serialized in the `version_group` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_group")
+    val versionGroup: VersionGroupSummary,
+    /** Optional `integer` value serialized in the `purchase_price` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("purchase_price") val purchasePrice: Int? = null,
-    /**
-     * Optional `integer` value serialized in the `sell_price` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sell_price") val sellPrice: Int? = null
+    /** Optional `integer` value serialized in the `sell_price` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sell_price") val sellPrice: Int? = null,
 )
 
-/**
- * Typed representation of the `ItemSprites` API schema.
- */
+/** Typed representation of the `ItemSprites` API schema. */
 data class ItemSprites(
-    /**
-     * Required `string` value serialized in the `default` wire field.
-     */
+    /** Required `string` value serialized in the `default` wire field. */
     val default: String?
 )
 
-/**
- * Typed representation of the `PaginatedCurrencySummaryList` API schema.
- */
+/** Typed representation of the `PaginatedCurrencySummaryList` API schema. */
 data class PaginatedCurrencySummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<CurrencySummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedItemAttributeSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedItemAttributeSummaryList` API schema. */
 data class PaginatedItemAttributeSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ItemAttributeSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedItemCategorySummaryList` API schema.
- */
+/** Typed representation of the `PaginatedItemCategorySummaryList` API schema. */
 data class PaginatedItemCategorySummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ItemCategorySummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedItemFlingEffectSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedItemFlingEffectSummaryList` API schema. */
 data class PaginatedItemFlingEffectSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ItemFlingEffectSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedItemPocketSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedItemPocketSummaryList` API schema. */
 data class PaginatedItemPocketSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ItemPocketSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedItemSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedItemSummaryList` API schema. */
 data class PaginatedItemSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ItemSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )

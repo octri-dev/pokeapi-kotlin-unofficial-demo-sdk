@@ -3,60 +3,35 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk.models
 
-/**
- * Typed representation of the `GrowthRateDescription` API schema.
- */
+/** Typed representation of the `GrowthRateDescription` API schema. */
 data class GrowthRateDescription(
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
+    /** Required object value serialized in the `language` wire field. */
     val language: LanguageSummary,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
 )
 
-/**
- * Typed representation of the `GrowthRateDetail` API schema.
- */
+/** Typed representation of the `GrowthRateDetail` API schema. */
 data class GrowthRateDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `formula` wire field.
-     */
+    /** Required `string` value serialized in the `formula` wire field. */
     val formula: String,
-    /**
-     * Required array value serialized in the `descriptions` wire field.
-     */
+    /** Required array value serialized in the `descriptions` wire field. */
     val descriptions: List<GrowthRateDescription>,
-    /**
-     * Required array value serialized in the `levels` wire field.
-     */
+    /** Required array value serialized in the `levels` wire field. */
     val levels: List<Experience>,
-    /**
-     * Required array value serialized in the `pokemon_species` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species") val pokemonSpecies: List<PokemonSpeciesSummary>
+    /** Required array value serialized in the `pokemon_species` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pokemon_species")
+    val pokemonSpecies: List<PokemonSpeciesSummary>,
 )
 
-/**
- * Typed representation of the `GrowthRateSummary` API schema.
- */
+/** Typed representation of the `GrowthRateSummary` API schema. */
 data class GrowthRateSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )

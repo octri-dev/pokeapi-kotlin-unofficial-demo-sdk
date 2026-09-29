@@ -3,12 +3,12 @@
 
 package sdk
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFails
 import com.fasterxml.jackson.core.type.TypeReference
 import java.time.Duration
 import java.time.OffsetDateTime
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFails
 
 class SdkRuntimeTest {
     @Test
@@ -27,57 +27,65 @@ class SdkRuntimeTest {
 
     @Test
     fun executesRequestLayerThroughFakeMiddleware() {
-        val config = ClientConfig(
-            baseUrl = "https://example.test",
-            middleware = listOf({ request, _ ->
-                assertEquals("GET", request.method)
-                assertEquals("https://example.test/probe", request.url)
-                SdkRawResponse(
-                    statusCode = 200,
-                    statusText = "OK",
-                    headers = mapOf("x-request-id" to "fake-id"),
-                    body = """{"ok":true}""".toByteArray(),
-                    requestId = "fake-id",
-                    latency = Duration.ofMillis(1),
-                    attempt = request.attempt,
+        val config =
+            ClientConfig(
+                baseUrl = "https://example.test",
+                middleware =
+                    listOf({ request, _ ->
+                        assertEquals("GET", request.method)
+                        assertEquals("https://example.test/probe", request.url)
+                        SdkRawResponse(
+                            statusCode = 200,
+                            statusText = "OK",
+                            headers = mapOf("x-request-id" to "fake-id"),
+                            body = """{"ok":true}""".toByteArray(),
+                            requestId = "fake-id",
+                            latency = Duration.ofMillis(1),
+                            attempt = request.attempt,
+                        )
+                    }),
+            )
+        val response =
+            SdkClient.request<Map<String, Boolean>>(
+                SdkClient.RequestSpec(
+                    method = "GET",
+                    path = "/probe",
+                    config = config,
+                    operationId = "probe",
                 )
-            }),
-        )
-        val response = SdkClient.request<Map<String, Boolean>>(
-            SdkClient.RequestSpec(
-                method = "GET",
-                path = "/probe",
-                config = config,
-                operationId = "probe",
-            ),
-        )
+            )
         assertEquals(true, response.data["ok"])
         assertEquals("fake-id", response.requestId)
     }
 
     @Test
     fun roundTripsRfc3339OffsetsWithTheClientMapper() {
-        val rawValues = listOf(
-            "2011-04-10T20:09:31Z",
-            "2026-07-22T16:30:00+01:00",
-            "2026-07-22T12:30:00-03:00",
-            "2026-07-22T15:30:00.123456Z",
-        )
+        val rawValues =
+            listOf(
+                "2011-04-10T20:09:31Z",
+                "2026-07-22T16:30:00+01:00",
+                "2026-07-22T12:30:00-03:00",
+                "2026-07-22T15:30:00.123456Z",
+            )
         for (raw in rawValues) {
             val value = SdkClient.mapper.readValue("\"$raw\"", OffsetDateTime::class.java)
             assertEquals("\"$raw\"", SdkClient.mapper.writeValueAsString(value))
         }
-        val values = SdkClient.mapper.readValue(
-            "[\"2011-04-10T20:09:31Z\"]",
-            object : TypeReference<List<OffsetDateTime>>() {},
-        )
+        val values =
+            SdkClient.mapper.readValue(
+                "[\"2011-04-10T20:09:31Z\"]",
+                object : TypeReference<List<OffsetDateTime>>() {},
+            )
         assertEquals(OffsetDateTime.parse("2011-04-10T20:09:31Z"), values.single())
-        val nested = SdkClient.mapper.readValue(
-            "{\"created_at\":\"2026-07-22T16:30:00+01:00\"}",
-            object : TypeReference<Map<String, OffsetDateTime?>>() {},
-        )
+        val nested =
+            SdkClient.mapper.readValue(
+                "{\"created_at\":\"2026-07-22T16:30:00+01:00\"}",
+                object : TypeReference<Map<String, OffsetDateTime?>>() {},
+            )
         assertEquals(OffsetDateTime.parse("2026-07-22T16:30:00+01:00"), nested["created_at"])
         assertEquals(null, nested["omitted"])
-        assertFails { SdkClient.mapper.readValue("\"not-a-date-time\"", OffsetDateTime::class.java) }
+        assertFails {
+            SdkClient.mapper.readValue("\"not-a-date-time\"", OffsetDateTime::class.java)
+        }
     }
 }

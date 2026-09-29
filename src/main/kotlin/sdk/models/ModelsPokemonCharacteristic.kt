@@ -3,52 +3,30 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `CharacteristicDescription` API schema.
- */
+/** Typed representation of the `CharacteristicDescription` API schema. */
 data class CharacteristicDescription(
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
+    /** Required object value serialized in the `language` wire field. */
     val language: LanguageSummary,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
 )
 
-/**
- * Typed representation of the `CharacteristicDetail` API schema.
- */
+/** Typed representation of the `CharacteristicDetail` API schema. */
 data class CharacteristicDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `integer` value serialized in the `gene_modulo` wire field.
-     */
+    /** Required `integer` value serialized in the `gene_modulo` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("gene_modulo") val geneModulo: Int,
-    /**
-     * Required array value serialized in the `possible_values` wire field.
-     */
+    /** Required array value serialized in the `possible_values` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("possible_values") val possibleValues: List<Int>,
-    /**
-     * Required object value serialized in the `highest_stat` wire field.
-     */
+    /** Required object value serialized in the `highest_stat` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("highest_stat") val highestStat: StatSummary,
-    /**
-     * Required array value serialized in the `descriptions` wire field.
-     */
-    val descriptions: List<CharacteristicDescription>
+    /** Required array value serialized in the `descriptions` wire field. */
+    val descriptions: List<CharacteristicDescription>,
 )
 
-/**
- * Typed representation of the `CharacteristicSummary` API schema.
- */
+/** Typed representation of the `CharacteristicSummary` API schema. */
 data class CharacteristicSummary(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String
 )

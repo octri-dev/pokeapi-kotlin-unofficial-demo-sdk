@@ -3,7 +3,6 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk
 
-
 class PokAPI(private val clientConfig: ClientConfig) {
     val utility: UtilityNamespace
     val pokemon: PokemonNamespace
@@ -16,6 +15,7 @@ class PokAPI(private val clientConfig: ClientConfig) {
     val location: LocationNamespace
     val machines: MachinesNamespace
     val moves: MovesNamespace
+
     init {
         utility = UtilityNamespace(clientConfig)
         pokemon = PokemonNamespace(clientConfig)
@@ -29,17 +29,16 @@ class PokAPI(private val clientConfig: ClientConfig) {
         machines = MachinesNamespace(clientConfig)
         moves = MovesNamespace(clientConfig)
     }
+
     /**
-     * Turns SDK logging on and configures it. Logging is OFF by default — this
-     * SDK reports nothing until you call this (or construct the client with
-     * logging enabled). Reports go to the endpoint this build was generated with,
-     * or to the endpoint you set; with neither, nothing is sent. Set
-     * enabled = false in the block to turn it off.
+     * Turns SDK logging on and configures it. Logging is OFF by default — this SDK reports nothing
+     * until you call this (or construct the client with logging enabled). Reports go to the
+     * endpoint this build was generated with, or to the endpoint you set; with neither, nothing is
+     * sent. Set enabled = false in the block to turn it off.
      */
     fun setLoggingConfig(block: LoggingConfig.() -> Unit = {}): LoggingConfig {
         clientConfig.logging.enabled = true
         clientConfig.logging.block()
         return clientConfig.logging
     }
-
 }

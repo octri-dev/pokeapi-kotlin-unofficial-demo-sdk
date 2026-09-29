@@ -5,7 +5,8 @@ package dev.octri.demo.pokeapiUnofficialSdk
 
 typealias AbilityChange = dev.octri.demo.pokeapiUnofficialSdk.models.AbilityChange
 
-typealias AbilityChangeEffectText = dev.octri.demo.pokeapiUnofficialSdk.models.AbilityChangeEffectText
+typealias AbilityChangeEffectText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.AbilityChangeEffectText
 
 typealias AbilityDetail = dev.octri.demo.pokeapiUnofficialSdk.models.AbilityDetail
 
@@ -39,7 +40,8 @@ typealias BerryFlavorSummary = dev.octri.demo.pokeapiUnofficialSdk.models.BerryF
 
 typealias BerrySummary = dev.octri.demo.pokeapiUnofficialSdk.models.BerrySummary
 
-typealias CharacteristicDescription = dev.octri.demo.pokeapiUnofficialSdk.models.CharacteristicDescription
+typealias CharacteristicDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.CharacteristicDescription
 
 typealias CharacteristicDetail = dev.octri.demo.pokeapiUnofficialSdk.models.CharacteristicDetail
 
@@ -47,9 +49,11 @@ typealias CharacteristicSummary = dev.octri.demo.pokeapiUnofficialSdk.models.Cha
 
 typealias ContestEffectDetail = dev.octri.demo.pokeapiUnofficialSdk.models.ContestEffectDetail
 
-typealias ContestEffectEffectText = dev.octri.demo.pokeapiUnofficialSdk.models.ContestEffectEffectText
+typealias ContestEffectEffectText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.ContestEffectEffectText
 
-typealias ContestEffectFlavorText = dev.octri.demo.pokeapiUnofficialSdk.models.ContestEffectFlavorText
+typealias ContestEffectFlavorText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.ContestEffectFlavorText
 
 typealias ContestEffectSummary = dev.octri.demo.pokeapiUnofficialSdk.models.ContestEffectSummary
 
@@ -71,17 +75,22 @@ typealias EggGroupName = dev.octri.demo.pokeapiUnofficialSdk.models.EggGroupName
 
 typealias EggGroupSummary = dev.octri.demo.pokeapiUnofficialSdk.models.EggGroupSummary
 
-typealias EncounterConditionDetail = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionDetail
+typealias EncounterConditionDetail =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionDetail
 
 typealias EncounterConditionName = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionName
 
-typealias EncounterConditionSummary = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionSummary
+typealias EncounterConditionSummary =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionSummary
 
-typealias EncounterConditionValueDetail = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionValueDetail
+typealias EncounterConditionValueDetail =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionValueDetail
 
-typealias EncounterConditionValueName = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionValueName
+typealias EncounterConditionValueName =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionValueName
 
-typealias EncounterConditionValueSummary = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionValueSummary
+typealias EncounterConditionValueSummary =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EncounterConditionValueSummary
 
 typealias EncounterMethodDetail = dev.octri.demo.pokeapiUnofficialSdk.models.EncounterMethodDetail
 
@@ -97,21 +106,26 @@ typealias EvolutionChainLink = dev.octri.demo.pokeapiUnofficialSdk.models.Evolut
 
 typealias EvolutionChainSummary = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionChainSummary
 
-typealias EvolutionConditionExpression = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionConditionExpression
+typealias EvolutionConditionExpression =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionConditionExpression
 
 typealias EvolutionTriggerDetail = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionTriggerDetail
 
 typealias EvolutionTriggerName = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionTriggerName
 
-typealias EvolutionTriggerSummary = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionTriggerSummary
+typealias EvolutionTriggerSummary =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionTriggerSummary
 
-typealias EvolutionVariableDescription = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableDescription
+typealias EvolutionVariableDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableDescription
 
-typealias EvolutionVariableDetail = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableDetail
+typealias EvolutionVariableDetail =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableDetail
 
 typealias EvolutionVariableName = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableName
 
-typealias EvolutionVariableSummary = dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableSummary
+typealias EvolutionVariableSummary =
+    dev.octri.demo.pokeapiUnofficialSdk.models.EvolutionVariableSummary
 
 typealias Experience = dev.octri.demo.pokeapiUnofficialSdk.models.Experience
 
@@ -133,7 +147,8 @@ typealias GrowthRateDetail = dev.octri.demo.pokeapiUnofficialSdk.models.GrowthRa
 
 typealias GrowthRateSummary = dev.octri.demo.pokeapiUnofficialSdk.models.GrowthRateSummary
 
-typealias ItemAttributeDescription = dev.octri.demo.pokeapiUnofficialSdk.models.ItemAttributeDescription
+typealias ItemAttributeDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.ItemAttributeDescription
 
 typealias ItemAttributeDetail = dev.octri.demo.pokeapiUnofficialSdk.models.ItemAttributeDetail
 
@@ -155,7 +170,8 @@ typealias ItemFlavorText = dev.octri.demo.pokeapiUnofficialSdk.models.ItemFlavor
 
 typealias ItemFlingEffectDetail = dev.octri.demo.pokeapiUnofficialSdk.models.ItemFlingEffectDetail
 
-typealias ItemFlingEffectEffectText = dev.octri.demo.pokeapiUnofficialSdk.models.ItemFlingEffectEffectText
+typealias ItemFlingEffectEffectText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.ItemFlingEffectEffectText
 
 typealias ItemFlingEffectSummary = dev.octri.demo.pokeapiUnofficialSdk.models.ItemFlingEffectSummary
 
@@ -185,17 +201,22 @@ typealias LanguageSummary = dev.octri.demo.pokeapiUnofficialSdk.models.LanguageS
 
 typealias LocationAreaDetail = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaDetail
 
-typealias LocationAreaEncounterDetail = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaEncounterDetail
+typealias LocationAreaEncounterDetail =
+    dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaEncounterDetail
 
-typealias LocationAreaEncounterRate = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaEncounterRate
+typealias LocationAreaEncounterRate =
+    dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaEncounterRate
 
-typealias LocationAreaEncounterVersionDetail = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaEncounterVersionDetail
+typealias LocationAreaEncounterVersionDetail =
+    dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaEncounterVersionDetail
 
 typealias LocationAreaName = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaName
 
-typealias LocationAreaPokemonEncounter = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaPokemonEncounter
+typealias LocationAreaPokemonEncounter =
+    dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaPokemonEncounter
 
-typealias LocationAreaPokemonEncounterVersion = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaPokemonEncounterVersion
+typealias LocationAreaPokemonEncounterVersion =
+    dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaPokemonEncounterVersion
 
 typealias LocationAreaSummary = dev.octri.demo.pokeapiUnofficialSdk.models.LocationAreaSummary
 
@@ -223,7 +244,8 @@ typealias MoveCombos = dev.octri.demo.pokeapiUnofficialSdk.models.MoveCombos
 
 typealias MoveComboUsage = dev.octri.demo.pokeapiUnofficialSdk.models.MoveComboUsage
 
-typealias MoveDamageClassDescription = dev.octri.demo.pokeapiUnofficialSdk.models.MoveDamageClassDescription
+typealias MoveDamageClassDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.MoveDamageClassDescription
 
 typealias MoveDamageClassDetail = dev.octri.demo.pokeapiUnofficialSdk.models.MoveDamageClassDetail
 
@@ -235,13 +257,15 @@ typealias MoveDetail = dev.octri.demo.pokeapiUnofficialSdk.models.MoveDetail
 
 typealias MoveEffectChange = dev.octri.demo.pokeapiUnofficialSdk.models.MoveEffectChange
 
-typealias MoveEffectChangeEffectText = dev.octri.demo.pokeapiUnofficialSdk.models.MoveEffectChangeEffectText
+typealias MoveEffectChangeEffectText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.MoveEffectChangeEffectText
 
 typealias MoveEffectEffectText = dev.octri.demo.pokeapiUnofficialSdk.models.MoveEffectEffectText
 
 typealias MoveFlavorText = dev.octri.demo.pokeapiUnofficialSdk.models.MoveFlavorText
 
-typealias MoveLearnMethodDescription = dev.octri.demo.pokeapiUnofficialSdk.models.MoveLearnMethodDescription
+typealias MoveLearnMethodDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.MoveLearnMethodDescription
 
 typealias MoveLearnMethodDetail = dev.octri.demo.pokeapiUnofficialSdk.models.MoveLearnMethodDetail
 
@@ -257,11 +281,13 @@ typealias MoveMetaAilmentName = dev.octri.demo.pokeapiUnofficialSdk.models.MoveM
 
 typealias MoveMetaAilmentSummary = dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaAilmentSummary
 
-typealias MoveMetaCategoryDescription = dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaCategoryDescription
+typealias MoveMetaCategoryDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaCategoryDescription
 
 typealias MoveMetaCategoryDetail = dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaCategoryDetail
 
-typealias MoveMetaCategorySummary = dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaCategorySummary
+typealias MoveMetaCategorySummary =
+    dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaCategorySummary
 
 typealias MoveMetaStatChange = dev.octri.demo.pokeapiUnofficialSdk.models.MoveMetaStatChange
 
@@ -279,7 +305,8 @@ typealias MoveTargetName = dev.octri.demo.pokeapiUnofficialSdk.models.MoveTarget
 
 typealias MoveTargetSummary = dev.octri.demo.pokeapiUnofficialSdk.models.MoveTargetSummary
 
-typealias NatureBattleStylePreference = dev.octri.demo.pokeapiUnofficialSdk.models.NatureBattleStylePreference
+typealias NatureBattleStylePreference =
+    dev.octri.demo.pokeapiUnofficialSdk.models.NatureBattleStylePreference
 
 typealias NatureDetail = dev.octri.demo.pokeapiUnofficialSdk.models.NatureDetail
 
@@ -289,105 +316,155 @@ typealias NaturePokeathlonStat = dev.octri.demo.pokeapiUnofficialSdk.models.Natu
 
 typealias NatureSummary = dev.octri.demo.pokeapiUnofficialSdk.models.NatureSummary
 
-typealias PaginatedAbilitySummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedAbilitySummaryList
+typealias PaginatedAbilitySummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedAbilitySummaryList
 
-typealias PaginatedBerryFirmnessSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedBerryFirmnessSummaryList
+typealias PaginatedBerryFirmnessSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedBerryFirmnessSummaryList
 
-typealias PaginatedBerryFlavorSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedBerryFlavorSummaryList
+typealias PaginatedBerryFlavorSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedBerryFlavorSummaryList
 
-typealias PaginatedBerrySummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedBerrySummaryList
+typealias PaginatedBerrySummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedBerrySummaryList
 
-typealias PaginatedCharacteristicSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedCharacteristicSummaryList
+typealias PaginatedCharacteristicSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedCharacteristicSummaryList
 
-typealias PaginatedContestEffectSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedContestEffectSummaryList
+typealias PaginatedContestEffectSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedContestEffectSummaryList
 
-typealias PaginatedContestTypeSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedContestTypeSummaryList
+typealias PaginatedContestTypeSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedContestTypeSummaryList
 
-typealias PaginatedCurrencySummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedCurrencySummaryList
+typealias PaginatedCurrencySummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedCurrencySummaryList
 
-typealias PaginatedEggGroupSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEggGroupSummaryList
+typealias PaginatedEggGroupSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEggGroupSummaryList
 
-typealias PaginatedEncounterConditionSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEncounterConditionSummaryList
+typealias PaginatedEncounterConditionSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEncounterConditionSummaryList
 
-typealias PaginatedEncounterConditionValueSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEncounterConditionValueSummaryList
+typealias PaginatedEncounterConditionValueSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEncounterConditionValueSummaryList
 
-typealias PaginatedEncounterMethodSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEncounterMethodSummaryList
+typealias PaginatedEncounterMethodSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEncounterMethodSummaryList
 
-typealias PaginatedEvolutionChainSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEvolutionChainSummaryList
+typealias PaginatedEvolutionChainSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEvolutionChainSummaryList
 
-typealias PaginatedEvolutionTriggerSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEvolutionTriggerSummaryList
+typealias PaginatedEvolutionTriggerSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEvolutionTriggerSummaryList
 
-typealias PaginatedEvolutionVariableSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEvolutionVariableSummaryList
+typealias PaginatedEvolutionVariableSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedEvolutionVariableSummaryList
 
-typealias PaginatedGenderSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedGenderSummaryList
+typealias PaginatedGenderSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedGenderSummaryList
 
-typealias PaginatedGenerationSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedGenerationSummaryList
+typealias PaginatedGenerationSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedGenerationSummaryList
 
-typealias PaginatedGrowthRateSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedGrowthRateSummaryList
+typealias PaginatedGrowthRateSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedGrowthRateSummaryList
 
-typealias PaginatedItemAttributeSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemAttributeSummaryList
+typealias PaginatedItemAttributeSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemAttributeSummaryList
 
-typealias PaginatedItemCategorySummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemCategorySummaryList
+typealias PaginatedItemCategorySummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemCategorySummaryList
 
-typealias PaginatedItemFlingEffectSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemFlingEffectSummaryList
+typealias PaginatedItemFlingEffectSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemFlingEffectSummaryList
 
-typealias PaginatedItemPocketSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemPocketSummaryList
+typealias PaginatedItemPocketSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemPocketSummaryList
 
-typealias PaginatedItemSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemSummaryList
+typealias PaginatedItemSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedItemSummaryList
 
-typealias PaginatedLanguageSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedLanguageSummaryList
+typealias PaginatedLanguageSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedLanguageSummaryList
 
-typealias PaginatedLocationAreaSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedLocationAreaSummaryList
+typealias PaginatedLocationAreaSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedLocationAreaSummaryList
 
-typealias PaginatedLocationSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedLocationSummaryList
+typealias PaginatedLocationSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedLocationSummaryList
 
-typealias PaginatedMachineSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMachineSummaryList
+typealias PaginatedMachineSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMachineSummaryList
 
-typealias PaginatedMoveBattleStyleSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveBattleStyleSummaryList
+typealias PaginatedMoveBattleStyleSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveBattleStyleSummaryList
 
-typealias PaginatedMoveDamageClassSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveDamageClassSummaryList
+typealias PaginatedMoveDamageClassSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveDamageClassSummaryList
 
-typealias PaginatedMoveLearnMethodSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveLearnMethodSummaryList
+typealias PaginatedMoveLearnMethodSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveLearnMethodSummaryList
 
-typealias PaginatedMoveMetaAilmentSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveMetaAilmentSummaryList
+typealias PaginatedMoveMetaAilmentSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveMetaAilmentSummaryList
 
-typealias PaginatedMoveMetaCategorySummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveMetaCategorySummaryList
+typealias PaginatedMoveMetaCategorySummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveMetaCategorySummaryList
 
-typealias PaginatedMoveSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveSummaryList
+typealias PaginatedMoveSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveSummaryList
 
-typealias PaginatedMoveTargetSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveTargetSummaryList
+typealias PaginatedMoveTargetSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedMoveTargetSummaryList
 
-typealias PaginatedNatureSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedNatureSummaryList
+typealias PaginatedNatureSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedNatureSummaryList
 
-typealias PaginatedPalParkAreaSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPalParkAreaSummaryList
+typealias PaginatedPalParkAreaSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPalParkAreaSummaryList
 
-typealias PaginatedPokeathlonStatSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokeathlonStatSummaryList
+typealias PaginatedPokeathlonStatSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokeathlonStatSummaryList
 
-typealias PaginatedPokedexSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokedexSummaryList
+typealias PaginatedPokedexSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokedexSummaryList
 
-typealias PaginatedPokemonColorSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonColorSummaryList
+typealias PaginatedPokemonColorSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonColorSummaryList
 
-typealias PaginatedPokemonFormSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonFormSummaryList
+typealias PaginatedPokemonFormSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonFormSummaryList
 
-typealias PaginatedPokemonHabitatSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonHabitatSummaryList
+typealias PaginatedPokemonHabitatSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonHabitatSummaryList
 
-typealias PaginatedPokemonShapeSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonShapeSummaryList
+typealias PaginatedPokemonShapeSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonShapeSummaryList
 
-typealias PaginatedPokemonSpeciesSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonSpeciesSummaryList
+typealias PaginatedPokemonSpeciesSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonSpeciesSummaryList
 
-typealias PaginatedPokemonSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonSummaryList
+typealias PaginatedPokemonSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedPokemonSummaryList
 
-typealias PaginatedRegionSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedRegionSummaryList
+typealias PaginatedRegionSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedRegionSummaryList
 
-typealias PaginatedStatSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedStatSummaryList
+typealias PaginatedStatSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedStatSummaryList
 
-typealias PaginatedSuperContestEffectSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedSuperContestEffectSummaryList
+typealias PaginatedSuperContestEffectSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedSuperContestEffectSummaryList
 
-typealias PaginatedTypeSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedTypeSummaryList
+typealias PaginatedTypeSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedTypeSummaryList
 
-typealias PaginatedVersionGroupSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedVersionGroupSummaryList
+typealias PaginatedVersionGroupSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedVersionGroupSummaryList
 
-typealias PaginatedVersionSummaryList = dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedVersionSummaryList
+typealias PaginatedVersionSummaryList =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PaginatedVersionSummaryList
 
 typealias PalParkAreaDetail = dev.octri.demo.pokeapiUnofficialSdk.models.PalParkAreaDetail
 
@@ -399,9 +476,11 @@ typealias PalParkEncounter = dev.octri.demo.pokeapiUnofficialSdk.models.PalParkE
 
 typealias PokeapiMetaResponse = dev.octri.demo.pokeapiUnofficialSdk.models.PokeapiMetaResponse
 
-typealias PokeathlonStatAffectingNature = dev.octri.demo.pokeapiUnofficialSdk.models.PokeathlonStatAffectingNature
+typealias PokeathlonStatAffectingNature =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokeathlonStatAffectingNature
 
-typealias PokeathlonStatAffectingNatures = dev.octri.demo.pokeapiUnofficialSdk.models.PokeathlonStatAffectingNatures
+typealias PokeathlonStatAffectingNatures =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokeathlonStatAffectingNatures
 
 typealias PokeathlonStatDetail = dev.octri.demo.pokeapiUnofficialSdk.models.PokeathlonStatDetail
 
@@ -435,4 +514,5 @@ typealias PokemonDexEntry = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonDe
 
 typealias PokemonDexNumber = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonDexNumber
 
-typealias PokemonEncounterDetailResponse = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEncounterDetailResponse
+typealias PokemonEncounterDetailResponse =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEncounterDetailResponse

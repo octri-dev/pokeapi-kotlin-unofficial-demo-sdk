@@ -12,44 +12,83 @@ import dev.octri.demo.pokeapiUnofficialSdk.SdkClient
 
 object Machines {
 
-
     /**
-     * Lists machines, which represent items that teach moves to Pokémon. Use `limit` and `offset` to control the results page; `q` filters names case-insensitively and is available only in local deployments.
+     * Lists machines, which represent items that teach moves to Pokémon. Use `limit` and `offset`
+     * to control the results page; `q` filters names case-insensitively and is available only in
+     * local deployments.
      *
-     * Machines are the representation of items that teach moves to Pokémon. They vary from version to version, so it is not certain that one specific TM or HM corresponds to a single Machine.
+     * Machines are the representation of items that teach moves to Pokémon. They vary from version
+     * to version, so it is not certain that one specific TM or HM corresponds to a single Machine.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun machineList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMachineSummaryList {
-        return SdkClient.request<PaginatedMachineSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/machine/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "machineList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun machineList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMachineSummaryList {
+        return SdkClient.request<PaginatedMachineSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/machine/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "machineList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists machines, which represent items that teach moves to Pokémon. Use `limit` and `offset` to control the results page; `q` filters names case-insensitively and is available only in local deployments.
+     * Lists machines, which represent items that teach moves to Pokémon. Use `limit` and `offset`
+     * to control the results page; `q` filters names case-insensitively and is available only in
+     * local deployments.
      *
-     * Machines are the representation of items that teach moves to Pokémon. They vary from version to version, so it is not certain that one specific TM or HM corresponds to a single Machine.
+     * Machines are the representation of items that teach moves to Pokémon. They vary from version
+     * to version, so it is not certain that one specific TM or HM corresponds to a single Machine.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun machineListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MachineSummary) -> Boolean) {
+    fun machineListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MachineSummary) -> Boolean,
+    ) {
         var page: PaginatedMachineSummaryList = machineList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMachineSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "machineList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMachineSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "machineList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -59,7 +98,14 @@ object Machines {
         val hasMore: Boolean,
     )
 
-    fun machineListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MachineListPage) -> Boolean) {
+    fun machineListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MachineListPage) -> Boolean,
+    ) {
         var page: PaginatedMachineSummaryList = machineList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
@@ -67,27 +113,44 @@ object Machines {
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MachineListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMachineSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "machineList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMachineSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "machineList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a machine, which represents an item that teaches a move to a Pokémon. Use the `id` path parameter to identify the machine and retrieve its item, move, and version group.
+     * Retrieves a machine, which represents an item that teaches a move to a Pokémon. Use the `id`
+     * path parameter to identify the machine and retrieve its item, move, and version group.
      *
-     * Machines are the representation of items that teach moves to Pokémon. They vary from version to version, so it is not certain that one specific TM or HM corresponds to a single Machine.
+     * Machines are the representation of items that teach moves to Pokémon. They vary from version
+     * to version, so it is not certain that one specific TM or HM corresponds to a single Machine.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun machineRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MachineDetail {
-        return SdkClient.request<MachineDetail>(SdkClient.RequestSpec("GET", "/api/v2/machine/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "machineRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun machineRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MachineDetail {
+        return SdkClient.request<MachineDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/machine/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "machineRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

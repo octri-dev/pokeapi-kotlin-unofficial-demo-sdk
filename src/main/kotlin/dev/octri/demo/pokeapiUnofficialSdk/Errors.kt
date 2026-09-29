@@ -8,8 +8,8 @@ import com.fasterxml.jackson.core.type.TypeReference
 import java.time.Duration
 
 /**
- * Envelope returned by the low-level request layer. High-level endpoint
- * methods unwrap [data] automatically.
+ * Envelope returned by the low-level request layer. High-level endpoint methods unwrap [data]
+ * automatically.
  */
 data class SdkResponse<T>(
     val data: T,
@@ -21,14 +21,18 @@ data class SdkResponse<T>(
 )
 
 /**
- * Top-level error type for every SDK failure path. Concrete subclasses:
- * [SdkValidationError], [SdkHttpError], [SdkNetworkError], [SdkTimeoutError].
+ * Top-level error type for every SDK failure path. Concrete subclasses: [SdkValidationError],
+ * [SdkHttpError], [SdkNetworkError], [SdkTimeoutError].
  */
-sealed class SdkError(message: String, cause: Throwable? = null) : RuntimeException(message, cause) {
+sealed class SdkError(message: String, cause: Throwable? = null) :
+    RuntimeException(message, cause) {
     /** HTTP status code when produced from an HTTP response, otherwise null. */
-    open val statusCode: Int? get() = null
+    open val statusCode: Int?
+        get() = null
+
     /** Request id captured from the HTTP response, if any. */
-    open val requestId: String? get() = null
+    open val requestId: String?
+        get() = null
 }
 
 /** Thrown when a method argument fails an OpenAPI constraint pre-flight. */
@@ -47,7 +51,8 @@ open class SdkHttpError(
     val headers: Map<String, String>,
     override val requestId: String?,
 ) : SdkError(sdkHttpErrorMessage(statusCode, statusText, body, headers)) {
-    val bodyText: String get() = body.toString(Charsets.UTF_8)
+    val bodyText: String
+        get() = body.toString(Charsets.UTF_8)
 
     /**
      * Decodes the body into the model the API declares for this error, on the same terms as a
@@ -235,4 +240,3 @@ class SdkTimeoutError(
     override val requestId: String? = null,
     cause: Throwable? = null,
 ) : SdkError("Request timed out after ${elapsed.toMillis()}ms", cause)
-

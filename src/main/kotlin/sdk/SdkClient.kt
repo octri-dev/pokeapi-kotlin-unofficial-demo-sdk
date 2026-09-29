@@ -8,10 +8,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.InterruptedIOException
@@ -23,11 +19,15 @@ import java.time.Instant
 import java.util.UUID
 import kotlin.math.min
 import kotlin.random.Random
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 
 /**
- * The request context passed to an operation's beforeRequest hook. Mutate
- * [query], [body], or [headers] (or read [params]), then return it — the
- * returned context is what the SDK sends. (SDK Studio "custom code".)
+ * The request context passed to an operation's beforeRequest hook. Mutate [query], [body], or
+ * [headers] (or read [params]), then return it — the returned context is what the SDK sends. (SDK
+ * Studio "custom code".)
  */
 data class RequestContext(
     val params: MutableMap<String, Any?> = mutableMapOf(),
@@ -37,28 +37,47 @@ data class RequestContext(
 )
 
 /**
- * Single execution path for every generated method. Returns a typed
- * [SdkResponse] on 2xx; throws [SdkHttpError], [SdkNetworkError], or
- * [SdkTimeoutError] otherwise.
+ * Single execution path for every generated method. Returns a typed [SdkResponse] on 2xx; throws
+ * [SdkHttpError], [SdkNetworkError], or [SdkTimeoutError] otherwise.
  */
 object SdkClient {
 
-    enum class ResponseDecoder { JSON, TEXT, BYTES, EMPTY }
+    enum class ResponseDecoder {
+        JSON,
+        TEXT,
+        BYTES,
+        EMPTY,
+    }
 
-    data class UploadFile(val data: ByteArray, val filename: String, val contentType: String = "application/octet-stream")
+    data class UploadFile(
+        val data: ByteArray,
+        val filename: String,
+        val contentType: String = "application/octet-stream",
+    )
+
     data class MultipartPart(val data: ByteArray, val contentType: String)
-    data class QueryValue(val value: Any?, val style: String, val explode: Boolean, val format: String? = null)
+
+    data class QueryValue(
+        val value: Any?,
+        val style: String,
+        val explode: Boolean,
+        val format: String? = null,
+    )
+
     sealed interface SdkOptional<out T> {
         // Present value or null (typed T?, no cast/star-projection) so callers can
         // unwrap an optional param with a plain null-check.
         fun getOrNull(): T?
+
         data object Omitted : SdkOptional<Nothing> {
             override fun getOrNull(): Nothing? = null
         }
+
         data class Present<T>(val value: T) : SdkOptional<T> {
             override fun getOrNull(): T? = value
         }
     }
+
     data class RequestSpec(
         val method: String,
         val path: String,
@@ -78,30 +97,38 @@ object SdkClient {
     fun multipartJson(value: Any?, contentType: String = "application/json") =
         MultipartPart(mapper.writeValueAsBytes(value), contentType)
 
-    fun queryValue(value: Any?, style: String = "form", explode: Boolean = true, format: String? = null) =
-        QueryValue(value, style, explode, format)
+    fun queryValue(
+        value: Any?,
+        style: String = "form",
+        explode: Boolean = true,
+        format: String? = null,
+    ) = QueryValue(value, style, explode, format)
 
     fun omitIfNull(value: Any?): Any = value ?: SdkOptional.Omitted
 
-    fun bodyMap(vararg pairs: Pair<String, Any?>): MutableMap<String, Any?> =
-        buildMap {
-            for ((name, raw) in pairs) {
-                when (raw) {
-                    SdkOptional.Omitted -> Unit
-                    is SdkOptional.Present<*> -> put(name, raw.value)
-                    else -> put(name, raw)
-                }
+    fun bodyMap(vararg pairs: Pair<String, Any?>): MutableMap<String, Any?> = buildMap {
+        for ((name, raw) in pairs) {
+            when (raw) {
+                SdkOptional.Omitted -> Unit
+                is SdkOptional.Present<*> -> put(name, raw.value)
+                else -> put(name, raw)
             }
-        }.toMutableMap()
+        }
+    }
+        .toMutableMap()
 
     fun headers(vararg pairs: Pair<String, Any?>): MutableMap<String, String> =
-        pairs.mapNotNull { (name, value) -> value?.let { name to it.toString() } }.toMap().toMutableMap()
+        pairs
+            .mapNotNull { (name, value) -> value?.let { name to it.toString() } }
+            .toMap()
+            .toMutableMap()
 
-    fun parameterWireValue(value: Any?, format: String? = null): String = when {
-        format == "date" && value is java.time.LocalDate -> value.toString()
-        format == "date-time" && value is java.time.OffsetDateTime -> value.toString()
-        else -> value.toString()
-    }
+    fun parameterWireValue(value: Any?, format: String? = null): String =
+        when {
+            format == "date" && value is java.time.LocalDate -> value.toString()
+            format == "date-time" && value is java.time.OffsetDateTime -> value.toString()
+            else -> value.toString()
+        }
 
     fun encodePathSegment(value: Any?, format: String? = null): String {
         // A path array uses the default `simple` style: its members comma-joined.
@@ -115,12 +142,13 @@ object SdkClient {
     }
 
     /** Jackson mapper shared across all SDK calls. */
-    val mapper = jacksonObjectMapper().apply {
-        registerModule(JavaTimeModule())
-        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE)
-        disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-    }
+    val mapper =
+        jacksonObjectMapper().apply {
+            registerModule(JavaTimeModule())
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE)
+            disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+        }
 
     private val JSON_TYPE = "application/json; charset=utf-8".toMediaType()
     private val IDEMPOTENT_METHODS = setOf("GET", "HEAD", "PUT", "DELETE", "OPTIONS")
@@ -136,9 +164,9 @@ object SdkClient {
     private val client: OkHttpClient = OkHttpClient.Builder().build()
 
     /**
-     * Jackson wraps exceptions thrown by model constructors while hydrating a
-     * response. Preserve the SDK's typed model-validation error at the public
-     * request boundary instead of leaking the Jackson wrapper.
+     * Jackson wraps exceptions thrown by model constructors while hydrating a response. Preserve
+     * the SDK's typed model-validation error at the public request boundary instead of leaking the
+     * Jackson wrapper.
      */
     @PublishedApi
     internal fun rethrowModelValidation(error: Throwable): Nothing {
@@ -149,17 +177,23 @@ object SdkClient {
         val typeRef = object : TypeReference<T>() {}
         return requestRaw(spec) { bytes ->
             if (bytes.isEmpty() && spec.decoder != ResponseDecoder.EMPTY) {
-                throw SdkNetworkError(IllegalStateException("Expected a response body for ${spec.decoder} decoding, but the transport returned zero bytes"))
+                throw SdkNetworkError(
+                    IllegalStateException(
+                        "Expected a response body for ${spec.decoder} decoding, but the transport returned zero bytes"
+                    )
+                )
             }
             when (spec.decoder) {
                 ResponseDecoder.EMPTY -> @Suppress("UNCHECKED_CAST") (Unit as T)
-                ResponseDecoder.TEXT -> mapper.convertValue(bytes.toString(StandardCharsets.UTF_8), typeRef)
+                ResponseDecoder.TEXT ->
+                    mapper.convertValue(bytes.toString(StandardCharsets.UTF_8), typeRef)
                 ResponseDecoder.BYTES -> mapper.convertValue(bytes, typeRef)
-                ResponseDecoder.JSON -> try {
-                    mapper.readValue(bytes, typeRef)
-                } catch (error: com.fasterxml.jackson.core.JsonProcessingException) {
-                    rethrowModelValidation(error)
-                }
+                ResponseDecoder.JSON ->
+                    try {
+                        mapper.readValue(bytes, typeRef)
+                    } catch (error: com.fasterxml.jackson.core.JsonProcessingException) {
+                        rethrowModelValidation(error)
+                    }
             }
         }
     }
@@ -184,18 +218,21 @@ object SdkClient {
         val url = buildUrl(cfg.baseUrl ?: "", path, mergedQuery)
 
         val timeoutMs = (options?.timeout ?: cfg.timeout).toMillis()
-        val httpClient: OkHttpClient = client.newBuilder()
-            .callTimeout(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)
-            .connectTimeout(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)
-            .readTimeout(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)
-            .build()
+        val httpClient: OkHttpClient =
+            client
+                .newBuilder()
+                .callTimeout(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)
+                .connectTimeout(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)
+                .readTimeout(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)
+                .build()
 
         // One idempotency key per logical request — reused across retries.
-        val idempotencyKey: String? = when {
-            options?.idempotencyKey != null -> options.idempotencyKey.ifEmpty { null }
-            idem.enabled && upperMethod in idem.methods -> UUID.randomUUID().toString()
-            else -> null
-        }
+        val idempotencyKey: String? =
+            when {
+                options?.idempotencyKey != null -> options.idempotencyKey.ifEmpty { null }
+                idem.enabled && upperMethod in idem.methods -> UUID.randomUUID().toString()
+                else -> null
+            }
 
         // Compose the user middleware chain around the OkHttp terminal handler.
         val terminal: SdkNext = { sdkReq -> coreTransport(httpClient, sdkReq) }
@@ -212,40 +249,60 @@ object SdkClient {
             if (idempotencyKey != null) headers[idem.headerName] = idempotencyKey
             val encodedBody = encodeRequestBody(body, contentType)
             if (body != null) headers["Content-Type"] = encodedBody.contentType
-            val sdkReq = SdkRequest(
-                method = upperMethod,
-                url = url,
-                headers = headers,
-                body = encodedBody.payload,
-                bodyBytes = encodedBody.bytes,
-                contentType = encodedBody.contentType,
-                operationId = operationId,
-                attempt = attempt,
-            )
+            val sdkReq =
+                SdkRequest(
+                    method = upperMethod,
+                    url = url,
+                    headers = headers,
+                    body = encodedBody.payload,
+                    bodyBytes = encodedBody.bytes,
+                    contentType = encodedBody.contentType,
+                    operationId = operationId,
+                    attempt = attempt,
+                )
             try {
                 val raw = dispatch(sdkReq)
                 if (raw.statusCode in HTTP_SUCCESS_MIN..HTTP_SUCCESS_MAX) {
                     val data = decode(raw.body)
-                    val envelope = SdkResponse(data, raw.statusCode, raw.headers, raw.requestId, raw.latency, raw.attempt)
+                    val envelope =
+                        SdkResponse(
+                            data,
+                            raw.statusCode,
+                            raw.headers,
+                            raw.requestId,
+                            raw.latency,
+                            raw.attempt,
+                        )
                     @Suppress("UNCHECKED_CAST")
                     cfg.onResponse?.invoke(envelope as SdkResponse<Any?>)
                     return envelope
                 }
-                if (attempt < retry.maxAttempts && shouldRetry(upperMethod, raw.statusCode, retry.retryOn)) {
+                if (
+                    attempt < retry.maxAttempts &&
+                        shouldRetry(upperMethod, raw.statusCode, retry.retryOn)
+                ) {
                     sleepBackoff(retry, attempt, raw.headers["retry-after"])
                     continue
                 }
-                throw SdkHttpError.forStatus(raw.statusCode, raw.statusText, raw.body, raw.headers, raw.requestId)
+                throw SdkHttpError.forStatus(
+                    raw.statusCode,
+                    raw.statusText,
+                    raw.body,
+                    raw.headers,
+                    raw.requestId,
+                )
             } catch (e: SdkHttpError) {
                 throw logError(cfg, upperMethod, path, operationId, e)
             } catch (e: SdkTimeoutError) {
                 if (attempt < retry.maxAttempts) {
-                    sleepBackoff(retry, attempt, null); continue
+                    sleepBackoff(retry, attempt, null)
+                    continue
                 }
                 throw logError(cfg, upperMethod, path, operationId, e)
             } catch (e: SdkNetworkError) {
                 if (attempt < retry.maxAttempts) {
-                    sleepBackoff(retry, attempt, null); continue
+                    sleepBackoff(retry, attempt, null)
+                    continue
                 }
                 throw logError(cfg, upperMethod, path, operationId, e)
             }
@@ -268,10 +325,9 @@ object SdkClient {
         SdkClientBodyRuntime.encodeMultipart(fields, boundary)
 
     /**
-     * Fires the error logger (when configured) and returns the error unchanged
-     * so terminal failures can be wrapped inline at each throw site. Delivery is
-     * fire-and-forget on a daemon thread; a logging failure never masks the
-     * originating error.
+     * Fires the error logger (when configured) and returns the error unchanged so terminal failures
+     * can be wrapped inline at each throw site. Delivery is fire-and-forget on a daemon thread; a
+     * logging failure never masks the originating error.
      */
     private fun <E : SdkError> logError(
         cfg: ClientConfig,
@@ -287,29 +343,34 @@ object SdkClient {
         val baseClean = base.trimEnd('/')
         val pathClean = if (path.startsWith("/")) path else "/$path"
         // Absolute URLs (used by url-style pagination follow links) bypass the base URL.
-        val url = if (path.startsWith("http://") || path.startsWith("https://")) path else "$baseClean$pathClean"
+        val url =
+            if (path.startsWith("http://") || path.startsWith("https://")) path
+            else "$baseClean$pathClean"
 
         val encoded = mutableListOf<String>()
         for ((name, raw) in queryParams) {
             val descriptor = raw as? QueryValue ?: QueryValue(raw, "form", true)
             val value = descriptor.value ?: continue
-            val items = when (value) {
-                is Iterable<*> -> value.map { parameterWireValue(it, descriptor.format) }
-                is Array<*> -> value.map { parameterWireValue(it, descriptor.format) }
-                else -> listOf(parameterWireValue(value, descriptor.format))
-            }
+            val items =
+                when (value) {
+                    is Iterable<*> -> value.map { parameterWireValue(it, descriptor.format) }
+                    is Array<*> -> value.map { parameterWireValue(it, descriptor.format) }
+                    else -> listOf(parameterWireValue(value, descriptor.format))
+                }
             val repeated = descriptor.style == "form" && descriptor.explode
-            val delimiter = when (descriptor.style) {
-                "spaceDelimited" -> " "
-                "pipeDelimited" -> "|"
-                else -> ","
-            }
+            val delimiter =
+                when (descriptor.style) {
+                    "spaceDelimited" -> " "
+                    "pipeDelimited" -> "|"
+                    else -> ","
+                }
             val values = if (repeated) items else listOf(items.joinToString(delimiter))
             for (item in values) {
                 encoded += "${URLEncoder.encode(name, "UTF-8")}=${URLEncoder.encode(item, "UTF-8")}"
             }
         }
-        return if (encoded.isEmpty()) url else "$url${if (url.contains('?')) '&' else '?'}${encoded.joinToString("&")}"
+        return if (encoded.isEmpty()) url
+        else "$url${if (url.contains('?')) '&' else '?'}${encoded.joinToString("&")}"
     }
 
     private fun flattenHeaders(response: okhttp3.Response): Map<String, String> {
@@ -319,13 +380,15 @@ object SdkClient {
     }
 
     private fun findRequestId(headers: Map<String, String>): String? {
-        for (name in REQUEST_ID_HEADERS) headers[name]?.let { return it }
+        for (name in REQUEST_ID_HEADERS) headers[name]?.let {
+            return it
+        }
         return null
     }
 
     /**
-     * Composes a middleware stack around a terminal handler. The first
-     * middleware is outermost. Returns the terminal when the stack is empty.
+     * Composes a middleware stack around a terminal handler. The first middleware is outermost.
+     * Returns the terminal when the stack is empty.
      */
     fun composeMiddleware(stack: List<Middleware>, terminal: SdkNext): SdkNext {
         if (stack.isEmpty()) return terminal
@@ -339,30 +402,32 @@ object SdkClient {
     }
 
     /**
-     * Innermost handler: converts SdkRequest → OkHttp Request, executes, and
-     * assembles an SdkRawResponse. Non-2xx is returned as-is so middleware
-     * can inspect it.
+     * Innermost handler: converts SdkRequest → OkHttp Request, executes, and assembles an
+     * SdkRawResponse. Non-2xx is returned as-is so middleware can inspect it.
      */
     private fun coreTransport(httpClient: OkHttpClient, req: SdkRequest): SdkRawResponse {
         val builder = Request.Builder().url(req.url)
         req.headers.forEach { (k, v) -> builder.header(k, v) }
-        val request = when {
-            req.bodyBytes != null -> {
-                val mediaType = req.contentType.toMediaType()
-                builder.method(req.method, req.bodyBytes!!.toRequestBody(mediaType)).build()
+        val request =
+            when {
+                req.bodyBytes != null -> {
+                    val mediaType = req.contentType.toMediaType()
+                    builder.method(req.method, req.bodyBytes!!.toRequestBody(mediaType)).build()
+                }
+
+                req.body != null -> {
+                    val mediaType =
+                        if (req.contentType == "application/json") JSON_TYPE
+                        else req.contentType.toMediaType()
+                    builder.method(req.method, req.body!!.toRequestBody(mediaType)).build()
+                }
+
+                req.method == "GET" -> builder.get().build()
+
+                req.method == "DELETE" -> builder.delete().build()
+
+                else -> builder.method(req.method, "".toRequestBody()).build()
             }
-
-            req.body != null -> {
-                val mediaType = if (req.contentType == "application/json") JSON_TYPE else req.contentType.toMediaType()
-                builder.method(req.method, req.body!!.toRequestBody(mediaType)).build()
-            }
-
-            req.method == "GET" -> builder.get().build()
-
-            req.method == "DELETE" -> builder.delete().build()
-
-            else -> builder.method(req.method, "".toRequestBody()).build()
-        }
         val started = Instant.now()
         try {
             httpClient.newCall(request).execute().use { response ->
@@ -388,8 +453,8 @@ object SdkClient {
     }
 
     /**
-     * One Server-Sent Event yielded by [stream]. [data] is the raw event
-     * payload; consumers can JSON-decode it themselves when applicable.
+     * One Server-Sent Event yielded by [stream]. [data] is the raw event payload; consumers can
+     * JSON-decode it themselves when applicable.
      */
     data class SdkStreamEvent(
         val event: String,
@@ -400,9 +465,9 @@ object SdkClient {
     )
 
     /**
-     * Opens an SSE connection and returns a Sequence of parsed events.
-     * Bypasses the retry loop and idempotency layer — streaming connections
-     * are long-lived; reconnect is the caller's responsibility.
+     * Opens an SSE connection and returns a Sequence of parsed events. Bypasses the retry loop and
+     * idempotency layer — streaming connections are long-lived; reconnect is the caller's
+     * responsibility.
      */
     fun stream(spec: RequestSpec): Sequence<SdkStreamEvent> {
         val method = spec.method
@@ -423,85 +488,121 @@ object SdkClient {
         for ((k, v) in extraHeaders) builder.header(k, v)
         val multipartBody = body as? Map<*, *>
         val isMultipart = multipartBody != null && contentType.startsWith("multipart/form-data")
-        val boundary = if (isMultipart) "----InterfacerFormBoundary" + UUID.randomUUID().toString().replace("-", "") else null
-        val bodyBytes = when {
-            isMultipart -> encodeMultipart(multipartBody, boundary!!)
-            body is ByteArray -> body
-            else -> null
-        }
-        val payload: String? = when {
-            body == null || bodyBytes != null -> null
-            else -> SdkClientBodyRuntime.encodeTextBody(body, contentType, mapper)
-        }
-        val effectiveContentType = if (isMultipart) "multipart/form-data; boundary=$boundary" else contentType
-        if (body != null) builder.header("Content-Type", effectiveContentType)
-        val request = when {
-            payload != null || bodyBytes != null -> {
-                val mediaType = if (effectiveContentType == "application/json") JSON_TYPE else effectiveContentType.toMediaType()
-                val requestBody = bodyBytes?.toRequestBody(mediaType) ?: payload!!.toRequestBody(mediaType)
-                builder.method(upperMethod, requestBody).build()
+        val boundary =
+            if (isMultipart)
+                "----InterfacerFormBoundary" + UUID.randomUUID().toString().replace("-", "")
+            else null
+        val bodyBytes =
+            when {
+                isMultipart -> encodeMultipart(multipartBody, boundary!!)
+                body is ByteArray -> body
+                else -> null
             }
+        val payload: String? =
+            when {
+                body == null || bodyBytes != null -> null
+                else -> SdkClientBodyRuntime.encodeTextBody(body, contentType, mapper)
+            }
+        val effectiveContentType =
+            if (isMultipart) "multipart/form-data; boundary=$boundary" else contentType
+        if (body != null) builder.header("Content-Type", effectiveContentType)
+        val request =
+            when {
+                payload != null || bodyBytes != null -> {
+                    val mediaType =
+                        if (effectiveContentType == "application/json") JSON_TYPE
+                        else effectiveContentType.toMediaType()
+                    val requestBody =
+                        bodyBytes?.toRequestBody(mediaType) ?: payload!!.toRequestBody(mediaType)
+                    builder.method(upperMethod, requestBody).build()
+                }
 
-            upperMethod == "GET" -> builder.get().build()
+                upperMethod == "GET" -> builder.get().build()
 
-            else -> builder.method(upperMethod, "".toRequestBody()).build()
-        }
+                else -> builder.method(upperMethod, "".toRequestBody()).build()
+            }
         val response = client.newCall(request).execute()
         if (response.code !in HTTP_SUCCESS_MIN..HTTP_SUCCESS_MAX) {
             val headers = flattenHeaders(response)
             val bytes = response.body?.bytes() ?: ByteArray(0)
             response.close()
-            throw SdkHttpError.forStatus(response.code, response.message, bytes, headers, findRequestId(headers))
+            throw SdkHttpError.forStatus(
+                response.code,
+                response.message,
+                bytes,
+                headers,
+                findRequestId(headers),
+            )
         }
-        val source = response.body?.source()
-            ?: throw SdkNetworkError(IllegalStateException("stream: empty response body"))
+        val source =
+            response.body?.source()
+                ?: throw SdkNetworkError(IllegalStateException("stream: empty response body"))
         return streamEvents(response, source, spec)
     }
 
-    private fun streamEvents(response: okhttp3.Response, source: okio.BufferedSource, spec: RequestSpec): Sequence<SdkStreamEvent> = sequence {
-            try {
-                if (spec.streamFormat == "chunked") {
-                    yieldAll(rawStreamEvents(source.inputStream(), spec.chunkDomain))
-                    return@sequence
-                }
-                val reader = BufferedReader(InputStreamReader(source.inputStream(), StandardCharsets.UTF_8))
-                if (spec.streamFormat == "ndjson") {
-                    yieldAll(ndjsonStreamEvents(reader))
-                    return@sequence
-                }
-                var eventName: String? = null
-                var eventId: String? = null
-                var eventRetry: Int? = null
-                val dataLines = mutableListOf<String>()
-                while (true) {
-                    val line = reader.readLine() ?: break
-                    if (line.isEmpty()) {
-                        if (dataLines.isNotEmpty()) {
-                            yield(SdkStreamEvent(eventName ?: "message", dataLines.joinToString("\n"), eventId, eventRetry))
-                            dataLines.clear()
-                            eventName = null
-                        }
-                        continue
-                    }
-                    if (line.startsWith(":")) continue
-                    val colon = line.indexOf(':')
-                    val field = if (colon == -1) line else line.substring(0, colon)
-                    var value = if (colon == -1) "" else line.substring(colon + 1)
-                    if (value.startsWith(" ")) value = value.substring(1)
-                    when (field) {
-                        "event" -> eventName = value
-                        "data" -> dataLines.add(value)
-                        "id" -> eventId = value
-                        "retry" -> eventRetry = value.toIntOrNull()
-                    }
-                }
-                if (dataLines.isNotEmpty()) {
-                    yield(SdkStreamEvent(eventName ?: "message", dataLines.joinToString("\n"), eventId, eventRetry))
-                }
-            } finally {
-                response.close()
+    private fun streamEvents(
+        response: okhttp3.Response,
+        source: okio.BufferedSource,
+        spec: RequestSpec,
+    ): Sequence<SdkStreamEvent> = sequence {
+        try {
+            if (spec.streamFormat == "chunked") {
+                yieldAll(rawStreamEvents(source.inputStream(), spec.chunkDomain))
+                return@sequence
             }
+            val reader =
+                BufferedReader(InputStreamReader(source.inputStream(), StandardCharsets.UTF_8))
+            if (spec.streamFormat == "ndjson") {
+                yieldAll(ndjsonStreamEvents(reader))
+                return@sequence
+            }
+            var eventName: String? = null
+            var eventId: String? = null
+            var eventRetry: Int? = null
+            val dataLines = mutableListOf<String>()
+            while (true) {
+                val line = reader.readLine() ?: break
+                if (line.isEmpty()) {
+                    if (dataLines.isNotEmpty()) {
+                        yield(
+                            SdkStreamEvent(
+                                eventName ?: "message",
+                                dataLines.joinToString("\n"),
+                                eventId,
+                                eventRetry,
+                            )
+                        )
+                        dataLines.clear()
+                        eventName = null
+                    }
+                    continue
+                }
+                if (line.startsWith(":")) continue
+                val colon = line.indexOf(':')
+                val field = if (colon == -1) line else line.substring(0, colon)
+                var value = if (colon == -1) "" else line.substring(colon + 1)
+                if (value.startsWith(" ")) value = value.substring(1)
+                when (field) {
+                    "event" -> eventName = value
+                    "data" -> dataLines.add(value)
+                    "id" -> eventId = value
+                    "retry" -> eventRetry = value.toIntOrNull()
+                }
+            }
+            if (dataLines.isNotEmpty()) {
+                yield(
+                    SdkStreamEvent(
+                        eventName ?: "message",
+                        dataLines.joinToString("\n"),
+                        eventId,
+                        eventRetry,
+                    )
+                )
+            }
+        } finally {
+            response.close()
         }
+    }
 
     /** Configuration for [waitFor]. */
     data class WaitForConfig(
@@ -510,33 +611,51 @@ object SdkClient {
         val timeout: Duration = Duration.ofMinutes(DEFAULT_WAIT_TIMEOUT_MINUTES),
     )
 
-    data class TerminalState(val done: Boolean, val failed: Boolean = false, val reason: String? = null) {
+    data class TerminalState(
+        val done: Boolean,
+        val failed: Boolean = false,
+        val reason: String? = null,
+    ) {
         companion object {
             fun pending() = TerminalState(false)
+
             fun success() = TerminalState(true)
+
             fun failure(reason: String?) = TerminalState(true, failed = true, reason = reason)
         }
     }
 
     /**
-     * Polls a long-running operation until terminal. [isTerminal] classifies
-     * each result. Throws [SdkTimeoutError] on deadline.
+     * Polls a long-running operation until terminal. [isTerminal] classifies each result. Throws
+     * [SdkTimeoutError] on deadline.
      */
-    fun <T> waitFor(poll: () -> T, isTerminal: (T) -> TerminalState, config: WaitForConfig = WaitForConfig()): T {
+    fun <T> waitFor(
+        poll: () -> T,
+        isTerminal: (T) -> TerminalState,
+        config: WaitForConfig = WaitForConfig(),
+    ): T {
         val deadline = Instant.now().plus(config.timeout)
         var interval = config.interval
         while (true) {
             val result = poll()
             val state = isTerminal(result)
             if (state.done) {
-                if (state.failed) throw SdkNetworkError(IllegalStateException("operation failed: ${state.reason ?: "unknown"}"))
+                if (state.failed)
+                    throw SdkNetworkError(
+                        IllegalStateException("operation failed: ${state.reason ?: "unknown"}")
+                    )
                 return result
             }
             if (Instant.now().isAfter(deadline)) throw SdkTimeoutError(config.timeout)
             val jitterMs = Random.nextLong(config.interval.toMillis() + 1)
             var wait = interval.plusMillis(jitterMs)
             if (wait > config.maxInterval) wait = config.maxInterval
-            try { java.lang.Thread.sleep(wait.toMillis()) } catch (ie: InterruptedException) { java.lang.Thread.currentThread().interrupt(); throw SdkNetworkError(ie) }
+            try {
+                java.lang.Thread.sleep(wait.toMillis())
+            } catch (ie: InterruptedException) {
+                java.lang.Thread.currentThread().interrupt()
+                throw SdkNetworkError(ie)
+            }
             interval = interval.multipliedBy(2)
             if (interval > config.maxInterval) interval = config.maxInterval
         }
@@ -550,14 +669,19 @@ object SdkClient {
 
     private fun sleepBackoff(retry: RetryConfig, attempt: Int, retryAfter: String?) {
         val maxMs = retry.maxBackoff.toMillis()
-        val waitMs: Long = if (retryAfter != null) {
-            retryAfter.trim().toLongOrNull()?.let { min(it * MILLIS_PER_SECOND, maxMs) }
-                ?: computeExponential(retry, attempt, maxMs)
-        } else {
-            computeExponential(retry, attempt, maxMs)
-        }
+        val waitMs: Long =
+            if (retryAfter != null) {
+                retryAfter.trim().toLongOrNull()?.let { min(it * MILLIS_PER_SECOND, maxMs) }
+                    ?: computeExponential(retry, attempt, maxMs)
+            } else {
+                computeExponential(retry, attempt, maxMs)
+            }
         if (waitMs > 0) {
-            try { java.lang.Thread.sleep(waitMs) } catch (_: InterruptedException) { java.lang.Thread.currentThread().interrupt() }
+            try {
+                java.lang.Thread.sleep(waitMs)
+            } catch (_: InterruptedException) {
+                java.lang.Thread.currentThread().interrupt()
+            }
         }
     }
 
@@ -571,20 +695,15 @@ object SdkClient {
     /** Convenience: build a query map from key/value pairs. */
     fun q(vararg pairs: Pair<String, Any?>): Map<String, Any?> = pairs.toMap()
 
-
     private data class AuthResolved(
         val headers: MutableMap<String, String> = mutableMapOf(),
         val query: MutableMap<String, Any?> = mutableMapOf(),
     )
 
-
     // No security schemes declared — auth resolution is a no-op.
     @Suppress("UNUSED_PARAMETER")
     private fun resolveAuth(cfg: ClientConfig): AuthResolved = AuthResolved()
-
-
 }
-
 
 private object SdkModelValidationRuntime {
     fun rethrow(error: Throwable): Nothing {
@@ -599,18 +718,16 @@ private object SdkModelValidationRuntime {
                 ?.path
                 ?.lastOrNull()
                 ?.fieldName
-                ?: Regex("parameter ([A-Za-z_][A-Za-z0-9_]*)")
-                    .find(detail)
-                    ?.groupValues
-                    ?.get(1)
+                ?: Regex("parameter ([A-Za-z_][A-Za-z0-9_]*)").find(detail)?.groupValues?.get(1)
                 ?: "response"
-        val code = when {
-            detail.contains("missing", ignoreCase = true) ||
-                detail.contains("required", ignoreCase = true) -> "required"
-            detail.contains("java.time.LocalDate") -> "format:date"
-            detail.contains("java.time.OffsetDateTime") -> "format:date-time"
-            else -> "decode"
-        }
+        val code =
+            when {
+                detail.contains("missing", ignoreCase = true) ||
+                    detail.contains("required", ignoreCase = true) -> "required"
+                detail.contains("java.time.LocalDate") -> "format:date"
+                detail.contains("java.time.OffsetDateTime") -> "format:date-time"
+                else -> "decode"
+            }
         throw SdkValidationError(
             field,
             code,
@@ -626,12 +743,19 @@ private object SdkClientBodyRuntime {
         val bytes: ByteArray?,
     )
 
-    fun encodeTextBody(body: Any, contentType: String, mapper: com.fasterxml.jackson.databind.ObjectMapper): String {
+    fun encodeTextBody(
+        body: Any,
+        contentType: String,
+        mapper: com.fasterxml.jackson.databind.ObjectMapper,
+    ): String {
         val mediaType = contentType.substringBefore(';').trim().lowercase()
         return when {
-            mediaType == "application/json" || mediaType.endsWith("+json") -> mapper.writeValueAsString(body)
-            mediaType == "application/x-www-form-urlencoded" && body is Map<*, *> -> encodeForm(body)
-            body is String || body is Number || body is Boolean || body is Enum<*> -> body.toString()
+            mediaType == "application/json" || mediaType.endsWith("+json") ->
+                mapper.writeValueAsString(body)
+            mediaType == "application/x-www-form-urlencoded" && body is Map<*, *> ->
+                encodeForm(body)
+            body is String || body is Number || body is Boolean || body is Enum<*> ->
+                body.toString()
             // A structured body under a media type with no encoder of its own (XML,
             // a vendor type) is written as JSON, as the response side reads it.
             else -> mapper.writeValueAsString(body)
@@ -641,28 +765,40 @@ private object SdkClientBodyRuntime {
     private fun encodeForm(fields: Map<*, *>): String =
         fields.entries
             .flatMap { (key, value) ->
-                val values = if (value is Iterable<*>) value.filterNotNull() else listOfNotNull(value)
+                val values =
+                    if (value is Iterable<*>) value.filterNotNull() else listOfNotNull(value)
                 values.map { item ->
-                    URLEncoder.encode(key.toString(), StandardCharsets.UTF_8) + "=" + URLEncoder.encode(item.toString(), StandardCharsets.UTF_8)
+                    URLEncoder.encode(key.toString(), StandardCharsets.UTF_8) +
+                        "=" +
+                        URLEncoder.encode(item.toString(), StandardCharsets.UTF_8)
                 }
             }
             .joinToString("&")
 
-    fun encode(body: Any?, contentType: String, mapper: com.fasterxml.jackson.databind.ObjectMapper): EncodedRequestBody {
+    fun encode(
+        body: Any?,
+        contentType: String,
+        mapper: com.fasterxml.jackson.databind.ObjectMapper,
+    ): EncodedRequestBody {
         val multipartBody = body as? Map<*, *>
         val isMultipart = multipartBody != null && contentType.startsWith("multipart/form-data")
         val boundary =
-            if (isMultipart) "----InterfacerFormBoundary" + UUID.randomUUID().toString().replace("-", "") else null
-        val bytes = when {
-            isMultipart -> encodeMultipart(multipartBody, boundary!!)
-            body is ByteArray -> body
-            else -> null
-        }
-        val effectiveContentType = if (isMultipart) "multipart/form-data; boundary=$boundary" else contentType
-        val payload = when {
-            body == null || isMultipart || body is ByteArray -> null
-            else -> encodeTextBody(body, contentType, mapper)
-        }
+            if (isMultipart)
+                "----InterfacerFormBoundary" + UUID.randomUUID().toString().replace("-", "")
+            else null
+        val bytes =
+            when {
+                isMultipart -> encodeMultipart(multipartBody, boundary!!)
+                body is ByteArray -> body
+                else -> null
+            }
+        val effectiveContentType =
+            if (isMultipart) "multipart/form-data; boundary=$boundary" else contentType
+        val payload =
+            when {
+                body == null || isMultipart || body is ByteArray -> null
+                else -> encodeTextBody(body, contentType, mapper)
+            }
         return EncodedRequestBody(effectiveContentType, payload, bytes)
     }
 
@@ -677,11 +813,31 @@ private object SdkClientBodyRuntime {
             val contentType: String?
             val bytes: ByteArray
             when (value) {
-                is SdkClient.UploadFile -> { filename = value.filename; contentType = value.contentType; bytes = value.data }
-                is SdkClient.MultipartPart -> { filename = null; contentType = value.contentType; bytes = value.data }
-                is ByteArray -> { filename = key; contentType = "application/octet-stream"; bytes = value }
-                null -> { filename = null; contentType = null; bytes = "null".toByteArray() }
-                else -> { filename = null; contentType = null; bytes = value.toString().toByteArray() }
+                is SdkClient.UploadFile -> {
+                    filename = value.filename
+                    contentType = value.contentType
+                    bytes = value.data
+                }
+                is SdkClient.MultipartPart -> {
+                    filename = null
+                    contentType = value.contentType
+                    bytes = value.data
+                }
+                is ByteArray -> {
+                    filename = key
+                    contentType = "application/octet-stream"
+                    bytes = value
+                }
+                null -> {
+                    filename = null
+                    contentType = null
+                    bytes = "null".toByteArray()
+                }
+                else -> {
+                    filename = null
+                    contentType = null
+                    bytes = value.toString().toByteArray()
+                }
             }
             out.write("--$boundary\r\n".toByteArray())
             val disposition = StringBuilder("Content-Disposition: form-data; name=\"$key\"")
@@ -715,30 +871,37 @@ private object SdkClientErrorRuntime {
         val endpoint = logging.endpoint
         if (!logging.enabled || endpoint == null) return error
         try {
-            val errorInfo = linkedMapOf<String, Any?>(
-                "name" to (error::class.simpleName ?: "SdkError"),
-                "message" to error.message,
-                "stack" to error.stackTraceToString(),
-            )
+            val errorInfo =
+                linkedMapOf<String, Any?>(
+                    "name" to (error::class.simpleName ?: "SdkError"),
+                    "message" to error.message,
+                    "stack" to error.stackTraceToString(),
+                )
             buildFrames(error).takeIf { it.isNotEmpty() }?.let { errorInfo["frames"] = it }
-            val payload = linkedMapOf<String, Any?>(
-                "eventId" to UUID.randomUUID().toString(),
-                "timestamp" to Instant.now().toString(),
-                "level" to "error",
-                "operationId" to operationId,
-                "method" to method,
-                "path" to path,
-                "error" to errorInfo,
-            )
+            val payload =
+                linkedMapOf<String, Any?>(
+                    "eventId" to UUID.randomUUID().toString(),
+                    "timestamp" to Instant.now().toString(),
+                    "level" to "error",
+                    "operationId" to operationId,
+                    "method" to method,
+                    "path" to path,
+                    "error" to errorInfo,
+                )
             error.statusCode?.let { payload["statusCode"] = it }
             error.requestId?.let { payload["requestId"] = it }
             logging.environment?.let { payload["environment"] = it }
             logging.release?.let { payload["release"] = it }
             logging.user?.let { payload["user"] = it }
             logging.tags?.let { payload["tags"] = it }
-            val builder = Request.Builder()
-                .url(endpoint)
-                .post(mapper.writeValueAsString(sanitizeTelemetry(payload, logging.filterPii)).toRequestBody(jsonType))
+            val builder =
+                Request.Builder()
+                    .url(endpoint)
+                    .post(
+                        mapper
+                            .writeValueAsString(sanitizeTelemetry(payload, logging.filterPii))
+                            .toRequestBody(jsonType)
+                    )
             logging.apiKey?.let { builder.header("Authorization", "Bearer $it") }
             val call = client.newCall(builder.build())
             Thread {
@@ -747,7 +910,9 @@ private object SdkClientErrorRuntime {
                 } catch (_: Exception) {
                     // Logging failures must never mask the originating error.
                 }
-            }.apply { isDaemon = true }.start()
+            }
+                .apply { isDaemon = true }
+                .start()
         } catch (_: Exception) {
             // Logging failures must never mask the originating error.
         }
@@ -756,7 +921,17 @@ private object SdkClientErrorRuntime {
 
     private fun frameInApp(className: String?): Boolean {
         if (className == null) return false
-        return listOf("java.", "javax.", "jdk.", "sun.", "com.sun.", "kotlin.", "kotlinx.", "jakarta.", "org.junit.")
+        return listOf(
+                "java.",
+                "javax.",
+                "jdk.",
+                "sun.",
+                "com.sun.",
+                "kotlin.",
+                "kotlinx.",
+                "jakarta.",
+                "org.junit.",
+            )
             .none { className.startsWith(it) }
     }
 
@@ -767,7 +942,8 @@ private object SdkClientErrorRuntime {
         for (root in listOf("src/main/kotlin/", "src/main/java/", "src/", "")) {
             try {
                 val candidate = java.nio.file.Paths.get(root + pkgPath + fileName)
-                if (java.nio.file.Files.isRegularFile(candidate)) return java.nio.file.Files.readAllLines(candidate)
+                if (java.nio.file.Files.isRegularFile(candidate))
+                    return java.nio.file.Files.readAllLines(candidate)
             } catch (_: Exception) {
                 // Try the next candidate root.
             }
@@ -775,29 +951,34 @@ private object SdkClientErrorRuntime {
         return null
     }
 
-    private fun buildFrames(error: Throwable): List<Map<String, Any?>> = error.stackTrace.map { element ->
-        val frame = linkedMapOf<String, Any?>(
-            "function" to "${element.className}.${element.methodName}",
-            "filename" to element.fileName,
-            "lineno" to element.lineNumber,
-            "inApp" to frameInApp(element.className),
-        )
-        val lines = readSource(element.className, element.fileName)
-        val lineNumber = element.lineNumber
-        if (lines != null && lineNumber in 1..lines.size) {
-            val index = lineNumber - 1
-            frame["contextLine"] = lines[index]
-            val pre = lines.subList(maxOf(0, index - STACK_CONTEXT_LINES), index)
-            val post = lines.subList(index + 1, minOf(lines.size, index + 1 + STACK_CONTEXT_LINES))
-            if (pre.isNotEmpty()) frame["preContext"] = pre.toList()
-            if (post.isNotEmpty()) frame["postContext"] = post.toList()
+    private fun buildFrames(error: Throwable): List<Map<String, Any?>> =
+        error.stackTrace.map { element ->
+            val frame =
+                linkedMapOf<String, Any?>(
+                    "function" to "${element.className}.${element.methodName}",
+                    "filename" to element.fileName,
+                    "lineno" to element.lineNumber,
+                    "inApp" to frameInApp(element.className),
+                )
+            val lines = readSource(element.className, element.fileName)
+            val lineNumber = element.lineNumber
+            if (lines != null && lineNumber in 1..lines.size) {
+                val index = lineNumber - 1
+                frame["contextLine"] = lines[index]
+                val pre = lines.subList(maxOf(0, index - STACK_CONTEXT_LINES), index)
+                val post =
+                    lines.subList(index + 1, minOf(lines.size, index + 1 + STACK_CONTEXT_LINES))
+                if (pre.isNotEmpty()) frame["preContext"] = pre.toList()
+                if (post.isNotEmpty()) frame["postContext"] = post.toList()
+            }
+            frame
         }
-        frame
-    }
 }
 
-
-private fun rawStreamEvents(input: java.io.InputStream, chunkDomain: String): Sequence<SdkClient.SdkStreamEvent> = sequence {
+private fun rawStreamEvents(
+    input: java.io.InputStream,
+    chunkDomain: String,
+): Sequence<SdkClient.SdkStreamEvent> = sequence {
     val buffer = ByteArray(8192)
     while (true) {
         val size = input.read(buffer)
@@ -808,9 +989,10 @@ private fun rawStreamEvents(input: java.io.InputStream, chunkDomain: String): Se
     }
 }
 
-private fun ndjsonStreamEvents(reader: BufferedReader): Sequence<SdkClient.SdkStreamEvent> = sequence {
-    while (true) {
-        val line = reader.readLine() ?: break
-        if (line.isNotBlank()) yield(SdkClient.SdkStreamEvent("message", line))
+private fun ndjsonStreamEvents(reader: BufferedReader): Sequence<SdkClient.SdkStreamEvent> =
+    sequence {
+        while (true) {
+            val line = reader.readLine() ?: break
+            if (line.isNotBlank()) yield(SdkClient.SdkStreamEvent("message", line))
+        }
     }
-}

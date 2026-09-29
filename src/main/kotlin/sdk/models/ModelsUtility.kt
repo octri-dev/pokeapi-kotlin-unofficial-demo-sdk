@@ -3,86 +3,48 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `LanguageDetail` API schema.
- */
+/** Typed representation of the `LanguageDetail` API schema. */
 data class LanguageDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `iso639` wire field.
-     */
+    /** Required `string` value serialized in the `iso639` wire field. */
     val iso639: String,
-    /**
-     * Required `string` value serialized in the `iso3166` wire field.
-     */
+    /** Required `string` value serialized in the `iso3166` wire field. */
     val iso3166: String,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<LanguageName>,
-    /**
-     * Optional `boolean` value serialized in the `official` wire field.
-     */
-    val official: Boolean? = null
+    /** Optional `boolean` value serialized in the `official` wire field. */
+    val official: Boolean? = null,
 )
 
-/**
- * Typed representation of the `LanguageName` API schema.
- */
+/** Typed representation of the `LanguageName` API schema. */
 data class LanguageName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `PaginatedLanguageSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedLanguageSummaryList` API schema. */
 data class PaginatedLanguageSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<LanguageSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PokeapiMetaResponse` API schema.
- */
+/** Typed representation of the `PokeapiMetaResponse` API schema. */
 data class PokeapiMetaResponse(
-    /**
-     * Required `string` value serialized in the `deploy_date` wire field.
-     */
+    /** Required `string` value serialized in the `deploy_date` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("deploy_date") val deployDate: String?,
-    /**
-     * Required `string` value serialized in the `hash` wire field.
-     */
+    /** Required `string` value serialized in the `hash` wire field. */
     val hash: String?,
-    /**
-     * Required `string` value serialized in the `tag` wire field.
-     */
-    val tag: String?
+    /** Required `string` value serialized in the `tag` wire field. */
+    val tag: String?,
 )

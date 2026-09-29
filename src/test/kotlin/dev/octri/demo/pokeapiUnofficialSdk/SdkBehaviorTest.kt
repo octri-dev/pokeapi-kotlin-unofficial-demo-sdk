@@ -14,16 +14,16 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Data-driven behavior suite: replays every shared behavior case through the
- * request layer with a fake middleware transport. Schema-independent — the
- * fixture in test/sdk-behavior-cases.json carries the per-operation detail.
+ * Data-driven behavior suite: replays every shared behavior case through the request layer with a
+ * fake middleware transport. Schema-independent — the fixture in test/sdk-behavior-cases.json
+ * carries the per-operation detail.
  */
 class SdkBehaviorTest {
     private val mapper = ObjectMapper()
 
     /**
-     * Space is "+" in form encoding and "%20" under RFC 3986; pair order is not
-     * part of the contract either.
+     * Space is "+" in form encoding and "%20" under RFC 3986; pair order is not part of the
+     * contract either.
      */
     private fun normalizeQuery(query: String?): String {
         if (query.isNullOrEmpty()) return ""
@@ -98,7 +98,9 @@ class SdkBehaviorTest {
                             SdkRawResponse(
                                 statusCode = status,
                                 statusText = "",
-                                headers = if (mediaType == null) emptyMap() else mapOf("content-type" to mediaType),
+                                headers =
+                                    if (mediaType == null) emptyMap()
+                                    else mapOf("content-type" to mediaType),
                                 body =
                                     if (status == 204) {
                                         ByteArray(0)
@@ -212,12 +214,16 @@ class SdkBehaviorTest {
                 normalizeQuery(gotParts.getOrNull(1)),
                 "$id url query",
             )
-            val sentHeaders = sentRequest.headers.entries.associate { it.key.lowercase() to it.value }
+            val sentHeaders =
+                sentRequest.headers.entries.associate { it.key.lowercase() to it.value }
             val multipart = !expectation.get("multipartFields").isNull
             expectation.get("headers").fields().forEach { (name, value) ->
                 val actual = sentHeaders[name.lowercase()] ?: ""
                 if (name == "content-type" && multipart) {
-                    assertTrue(actual.startsWith("multipart/form-data"), "$id multipart content type")
+                    assertTrue(
+                        actual.startsWith("multipart/form-data"),
+                        "$id multipart content type",
+                    )
                 } else {
                     assertEquals(value.asText(), actual, "$id header $name")
                 }

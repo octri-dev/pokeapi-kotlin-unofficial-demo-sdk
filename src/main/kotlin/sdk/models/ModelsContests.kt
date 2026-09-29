@@ -3,198 +3,114 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `ContestEffectDetail` API schema.
- */
+/** Typed representation of the `ContestEffectDetail` API schema. */
 data class ContestEffectDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `integer` value serialized in the `appeal` wire field.
-     */
+    /** Required `integer` value serialized in the `appeal` wire field. */
     val appeal: Int,
-    /**
-     * Required `integer` value serialized in the `jam` wire field.
-     */
+    /** Required `integer` value serialized in the `jam` wire field. */
     val jam: Int,
-    /**
-     * Required array value serialized in the `effect_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries") val effectEntries: List<ContestEffectEffectText>,
-    /**
-     * Required array value serialized in the `flavor_text_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries") val flavorTextEntries: List<ContestEffectFlavorText>
+    /** Required array value serialized in the `effect_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries")
+    val effectEntries: List<ContestEffectEffectText>,
+    /** Required array value serialized in the `flavor_text_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries")
+    val flavorTextEntries: List<ContestEffectFlavorText>,
 )
 
-/**
- * Typed representation of the `ContestEffectEffectText` API schema.
- */
+/** Typed representation of the `ContestEffectEffectText` API schema. */
 data class ContestEffectEffectText(
-    /**
-     * Required `string` value serialized in the `effect` wire field.
-     */
+    /** Required `string` value serialized in the `effect` wire field. */
     val effect: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ContestEffectFlavorText` API schema.
- */
+/** Typed representation of the `ContestEffectFlavorText` API schema. */
 data class ContestEffectFlavorText(
-    /**
-     * Required `string` value serialized in the `flavor_text` wire field.
-     */
+    /** Required `string` value serialized in the `flavor_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("flavor_text") val flavorText: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `ContestTypeDetail` API schema.
- */
+/** Typed representation of the `ContestTypeDetail` API schema. */
 data class ContestTypeDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required API value serialized in the `berry_flavor` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("berry_flavor") val berryFlavor: BerryFlavorSummary,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<ContestTypeName>
+    /** Required API value serialized in the `berry_flavor` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("berry_flavor")
+    val berryFlavor: BerryFlavorSummary,
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<ContestTypeName>,
 )
 
-/**
- * Typed representation of the `ContestTypeName` API schema.
- */
+/** Typed representation of the `ContestTypeName` API schema. */
 data class ContestTypeName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `color` wire field.
-     */
+    /** Required `string` value serialized in the `color` wire field. */
     val color: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `PaginatedContestEffectSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedContestEffectSummaryList` API schema. */
 data class PaginatedContestEffectSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ContestEffectSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedContestTypeSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedContestTypeSummaryList` API schema. */
 data class PaginatedContestTypeSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<ContestTypeSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `PaginatedSuperContestEffectSummaryList` API schema.
- */
+/** Typed representation of the `PaginatedSuperContestEffectSummaryList` API schema. */
 data class PaginatedSuperContestEffectSummaryList(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Int,
-    /**
-     * Required array value serialized in the `results` wire field.
-     */
+    /** Required array value serialized in the `results` wire field. */
     val results: List<SuperContestEffectSummary>,
-    /**
-     * Optional `uri`-formatted value serialized in the `next` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `next` wire field. */
     val next: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `previous` wire field.
-     */
-    val previous: String? = null
+    /** Optional `uri`-formatted value serialized in the `previous` wire field. */
+    val previous: String? = null,
 )
 
-/**
- * Typed representation of the `SuperContestEffectDetail` API schema.
- */
+/** Typed representation of the `SuperContestEffectDetail` API schema. */
 data class SuperContestEffectDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `integer` value serialized in the `appeal` wire field.
-     */
+    /** Required `integer` value serialized in the `appeal` wire field. */
     val appeal: Int,
-    /**
-     * Required array value serialized in the `flavor_text_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries") val flavorTextEntries: List<SuperContestEffectFlavorText>,
-    /**
-     * Required array value serialized in the `moves` wire field.
-     */
-    val moves: List<MoveSummary>
+    /** Required array value serialized in the `flavor_text_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries")
+    val flavorTextEntries: List<SuperContestEffectFlavorText>,
+    /** Required array value serialized in the `moves` wire field. */
+    val moves: List<MoveSummary>,
 )
 
-/**
- * Typed representation of the `SuperContestEffectFlavorText` API schema.
- */
+/** Typed representation of the `SuperContestEffectFlavorText` API schema. */
 data class SuperContestEffectFlavorText(
-    /**
-     * Required `string` value serialized in the `flavor_text` wire field.
-     */
+    /** Required `string` value serialized in the `flavor_text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("flavor_text") val flavorText: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )

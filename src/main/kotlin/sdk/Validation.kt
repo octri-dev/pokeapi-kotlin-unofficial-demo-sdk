@@ -3,16 +3,16 @@
 
 package sdk
 
-/**
- * Canonical validation helpers. Each throws [SdkValidationError] on failure.
- */
+/** Canonical validation helpers. Each throws [SdkValidationError] on failure. */
 object Validation {
 
     fun validatePattern(field: String, value: String, pattern: String) {
         if (!Regex(pattern).containsMatchIn(value)) {
-            throw SdkValidationError(field, "pattern",
-                "Validation failed for '$field': must match pattern $pattern")
+            throw SdkValidationError(
+                field,
+                "pattern",
+                "Validation failed for '$field': must match pattern $pattern",
+            )
         }
     }
-
 }

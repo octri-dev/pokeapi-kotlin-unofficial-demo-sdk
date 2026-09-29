@@ -27,44 +27,85 @@ import dev.octri.demo.pokeapiUnofficialSdk.SdkClient
 
 object Moves {
 
-
     /**
-     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move names case-insensitively in local deployments.
+     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for
+     * exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move
+     * names case-insensitively in local deployments.
      *
-     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
+     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some
+     * moves (including those learned by Hidden Machine) can be used outside of battle as well,
+     * usually for the purpose of removing obstacles or exploring new areas.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveSummaryList {
-        return SdkClient.request<PaginatedMoveSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/move/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "moveList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveSummaryList {
+        return SdkClient.request<PaginatedMoveSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "moveList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move names case-insensitively in local deployments.
+     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for
+     * exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move
+     * names case-insensitively in local deployments.
      *
-     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
+     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some
+     * moves (including those learned by Hidden Machine) can be used outside of battle as well,
+     * usually for the purpose of removing obstacles or exploring new areas.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveSummary) -> Boolean) {
+    fun moveListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveSummary) -> Boolean,
+    ) {
         var page: PaginatedMoveSummaryList = moveList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMoveSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -74,7 +115,14 @@ object Moves {
         val hasMore: Boolean,
     )
 
-    fun moveListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveListPage) -> Boolean) {
+    fun moveListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveListPage) -> Boolean,
+    ) {
         var page: PaginatedMoveSummaryList = moveList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
@@ -82,66 +130,127 @@ object Moves {
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MoveListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMoveSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a move, a skill Pokémon can use in battle and sometimes outside battle. Use the `id` path parameter to identify the move and retrieve its battle properties, effects, contest data, and related Pokémon.
+     * Retrieves a move, a skill Pokémon can use in battle and sometimes outside battle. Use the
+     * `id` path parameter to identify the move and retrieve its battle properties, effects, contest
+     * data, and related Pokémon.
      *
-     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
+     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some
+     * moves (including those learned by Hidden Machine) can be used outside of battle as well,
+     * usually for the purpose of removing obstacles or exploring new areas.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun moveRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveDetail {
-        return SdkClient.request<MoveDetail>(SdkClient.RequestSpec("GET", "/api/v2/move/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "moveRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveDetail {
+        return SdkClient.request<MoveDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "moveRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists move meta ailments, which are status conditions caused by moves during battle. Use `limit` and `offset` to control the results page, and use `q` to filter ailment names case-insensitively in local deployments.
+     * Lists move meta ailments, which are status conditions caused by moves during battle. Use
+     * `limit` and `offset` to control the results page, and use `q` to filter ailment names
+     * case-insensitively in local deployments.
      *
-     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
+     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for
+     * greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveAilmentList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveMetaAilmentSummaryList {
-        return SdkClient.request<PaginatedMoveMetaAilmentSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/move-ailment/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "moveAilmentList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveAilmentList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveMetaAilmentSummaryList {
+        return SdkClient.request<PaginatedMoveMetaAilmentSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-ailment/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "moveAilmentList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists move meta ailments, which are status conditions caused by moves during battle. Use `limit` and `offset` to control the results page, and use `q` to filter ailment names case-insensitively in local deployments.
+     * Lists move meta ailments, which are status conditions caused by moves during battle. Use
+     * `limit` and `offset` to control the results page, and use `q` to filter ailment names
+     * case-insensitively in local deployments.
      *
-     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
+     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for
+     * greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveAilmentListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveMetaAilmentSummary) -> Boolean) {
-        var page: PaginatedMoveMetaAilmentSummaryList = moveAilmentList(clientConfig, limit, offset, q, options)
+    fun moveAilmentListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveMetaAilmentSummary) -> Boolean,
+    ) {
+        var page: PaginatedMoveMetaAilmentSummaryList =
+            moveAilmentList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMoveMetaAilmentSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveAilmentList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveMetaAilmentSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveAilmentList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -151,74 +260,140 @@ object Moves {
         val hasMore: Boolean,
     )
 
-    fun moveAilmentListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveAilmentListPage) -> Boolean) {
-        var page: PaginatedMoveMetaAilmentSummaryList = moveAilmentList(clientConfig, limit, offset, q, options)
+    fun moveAilmentListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveAilmentListPage) -> Boolean,
+    ) {
+        var page: PaginatedMoveMetaAilmentSummaryList =
+            moveAilmentList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MoveAilmentListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMoveMetaAilmentSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveAilmentList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveMetaAilmentSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveAilmentList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a move meta ailment, a status condition caused by a move during battle. Use the `id` path parameter to identify the ailment and retrieve its name, localized names, and associated moves.
+     * Retrieves a move meta ailment, a status condition caused by a move during battle. Use the
+     * `id` path parameter to identify the ailment and retrieve its name, localized names, and
+     * associated moves.
      *
-     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
+     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for
+     * greater detail.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun moveAilmentRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveMetaAilmentDetail {
-        return SdkClient.request<MoveMetaAilmentDetail>(SdkClient.RequestSpec("GET", "/api/v2/move-ailment/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "moveAilmentRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveAilmentRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveMetaAilmentDetail {
+        return SdkClient.request<MoveMetaAilmentDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-ailment/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "moveAilmentRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit` and `offset` to control the results page, and use `q` to filter style names case-insensitively in local deployments.
+     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit`
+     * and `offset` to control the results page, and use `q` to filter style names
+     * case-insensitively in local deployments.
      *
      * Styles of moves when used in the Battle Palace. See Bulbapedia) for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveBattleStyleList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveBattleStyleSummaryList {
-        return SdkClient.request<PaginatedMoveBattleStyleSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/move-battle-style/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "moveBattleStyleList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveBattleStyleList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveBattleStyleSummaryList {
+        return SdkClient.request<PaginatedMoveBattleStyleSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-battle-style/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "moveBattleStyleList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit` and `offset` to control the results page, and use `q` to filter style names case-insensitively in local deployments.
+     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit`
+     * and `offset` to control the results page, and use `q` to filter style names
+     * case-insensitively in local deployments.
      *
      * Styles of moves when used in the Battle Palace. See Bulbapedia) for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveBattleStyleListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveBattleStyleSummary) -> Boolean) {
-        var page: PaginatedMoveBattleStyleSummaryList = moveBattleStyleList(clientConfig, limit, offset, q, options)
+    fun moveBattleStyleListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveBattleStyleSummary) -> Boolean,
+    ) {
+        var page: PaginatedMoveBattleStyleSummaryList =
+            moveBattleStyleList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMoveBattleStyleSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveBattleStyleList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveBattleStyleSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveBattleStyleList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -228,74 +403,136 @@ object Moves {
         val hasMore: Boolean,
     )
 
-    fun moveBattleStyleListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveBattleStyleListPage) -> Boolean) {
-        var page: PaginatedMoveBattleStyleSummaryList = moveBattleStyleList(clientConfig, limit, offset, q, options)
+    fun moveBattleStyleListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveBattleStyleListPage) -> Boolean,
+    ) {
+        var page: PaginatedMoveBattleStyleSummaryList =
+            moveBattleStyleList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MoveBattleStyleListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMoveBattleStyleSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveBattleStyleList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveBattleStyleSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveBattleStyleList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves the Battle Palace move battle style identified by `id`. Use this operation to look up a style and its localized names.
+     * Retrieves the Battle Palace move battle style identified by `id`. Use this operation to look
+     * up a style and its localized names.
      *
      * Styles of moves when used in the Battle Palace. See Bulbapedia) for greater detail.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun moveBattleStyleRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveBattleStyleDetail {
-        return SdkClient.request<MoveBattleStyleDetail>(SdkClient.RequestSpec("GET", "/api/v2/move-battle-style/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "moveBattleStyleRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveBattleStyleRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveBattleStyleDetail {
+        return SdkClient.request<MoveBattleStyleDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-battle-style/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "moveBattleStyleRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Very general categories that loosely group move effects.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveCategoryList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveMetaCategorySummaryList {
-        return SdkClient.request<PaginatedMoveMetaCategorySummaryList>(SdkClient.RequestSpec("GET", "/api/v2/move-category/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "moveCategoryList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveCategoryList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveMetaCategorySummaryList {
+        return SdkClient.request<PaginatedMoveMetaCategorySummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-category/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "moveCategoryList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Very general categories that loosely group move effects.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveCategoryListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveMetaCategorySummary) -> Boolean) {
-        var page: PaginatedMoveMetaCategorySummaryList = moveCategoryList(clientConfig, limit, offset, q, options)
+    fun moveCategoryListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveMetaCategorySummary) -> Boolean,
+    ) {
+        var page: PaginatedMoveMetaCategorySummaryList =
+            moveCategoryList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMoveMetaCategorySummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveCategoryList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveMetaCategorySummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveCategoryList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -305,74 +542,136 @@ object Moves {
         val hasMore: Boolean,
     )
 
-    fun moveCategoryListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveCategoryListPage) -> Boolean) {
-        var page: PaginatedMoveMetaCategorySummaryList = moveCategoryList(clientConfig, limit, offset, q, options)
+    fun moveCategoryListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveCategoryListPage) -> Boolean,
+    ) {
+        var page: PaginatedMoveMetaCategorySummaryList =
+            moveCategoryList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MoveCategoryListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMoveMetaCategorySummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveCategoryList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveMetaCategorySummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveCategoryList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a move category, which loosely groups move effects. Use the category identifier to look up its descriptions and associated moves.
+     * Retrieves a move category, which loosely groups move effects. Use the category identifier to
+     * look up its descriptions and associated moves.
      *
      * Very general categories that loosely group move effects.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun moveCategoryRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveMetaCategoryDetail {
-        return SdkClient.request<MoveMetaCategoryDetail>(SdkClient.RequestSpec("GET", "/api/v2/move-category/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "moveCategoryRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveCategoryRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveMetaCategoryDetail {
+        return SdkClient.request<MoveMetaCategoryDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-category/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "moveCategoryRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Methods by which Pokémon can learn moves.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveLearnMethodList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveLearnMethodSummaryList {
-        return SdkClient.request<PaginatedMoveLearnMethodSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/move-learn-method/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "moveLearnMethodList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveLearnMethodList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveLearnMethodSummaryList {
+        return SdkClient.request<PaginatedMoveLearnMethodSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-learn-method/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "moveLearnMethodList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Methods by which Pokémon can learn moves.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveLearnMethodListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveLearnMethodSummary) -> Boolean) {
-        var page: PaginatedMoveLearnMethodSummaryList = moveLearnMethodList(clientConfig, limit, offset, q, options)
+    fun moveLearnMethodListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveLearnMethodSummary) -> Boolean,
+    ) {
+        var page: PaginatedMoveLearnMethodSummaryList =
+            moveLearnMethodList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMoveLearnMethodSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveLearnMethodList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveLearnMethodSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveLearnMethodList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -382,74 +681,140 @@ object Moves {
         val hasMore: Boolean,
     )
 
-    fun moveLearnMethodListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveLearnMethodListPage) -> Boolean) {
-        var page: PaginatedMoveLearnMethodSummaryList = moveLearnMethodList(clientConfig, limit, offset, q, options)
+    fun moveLearnMethodListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveLearnMethodListPage) -> Boolean,
+    ) {
+        var page: PaginatedMoveLearnMethodSummaryList =
+            moveLearnMethodList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MoveLearnMethodListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMoveLearnMethodSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveLearnMethodList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveLearnMethodSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveLearnMethodList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a method by which Pokémon can learn moves. Use the method identifier to look up its descriptions, localized names, and associated version groups.
+     * Retrieves a method by which Pokémon can learn moves. Use the method identifier to look up its
+     * descriptions, localized names, and associated version groups.
      *
      * Methods by which Pokémon can learn moves.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun moveLearnMethodRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveLearnMethodDetail {
-        return SdkClient.request<MoveLearnMethodDetail>(SdkClient.RequestSpec("GET", "/api/v2/move-learn-method/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "moveLearnMethodRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveLearnMethodRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveLearnMethodDetail {
+        return SdkClient.request<MoveLearnMethodDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-learn-method/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "moveLearnMethodRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists targets that moves can be directed at during battle, including Pokémon, environments, and other moves. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists targets that moves can be directed at during battle, including Pokémon, environments,
+     * and other moves. Use `q` to filter by name with a case-insensitive query; this filter is
+     * available locally but not at pokeapi.co.
      *
-     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
+     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even
+     * other moves.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveTargetList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveTargetSummaryList {
-        return SdkClient.request<PaginatedMoveTargetSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/move-target/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "moveTargetList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveTargetList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveTargetSummaryList {
+        return SdkClient.request<PaginatedMoveTargetSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-target/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "moveTargetList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists targets that moves can be directed at during battle, including Pokémon, environments, and other moves. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists targets that moves can be directed at during battle, including Pokémon, environments,
+     * and other moves. Use `q` to filter by name with a case-insensitive query; this filter is
+     * available locally but not at pokeapi.co.
      *
-     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
+     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even
+     * other moves.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun moveTargetListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveTargetSummary) -> Boolean) {
-        var page: PaginatedMoveTargetSummaryList = moveTargetList(clientConfig, limit, offset, q, options)
+    fun moveTargetListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveTargetSummary) -> Boolean,
+    ) {
+        var page: PaginatedMoveTargetSummaryList =
+            moveTargetList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedMoveTargetSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveTargetList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveTargetSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveTargetList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -459,35 +824,60 @@ object Moves {
         val hasMore: Boolean,
     )
 
-    fun moveTargetListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (MoveTargetListPage) -> Boolean) {
-        var page: PaginatedMoveTargetSummaryList = moveTargetList(clientConfig, limit, offset, q, options)
+    fun moveTargetListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (MoveTargetListPage) -> Boolean,
+    ) {
+        var page: PaginatedMoveTargetSummaryList =
+            moveTargetList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(MoveTargetListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedMoveTargetSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "moveTargetList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedMoveTargetSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "moveTargetList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a target that moves can be directed at during battle. Use the target identifier to look up its descriptions, localized names, and associated moves.
+     * Retrieves a target that moves can be directed at during battle. Use the target identifier to
+     * look up its descriptions, localized names, and associated moves.
      *
-     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
+     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even
+     * other moves.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun moveTargetRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): MoveTargetDetail {
-        return SdkClient.request<MoveTargetDetail>(SdkClient.RequestSpec("GET", "/api/v2/move-target/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "moveTargetRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun moveTargetRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): MoveTargetDetail {
+        return SdkClient.request<MoveTargetDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/move-target/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "moveTargetRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

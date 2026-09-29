@@ -3,82 +3,147 @@
 
 package sdk
 
-
 class MovesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move names case-insensitively in local deployments.
+     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for
+     * exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move
+     * names case-insensitively in local deployments.
      *
-     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
+     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some
+     * moves (including those learned by Hidden Machine) can be used outside of battle as well,
+     * usually for the purpose of removing obstacles or exploring new areas.
      */
-    fun list(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveSummaryList {
+    fun list(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveSummaryList {
         return sdk.methods.Moves.moveList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move names case-insensitively in local deployments.
+     * Lists moves, which are skills Pokémon use in battle and sometimes outside battle for
+     * exploration. Use `limit` and `offset` to control the results page, and use `q` to filter move
+     * names case-insensitively in local deployments.
      *
-     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
+     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some
+     * moves (including those learned by Hidden Machine) can be used outside of battle as well,
+     * usually for the purpose of removing obstacles or exploring new areas.
      */
-    fun listPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveSummary) -> Boolean) {
+    fun listPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveSummary) -> Boolean,
+    ) {
         sdk.methods.Moves.moveListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a move, a skill Pokémon can use in battle and sometimes outside battle. Use the `id` path parameter to identify the move and retrieve its battle properties, effects, contest data, and related Pokémon.
+     * Retrieves a move, a skill Pokémon can use in battle and sometimes outside battle. Use the
+     * `id` path parameter to identify the move and retrieve its battle properties, effects, contest
+     * data, and related Pokémon.
      *
-     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
+     * Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some
+     * moves (including those learned by Hidden Machine) can be used outside of battle as well,
+     * usually for the purpose of removing obstacles or exploring new areas.
      */
     fun retrieve(id: String, options: RequestOptions? = null): MoveDetail {
         return sdk.methods.Moves.moveRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists move meta ailments, which are status conditions caused by moves during battle. Use `limit` and `offset` to control the results page, and use `q` to filter ailment names case-insensitively in local deployments.
+     * Lists move meta ailments, which are status conditions caused by moves during battle. Use
+     * `limit` and `offset` to control the results page, and use `q` to filter ailment names
+     * case-insensitively in local deployments.
      *
-     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
+     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for
+     * greater detail.
      */
-    fun ailmentList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveMetaAilmentSummaryList {
+    fun ailmentList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveMetaAilmentSummaryList {
         return sdk.methods.Moves.moveAilmentList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists move meta ailments, which are status conditions caused by moves during battle. Use `limit` and `offset` to control the results page, and use `q` to filter ailment names case-insensitively in local deployments.
+     * Lists move meta ailments, which are status conditions caused by moves during battle. Use
+     * `limit` and `offset` to control the results page, and use `q` to filter ailment names
+     * case-insensitively in local deployments.
      *
-     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
+     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for
+     * greater detail.
      */
-    fun ailmentListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveMetaAilmentSummary) -> Boolean) {
+    fun ailmentListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveMetaAilmentSummary) -> Boolean,
+    ) {
         sdk.methods.Moves.moveAilmentListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a move meta ailment, a status condition caused by a move during battle. Use the `id` path parameter to identify the ailment and retrieve its name, localized names, and associated moves.
+     * Retrieves a move meta ailment, a status condition caused by a move during battle. Use the
+     * `id` path parameter to identify the ailment and retrieve its name, localized names, and
+     * associated moves.
      *
-     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
+     * Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for
+     * greater detail.
      */
     fun ailmentRetrieve(id: String, options: RequestOptions? = null): MoveMetaAilmentDetail {
         return sdk.methods.Moves.moveAilmentRetrieve(clientConfig, id, options)
     }
 
     /**
-     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit` and `offset` to control the results page, and use `q` to filter style names case-insensitively in local deployments.
+     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit`
+     * and `offset` to control the results page, and use `q` to filter style names
+     * case-insensitively in local deployments.
      *
      * Styles of moves when used in the Battle Palace. See Bulbapedia) for greater detail.
      */
-    fun battleStyleList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveBattleStyleSummaryList {
+    fun battleStyleList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveBattleStyleSummaryList {
         return sdk.methods.Moves.moveBattleStyleList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit` and `offset` to control the results page, and use `q` to filter style names case-insensitively in local deployments.
+     * Lists move battle styles, which describe how moves are used in the Battle Palace. Use `limit`
+     * and `offset` to control the results page, and use `q` to filter style names
+     * case-insensitively in local deployments.
      *
      * Styles of moves when used in the Battle Palace. See Bulbapedia) for greater detail.
      */
-    fun battleStyleListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveBattleStyleSummary) -> Boolean) {
-        sdk.methods.Moves.moveBattleStyleListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun battleStyleListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveBattleStyleSummary) -> Boolean,
+    ) {
+        sdk.methods.Moves.moveBattleStyleListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves the Battle Palace move battle style identified by `id`. Use this operation to look up a style and its localized names.
+     * Retrieves the Battle Palace move battle style identified by `id`. Use this operation to look
+     * up a style and its localized names.
      *
      * Styles of moves when used in the Battle Palace. See Bulbapedia) for greater detail.
      */
@@ -87,25 +152,46 @@ class MovesNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Very general categories that loosely group move effects.
      */
-    fun categoryList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveMetaCategorySummaryList {
+    fun categoryList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveMetaCategorySummaryList {
         return sdk.methods.Moves.moveCategoryList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists move categories, which loosely group move effects. Use `q` to filter by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Very general categories that loosely group move effects.
      */
-    fun categoryListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveMetaCategorySummary) -> Boolean) {
-        sdk.methods.Moves.moveCategoryListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun categoryListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveMetaCategorySummary) -> Boolean,
+    ) {
+        sdk.methods.Moves.moveCategoryListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a move category, which loosely groups move effects. Use the category identifier to look up its descriptions and associated moves.
+     * Retrieves a move category, which loosely groups move effects. Use the category identifier to
+     * look up its descriptions and associated moves.
      *
      * Very general categories that loosely group move effects.
      */
@@ -114,25 +200,46 @@ class MovesNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Methods by which Pokémon can learn moves.
      */
-    fun learnMethodList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveLearnMethodSummaryList {
+    fun learnMethodList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveLearnMethodSummaryList {
         return sdk.methods.Moves.moveLearnMethodList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists methods by which Pokémon can learn moves. Use `q` to filter the results by name with a
+     * case-insensitive query; this filter is available locally but not at pokeapi.co.
      *
      * Methods by which Pokémon can learn moves.
      */
-    fun learnMethodListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveLearnMethodSummary) -> Boolean) {
-        sdk.methods.Moves.moveLearnMethodListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun learnMethodListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveLearnMethodSummary) -> Boolean,
+    ) {
+        sdk.methods.Moves.moveLearnMethodListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a method by which Pokémon can learn moves. Use the method identifier to look up its descriptions, localized names, and associated version groups.
+     * Retrieves a method by which Pokémon can learn moves. Use the method identifier to look up its
+     * descriptions, localized names, and associated version groups.
      *
      * Methods by which Pokémon can learn moves.
      */
@@ -141,30 +248,48 @@ class MovesNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Lists targets that moves can be directed at during battle, including Pokémon, environments, and other moves. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists targets that moves can be directed at during battle, including Pokémon, environments,
+     * and other moves. Use `q` to filter by name with a case-insensitive query; this filter is
+     * available locally but not at pokeapi.co.
      *
-     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
+     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even
+     * other moves.
      */
-    fun targetList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedMoveTargetSummaryList {
+    fun targetList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedMoveTargetSummaryList {
         return sdk.methods.Moves.moveTargetList(clientConfig, limit, offset, q, options)
     }
 
     /**
-     * Lists targets that moves can be directed at during battle, including Pokémon, environments, and other moves. Use `q` to filter by name with a case-insensitive query; this filter is available locally but not at pokeapi.co.
+     * Lists targets that moves can be directed at during battle, including Pokémon, environments,
+     * and other moves. Use `q` to filter by name with a case-insensitive query; this filter is
+     * available locally but not at pokeapi.co.
      *
-     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
+     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even
+     * other moves.
      */
-    fun targetListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (MoveTargetSummary) -> Boolean) {
+    fun targetListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (MoveTargetSummary) -> Boolean,
+    ) {
         sdk.methods.Moves.moveTargetListPaginated(clientConfig, limit, offset, q, options, yieldFn)
     }
 
     /**
-     * Retrieves a target that moves can be directed at during battle. Use the target identifier to look up its descriptions, localized names, and associated moves.
+     * Retrieves a target that moves can be directed at during battle. Use the target identifier to
+     * look up its descriptions, localized names, and associated moves.
      *
-     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
+     * Targets moves can be directed at during battle. Targets can be Pokémon, environments or even
+     * other moves.
      */
     fun targetRetrieve(id: String, options: RequestOptions? = null): MoveTargetDetail {
         return sdk.methods.Moves.moveTargetRetrieve(clientConfig, id, options)
     }
-
 }

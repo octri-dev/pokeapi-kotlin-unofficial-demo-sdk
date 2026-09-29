@@ -3,114 +3,261 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk
 
-
 class GamesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists generations, which group Pokémon games by the Pokémon, moves, abilities, and types they include. Use `limit` and `offset` to control the result page, or search generation names with `q`, which is available only on local deployments.
+     * Lists generations, which group Pokémon games by the Pokémon, moves, abilities, and types they
+     * include. Use `limit` and `offset` to control the result page, or search generation names with
+     * `q`, which is available only on local deployments.
      *
-     * A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
+     * A generation is a grouping of the Pokémon games that separates them based on the Pokémon they
+     * include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not
+     * exist in the previous generation are released.
      */
-    fun generationList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedGenerationSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.generationList(clientConfig, limit, offset, q, options)
+    fun generationList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedGenerationSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.generationList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists generations, which group Pokémon games by the Pokémon, moves, abilities, and types they include. Use `limit` and `offset` to control the result page, or search generation names with `q`, which is available only on local deployments.
+     * Lists generations, which group Pokémon games by the Pokémon, moves, abilities, and types they
+     * include. Use `limit` and `offset` to control the result page, or search generation names with
+     * `q`, which is available only on local deployments.
      *
-     * A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
+     * A generation is a grouping of the Pokémon games that separates them based on the Pokémon they
+     * include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not
+     * exist in the previous generation are released.
      */
-    fun generationListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (GenerationSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.generationListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun generationListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (GenerationSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.generationListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a generation and its associated Pokémon data. Use the `id` path parameter to select a generation and view its region, Pokémon species, moves, abilities, types, and version groups.
+     * Retrieves a generation and its associated Pokémon data. Use the `id` path parameter to select
+     * a generation and view its region, Pokémon species, moves, abilities, types, and version
+     * groups.
      *
-     * A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
+     * A generation is a grouping of the Pokémon games that separates them based on the Pokémon they
+     * include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not
+     * exist in the previous generation are released.
      */
     fun generationRetrieve(id: String, options: RequestOptions? = null): GenerationDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.generationRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.generationRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists Pokédex records that catalog Pokémon entries for regions or other defined groups. Use `limit` and `offset` to paginate the results, or use `q` to search Pokédex names when running the API locally.
+     * Lists Pokédex records that catalog Pokémon entries for regions or other defined groups. Use
+     * `limit` and `offset` to paginate the results, or use `q` to search Pokédex names when running
+     * the API locally.
      *
-     * A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
+     * A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and
+     * retaining information of the various Pokémon in a given region with the exception of the
+     * national dex and some smaller dexes related to portions of a region. See Bulbapedia for
+     * greater detail.
      */
-    fun pokedexList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPokedexSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.pokedexList(clientConfig, limit, offset, q, options)
+    fun pokedexList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPokedexSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.pokedexList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists Pokédex records that catalog Pokémon entries for regions or other defined groups. Use `limit` and `offset` to paginate the results, or use `q` to search Pokédex names when running the API locally.
+     * Lists Pokédex records that catalog Pokémon entries for regions or other defined groups. Use
+     * `limit` and `offset` to paginate the results, or use `q` to search Pokédex names when running
+     * the API locally.
      *
-     * A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
+     * A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and
+     * retaining information of the various Pokémon in a given region with the exception of the
+     * national dex and some smaller dexes related to portions of a region. See Bulbapedia for
+     * greater detail.
      */
-    fun pokedexListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PokedexSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.pokedexListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun pokedexListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PokedexSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.pokedexListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a Pokédex record and its catalog of Pokémon species. Use the Pokédex identifier to look up its region, version groups, and numbered Pokémon entries.
+     * Retrieves a Pokédex record and its catalog of Pokémon species. Use the Pokédex identifier to
+     * look up its region, version groups, and numbered Pokémon entries.
      *
-     * A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
+     * A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and
+     * retaining information of the various Pokémon in a given region with the exception of the
+     * national dex and some smaller dexes related to portions of a region. See Bulbapedia for
+     * greater detail.
      */
     fun pokedexRetrieve(id: String, options: RequestOptions? = null): PokedexDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.pokedexRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.pokedexRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists game versions such as Red, Blue, and Yellow. Use `limit` and `offset` to control the results, or use `q` to search version names case-insensitively; `q` is available only on the local API.
+     * Lists game versions such as Red, Blue, and Yellow. Use `limit` and `offset` to control the
+     * results, or use `q` to search version names case-insensitively; `q` is available only on the
+     * local API.
      *
      * Versions of the games, e.g., Red, Blue or Yellow.
      */
-    fun versionList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedVersionSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionList(clientConfig, limit, offset, q, options)
+    fun versionList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedVersionSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists game versions such as Red, Blue, and Yellow. Use `limit` and `offset` to control the results, or use `q` to search version names case-insensitively; `q` is available only on the local API.
+     * Lists game versions such as Red, Blue, and Yellow. Use `limit` and `offset` to control the
+     * results, or use `q` to search version names case-insensitively; `q` is available only on the
+     * local API.
      *
      * Versions of the games, e.g., Red, Blue or Yellow.
      */
-    fun versionListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (VersionSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun versionListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (VersionSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a game version, such as Red, Blue, or Yellow. Use the `id` path parameter to identify the version, then inspect its localized names and associated version group.
+     * Retrieves a game version, such as Red, Blue, or Yellow. Use the `id` path parameter to
+     * identify the version, then inspect its localized names and associated version group.
      *
      * Versions of the games, e.g., Red, Blue or Yellow.
      */
     fun versionRetrieve(id: String, options: RequestOptions? = null): VersionDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
 
     /**
-     * Lists version groups that categorize highly similar game versions. Use `limit` and `offset` to control the results, or use `q` to search version group names case-insensitively; `q` is available only on the local API.
+     * Lists version groups that categorize highly similar game versions. Use `limit` and `offset`
+     * to control the results, or use `q` to search version group names case-insensitively; `q` is
+     * available only on the local API.
      *
      * Version groups categorize highly similar versions of the games.
      */
-    fun versionGroupList(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedVersionGroupSummaryList {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionGroupList(clientConfig, limit, offset, q, options)
+    fun versionGroupList(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedVersionGroupSummaryList {
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionGroupList(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+        )
     }
 
     /**
-     * Lists version groups that categorize highly similar game versions. Use `limit` and `offset` to control the results, or use `q` to search version group names case-insensitively; `q` is available only on the local API.
+     * Lists version groups that categorize highly similar game versions. Use `limit` and `offset`
+     * to control the results, or use `q` to search version group names case-insensitively; `q` is
+     * available only on the local API.
      *
      * Version groups categorize highly similar versions of the games.
      */
-    fun versionGroupListPaginated(limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (VersionGroupSummary) -> Boolean) {
-        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionGroupListPaginated(clientConfig, limit, offset, q, options, yieldFn)
+    fun versionGroupListPaginated(
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (VersionGroupSummary) -> Boolean,
+    ) {
+        dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionGroupListPaginated(
+            clientConfig,
+            limit,
+            offset,
+            q,
+            options,
+            yieldFn,
+        )
     }
 
     /**
-     * Retrieves a version group by its identifier. Version groups categorize highly similar game versions, and the response includes the associated generation, move-learn methods, Pokédexes, regions, and versions.
+     * Retrieves a version group by its identifier. Version groups categorize highly similar game
+     * versions, and the response includes the associated generation, move-learn methods, Pokédexes,
+     * regions, and versions.
      *
      * Version groups categorize highly similar versions of the games.
      */
     fun versionGroupRetrieve(id: String, options: RequestOptions? = null): VersionGroupDetail {
-        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionGroupRetrieve(clientConfig, id, options)
+        return dev.octri.demo.pokeapiUnofficialSdk.methods.Games.versionGroupRetrieve(
+            clientConfig,
+            id,
+            options,
+        )
     }
-
 }

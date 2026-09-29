@@ -3,80 +3,47 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `PokeathlonStatAffectingNature` API schema.
- */
+/** Typed representation of the `PokeathlonStatAffectingNature` API schema. */
 data class PokeathlonStatAffectingNature(
-    /**
-     * Required `integer` value serialized in the `max_change` wire field.
-     */
+    /** Required `integer` value serialized in the `max_change` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("max_change") val maxChange: Int,
-    /**
-     * Required object value serialized in the `nature` wire field.
-     */
-    val nature: NatureSummary
+    /** Required object value serialized in the `nature` wire field. */
+    val nature: NatureSummary,
 )
 
-/**
- * Typed representation of the `PokeathlonStatAffectingNatures` API schema.
- */
+/** Typed representation of the `PokeathlonStatAffectingNatures` API schema. */
 data class PokeathlonStatAffectingNatures(
-    /**
-     * Required array value serialized in the `increase` wire field.
-     */
+    /** Required array value serialized in the `increase` wire field. */
     val increase: List<PokeathlonStatAffectingNature>,
-    /**
-     * Required array value serialized in the `decrease` wire field.
-     */
-    val decrease: List<PokeathlonStatAffectingNature>
+    /** Required array value serialized in the `decrease` wire field. */
+    val decrease: List<PokeathlonStatAffectingNature>,
 )
 
-/**
- * Typed representation of the `PokeathlonStatDetail` API schema.
- */
+/** Typed representation of the `PokeathlonStatDetail` API schema. */
 data class PokeathlonStatDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required API value serialized in the `affecting_natures` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("affecting_natures") val affectingNatures: PokeathlonStatAffectingNatures,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<PokeathlonStatName>
+    /** Required API value serialized in the `affecting_natures` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("affecting_natures")
+    val affectingNatures: PokeathlonStatAffectingNatures,
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<PokeathlonStatName>,
 )
 
-/**
- * Typed representation of the `PokeathlonStatName` API schema.
- */
+/** Typed representation of the `PokeathlonStatName` API schema. */
 data class PokeathlonStatName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )
 
-/**
- * Typed representation of the `PokeathlonStatSummary` API schema.
- */
+/** Typed representation of the `PokeathlonStatSummary` API schema. */
 data class PokeathlonStatSummary(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )

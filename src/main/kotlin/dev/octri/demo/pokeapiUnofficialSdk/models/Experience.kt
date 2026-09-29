@@ -3,16 +3,10 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk.models
 
-/**
- * Typed representation of the `Experience` API schema.
- */
+/** Typed representation of the `Experience` API schema. */
 data class Experience(
-    /**
-     * Required `integer` value serialized in the `level` wire field.
-     */
+    /** Required `integer` value serialized in the `level` wire field. */
     val level: Int,
-    /**
-     * Required `integer` value serialized in the `experience` wire field.
-     */
-    val experience: Int
+    /** Required `integer` value serialized in the `experience` wire field. */
+    val experience: Int,
 )

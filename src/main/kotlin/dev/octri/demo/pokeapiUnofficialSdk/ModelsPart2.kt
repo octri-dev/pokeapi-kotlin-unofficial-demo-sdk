@@ -3,9 +3,11 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk
 
-typealias PokemonEncounterResponse = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEncounterResponse
+typealias PokemonEncounterResponse =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEncounterResponse
 
-typealias PokemonEncounterVersionDetailResponse = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEncounterVersionDetailResponse
+typealias PokemonEncounterVersionDetailResponse =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEncounterVersionDetailResponse
 
 typealias PokemonEvolution = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonEvolution
 
@@ -19,7 +21,8 @@ typealias PokemonFormSprites = dev.octri.demo.pokeapiUnofficialSdk.models.Pokemo
 
 typealias PokemonFormSummary = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonFormSummary
 
-typealias PokemonFormTriggerCondition = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonFormTriggerCondition
+typealias PokemonFormTriggerCondition =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonFormTriggerCondition
 
 typealias PokemonFormType = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonFormType
 
@@ -37,7 +40,8 @@ typealias PokemonHeldItemVersion = dev.octri.demo.pokeapiUnofficialSdk.models.Po
 
 typealias PokemonMove = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonMove
 
-typealias PokemonMoveVersionGroup = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonMoveVersionGroup
+typealias PokemonMoveVersionGroup =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonMoveVersionGroup
 
 typealias PokemonPastAbility = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonPastAbility
 
@@ -45,7 +49,8 @@ typealias PokemonPastStat = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonPa
 
 typealias PokemonPastType = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonPastType
 
-typealias PokemonShapeAwesomeName = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonShapeAwesomeName
+typealias PokemonShapeAwesomeName =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonShapeAwesomeName
 
 typealias PokemonShapeDetail = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonShapeDetail
 
@@ -53,17 +58,20 @@ typealias PokemonShapeName = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonS
 
 typealias PokemonShapeSummary = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonShapeSummary
 
-typealias PokemonSpeciesDescription = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesDescription
+typealias PokemonSpeciesDescription =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesDescription
 
 typealias PokemonSpeciesDetail = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesDetail
 
-typealias PokemonSpeciesFlavorText = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesFlavorText
+typealias PokemonSpeciesFlavorText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesFlavorText
 
 typealias PokemonSpeciesGenus = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesGenus
 
 typealias PokemonSpeciesName = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesName
 
-typealias PokemonSpeciesPalParkEncounter = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesPalParkEncounter
+typealias PokemonSpeciesPalParkEncounter =
+    dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesPalParkEncounter
 
 typealias PokemonSpeciesSummary = dev.octri.demo.pokeapiUnofficialSdk.models.PokemonSpeciesSummary
 
@@ -93,11 +101,14 @@ typealias StatName = dev.octri.demo.pokeapiUnofficialSdk.models.StatName
 
 typealias StatSummary = dev.octri.demo.pokeapiUnofficialSdk.models.StatSummary
 
-typealias SuperContestEffectDetail = dev.octri.demo.pokeapiUnofficialSdk.models.SuperContestEffectDetail
+typealias SuperContestEffectDetail =
+    dev.octri.demo.pokeapiUnofficialSdk.models.SuperContestEffectDetail
 
-typealias SuperContestEffectFlavorText = dev.octri.demo.pokeapiUnofficialSdk.models.SuperContestEffectFlavorText
+typealias SuperContestEffectFlavorText =
+    dev.octri.demo.pokeapiUnofficialSdk.models.SuperContestEffectFlavorText
 
-typealias SuperContestEffectSummary = dev.octri.demo.pokeapiUnofficialSdk.models.SuperContestEffectSummary
+typealias SuperContestEffectSummary =
+    dev.octri.demo.pokeapiUnofficialSdk.models.SuperContestEffectSummary
 
 typealias TypeDetail = dev.octri.demo.pokeapiUnofficialSdk.models.TypeDetail
 

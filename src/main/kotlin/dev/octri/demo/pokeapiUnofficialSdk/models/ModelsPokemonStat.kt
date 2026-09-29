@@ -3,90 +3,55 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk.models
 
-/**
- * Typed representation of the `StatAffectingMoves` API schema.
- */
+/** Typed representation of the `StatAffectingMoves` API schema. */
 data class StatAffectingMoves(
-    /**
-     * Required array value serialized in the `increase` wire field.
-     */
+    /** Required array value serialized in the `increase` wire field. */
     val increase: List<MoveStatChange>,
-    /**
-     * Required array value serialized in the `decrease` wire field.
-     */
-    val decrease: List<MoveStatChange>
+    /** Required array value serialized in the `decrease` wire field. */
+    val decrease: List<MoveStatChange>,
 )
 
-/**
- * Typed representation of the `StatAffectingNatures` API schema.
- */
+/** Typed representation of the `StatAffectingNatures` API schema. */
 data class StatAffectingNatures(
-    /**
-     * Required array value serialized in the `increase` wire field.
-     */
+    /** Required array value serialized in the `increase` wire field. */
     val increase: List<NatureSummary>,
-    /**
-     * Required array value serialized in the `decrease` wire field.
-     */
-    val decrease: List<NatureSummary>
+    /** Required array value serialized in the `decrease` wire field. */
+    val decrease: List<NatureSummary>,
 )
 
-/**
- * Typed representation of the `StatDetail` API schema.
- */
+/** Typed representation of the `StatDetail` API schema. */
 data class StatDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `integer` value serialized in the `game_index` wire field.
-     */
+    /** Required `integer` value serialized in the `game_index` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("game_index") val gameIndex: Int,
-    /**
-     * Required API value serialized in the `affecting_moves` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("affecting_moves") val affectingMoves: StatAffectingMoves,
-    /**
-     * Required API value serialized in the `affecting_natures` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("affecting_natures") val affectingNatures: StatAffectingNatures,
-    /**
-     * Required array value serialized in the `affecting_items` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("affecting_items") val affectingItems: List<ItemSummary>,
-    /**
-     * Required array value serialized in the `characteristics` wire field.
-     */
+    /** Required API value serialized in the `affecting_moves` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("affecting_moves")
+    val affectingMoves: StatAffectingMoves,
+    /** Required API value serialized in the `affecting_natures` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("affecting_natures")
+    val affectingNatures: StatAffectingNatures,
+    /** Required array value serialized in the `affecting_items` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("affecting_items")
+    val affectingItems: List<ItemSummary>,
+    /** Required array value serialized in the `characteristics` wire field. */
     val characteristics: List<CharacteristicSummary>,
-    /**
-     * Required object value serialized in the `move_damage_class` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("move_damage_class") val moveDamageClass: MoveDamageClassSummary,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required object value serialized in the `move_damage_class` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("move_damage_class")
+    val moveDamageClass: MoveDamageClassSummary,
+    /** Required array value serialized in the `names` wire field. */
     val names: List<StatName>,
-    /**
-     * Optional `boolean` value serialized in the `is_battle_only` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_battle_only") val isBattleOnly: Boolean? = null
+    /** Optional `boolean` value serialized in the `is_battle_only` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_battle_only")
+    val isBattleOnly: Boolean? = null,
 )
 
-/**
- * Typed representation of the `StatName` API schema.
- */
+/** Typed representation of the `StatName` API schema. */
 data class StatName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
 )

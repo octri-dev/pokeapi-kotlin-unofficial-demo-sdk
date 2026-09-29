@@ -309,7 +309,8 @@ typealias PaginatedEggGroupSummaryList = sdk.models.PaginatedEggGroupSummaryList
 
 typealias PaginatedEncounterConditionSummaryList = sdk.models.PaginatedEncounterConditionSummaryList
 
-typealias PaginatedEncounterConditionValueSummaryList = sdk.models.PaginatedEncounterConditionValueSummaryList
+typealias PaginatedEncounterConditionValueSummaryList =
+    sdk.models.PaginatedEncounterConditionValueSummaryList
 
 typealias PaginatedEncounterMethodSummaryList = sdk.models.PaginatedEncounterMethodSummaryList
 

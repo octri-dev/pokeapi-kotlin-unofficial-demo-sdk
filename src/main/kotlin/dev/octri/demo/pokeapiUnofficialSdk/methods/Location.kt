@@ -21,44 +21,84 @@ import dev.octri.demo.pokeapiUnofficialSdk.SdkClient
 
 object Location {
 
-
     /**
-     * Lists locations that can be visited within the games, including cities and routes within regions. Use `limit` and `offset` to control the result page, or `q` to filter locations by name with a case-insensitive query.
+     * Lists locations that can be visited within the games, including cities and routes within
+     * regions. Use `limit` and `offset` to control the result page, or `q` to filter locations by
+     * name with a case-insensitive query.
      *
-     * Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
+     * Locations that can be visited within the games. Locations make up sizable portions of
+     * regions, like cities or routes.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun locationList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedLocationSummaryList {
-        return SdkClient.request<PaginatedLocationSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/location/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "locationList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun locationList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedLocationSummaryList {
+        return SdkClient.request<PaginatedLocationSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/location/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "locationList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists locations that can be visited within the games, including cities and routes within regions. Use `limit` and `offset` to control the result page, or `q` to filter locations by name with a case-insensitive query.
+     * Lists locations that can be visited within the games, including cities and routes within
+     * regions. Use `limit` and `offset` to control the result page, or `q` to filter locations by
+     * name with a case-insensitive query.
      *
-     * Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
+     * Locations that can be visited within the games. Locations make up sizable portions of
+     * regions, like cities or routes.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun locationListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (LocationSummary) -> Boolean) {
-        var page: PaginatedLocationSummaryList = locationList(clientConfig, limit, offset, q, options)
+    fun locationListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (LocationSummary) -> Boolean,
+    ) {
+        var page: PaginatedLocationSummaryList =
+            locationList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedLocationSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "locationList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedLocationSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "locationList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -68,70 +108,135 @@ object Location {
         val hasMore: Boolean,
     )
 
-    fun locationListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (LocationListPage) -> Boolean) {
-        var page: PaginatedLocationSummaryList = locationList(clientConfig, limit, offset, q, options)
+    fun locationListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (LocationListPage) -> Boolean,
+    ) {
+        var page: PaginatedLocationSummaryList =
+            locationList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(LocationListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedLocationSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "locationList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedLocationSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "locationList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a location, which represents a visitable area within a game, such as a city or route. Use the `id` path parameter to identify the location; the identifier can be a string or an integer.
+     * Retrieves a location, which represents a visitable area within a game, such as a city or
+     * route. Use the `id` path parameter to identify the location; the identifier can be a string
+     * or an integer.
      *
-     * Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
+     * Locations that can be visited within the games. Locations make up sizable portions of
+     * regions, like cities or routes.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun locationRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): LocationDetail {
-        return SdkClient.request<LocationDetail>(SdkClient.RequestSpec("GET", "/api/v2/location/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "locationRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun locationRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): LocationDetail {
+        return SdkClient.request<LocationDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/location/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "locationRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists location areas, which represent sections of a location such as floors in a building or cave. Use `limit` to control the number of results and `offset` to choose the starting index; each area has its own possible Pokémon encounters.
+     * Lists location areas, which represent sections of a location such as floors in a building or
+     * cave. Use `limit` to control the number of results and `offset` to choose the starting index;
+     * each area has its own possible Pokémon encounters.
      *
-     * Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
+     * Location areas are sections of areas, such as floors in a building or cave. Each area has its
+     * own set of possible Pokémon encounters.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
      */
-    fun locationAreaList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, options: RequestOptions? = null): PaginatedLocationAreaSummaryList {
-        return SdkClient.request<PaginatedLocationAreaSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/location-area/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true)), operationId = "locationAreaList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun locationAreaList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        options: RequestOptions? = null,
+    ): PaginatedLocationAreaSummaryList {
+        return SdkClient.request<PaginatedLocationAreaSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/location-area/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                        ),
+                    operationId = "locationAreaList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists location areas, which represent sections of a location such as floors in a building or cave. Use `limit` to control the number of results and `offset` to choose the starting index; each area has its own possible Pokémon encounters.
+     * Lists location areas, which represent sections of a location such as floors in a building or
+     * cave. Use `limit` to control the number of results and `offset` to choose the starting index;
+     * each area has its own possible Pokémon encounters.
      *
-     * Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
+     * Location areas are sections of areas, such as floors in a building or cave. Each area has its
+     * own set of possible Pokémon encounters.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
      */
-    fun locationAreaListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, options: RequestOptions? = null, yieldFn: (LocationAreaSummary) -> Boolean) {
-        var page: PaginatedLocationAreaSummaryList = locationAreaList(clientConfig, limit, offset, options)
+    fun locationAreaListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        options: RequestOptions? = null,
+        yieldFn: (LocationAreaSummary) -> Boolean,
+    ) {
+        var page: PaginatedLocationAreaSummaryList =
+            locationAreaList(clientConfig, limit, offset, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedLocationAreaSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "locationAreaList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedLocationAreaSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "locationAreaList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -141,74 +246,139 @@ object Location {
         val hasMore: Boolean,
     )
 
-    fun locationAreaListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, options: RequestOptions? = null, yieldPage: (LocationAreaListPage) -> Boolean) {
-        var page: PaginatedLocationAreaSummaryList = locationAreaList(clientConfig, limit, offset, options)
+    fun locationAreaListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        options: RequestOptions? = null,
+        yieldPage: (LocationAreaListPage) -> Boolean,
+    ) {
+        var page: PaginatedLocationAreaSummaryList =
+            locationAreaList(clientConfig, limit, offset, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(LocationAreaListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedLocationAreaSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "locationAreaList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedLocationAreaSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "locationAreaList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a location area, which represents a section of a location such as a building floor or cave area. Use the `id` path parameter to identify the area and retrieve its encounter information, location, and game-specific details.
+     * Retrieves a location area, which represents a section of a location such as a building floor
+     * or cave area. Use the `id` path parameter to identify the area and retrieve its encounter
+     * information, location, and game-specific details.
      *
-     * Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
+     * Location areas are sections of areas, such as floors in a building or cave. Each area has its
+     * own set of possible Pokémon encounters.
      *
      * @param id A unique integer value identifying this location area.
      */
-    fun locationAreaRetrieve(clientConfig: ClientConfig, id: Int, options: RequestOptions? = null): LocationAreaDetail {
-        return SdkClient.request<LocationAreaDetail>(SdkClient.RequestSpec("GET", "/api/v2/location-area/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "locationAreaRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun locationAreaRetrieve(
+        clientConfig: ClientConfig,
+        id: Int,
+        options: RequestOptions? = null,
+    ): LocationAreaDetail {
+        return SdkClient.request<LocationAreaDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/location-area/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "locationAreaRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists Pal Park areas used to group Pokémon encounters. Use `limit` and `offset` to paginate the results, or use `q` to search area names when running the API locally.
+     * Lists Pal Park areas used to group Pokémon encounters. Use `limit` and `offset` to paginate
+     * the results, or use `q` to search area names when running the API locally.
      *
-     * Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
+     * Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are
+     * specific to Pal Park.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun palParkAreaList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedPalParkAreaSummaryList {
-        return SdkClient.request<PaginatedPalParkAreaSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/pal-park-area/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "palParkAreaList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun palParkAreaList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedPalParkAreaSummaryList {
+        return SdkClient.request<PaginatedPalParkAreaSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/pal-park-area/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "palParkAreaList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists Pal Park areas used to group Pokémon encounters. Use `limit` and `offset` to paginate the results, or use `q` to search area names when running the API locally.
+     * Lists Pal Park areas used to group Pokémon encounters. Use `limit` and `offset` to paginate
+     * the results, or use `q` to search area names when running the API locally.
      *
-     * Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
+     * Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are
+     * specific to Pal Park.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun palParkAreaListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (PalParkAreaSummary) -> Boolean) {
-        var page: PaginatedPalParkAreaSummaryList = palParkAreaList(clientConfig, limit, offset, q, options)
+    fun palParkAreaListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (PalParkAreaSummary) -> Boolean,
+    ) {
+        var page: PaginatedPalParkAreaSummaryList =
+            palParkAreaList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedPalParkAreaSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "palParkAreaList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedPalParkAreaSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "palParkAreaList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -218,74 +388,140 @@ object Location {
         val hasMore: Boolean,
     )
 
-    fun palParkAreaListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (PalParkAreaListPage) -> Boolean) {
-        var page: PaginatedPalParkAreaSummaryList = palParkAreaList(clientConfig, limit, offset, q, options)
+    fun palParkAreaListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (PalParkAreaListPage) -> Boolean,
+    ) {
+        var page: PaginatedPalParkAreaSummaryList =
+            palParkAreaList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(PalParkAreaListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedPalParkAreaSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "palParkAreaList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedPalParkAreaSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "palParkAreaList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a Pal Park area and its associated Pokémon encounters. Use the area identifier to look up its localized names and the Pokémon species encountered there.
+     * Retrieves a Pal Park area and its associated Pokémon encounters. Use the area identifier to
+     * look up its localized names and the Pokémon species encountered there.
      *
-     * Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
+     * Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are
+     * specific to Pal Park.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun palParkAreaRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): PalParkAreaDetail {
-        return SdkClient.request<PalParkAreaDetail>(SdkClient.RequestSpec("GET", "/api/v2/pal-park-area/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "palParkAreaRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun palParkAreaRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): PalParkAreaDetail {
+        return SdkClient.request<PalParkAreaDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/pal-park-area/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "palParkAreaRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists regions, which are organized areas of the Pokémon world with distinct species that can be encountered. Use `limit` and `offset` to page through the available regions, or use `q` to filter them by name; `q` is available only on local installations.
+     * Lists regions, which are organized areas of the Pokémon world with distinct species that can
+     * be encountered. Use `limit` and `offset` to page through the available regions, or use `q` to
+     * filter them by name; `q` is available only on local installations.
      *
-     * A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
+     * A region is an organized area of the Pokémon world. Most often, the main difference between
+     * regions is the species of Pokémon that can be encountered within them.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun regionList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedRegionSummaryList {
-        return SdkClient.request<PaginatedRegionSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/region/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "regionList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun regionList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedRegionSummaryList {
+        return SdkClient.request<PaginatedRegionSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/region/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "regionList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists regions, which are organized areas of the Pokémon world with distinct species that can be encountered. Use `limit` and `offset` to page through the available regions, or use `q` to filter them by name; `q` is available only on local installations.
+     * Lists regions, which are organized areas of the Pokémon world with distinct species that can
+     * be encountered. Use `limit` and `offset` to page through the available regions, or use `q` to
+     * filter them by name; `q` is available only on local installations.
      *
-     * A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
+     * A region is an organized area of the Pokémon world. Most often, the main difference between
+     * regions is the species of Pokémon that can be encountered within them.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun regionListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (RegionSummary) -> Boolean) {
+    fun regionListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (RegionSummary) -> Boolean,
+    ) {
         var page: PaginatedRegionSummaryList = regionList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedRegionSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "regionList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedRegionSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "regionList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -295,7 +531,14 @@ object Location {
         val hasMore: Boolean,
     )
 
-    fun regionListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (RegionListPage) -> Boolean) {
+    fun regionListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (RegionListPage) -> Boolean,
+    ) {
         var page: PaginatedRegionSummaryList = regionList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
@@ -303,27 +546,45 @@ object Location {
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(RegionListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedRegionSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "regionList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedRegionSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "regionList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a region record describing an organized area of the Pokémon world. Use the `id` path parameter to identify the region, and inspect its locations, main generation, Pokédexes, and version groups.
+     * Retrieves a region record describing an organized area of the Pokémon world. Use the `id`
+     * path parameter to identify the region, and inspect its locations, main generation, Pokédexes,
+     * and version groups.
      *
-     * A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
+     * A region is an organized area of the Pokémon world. Most often, the main difference between
+     * regions is the species of Pokémon that can be encountered within them.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun regionRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): RegionDetail {
-        return SdkClient.request<RegionDetail>(SdkClient.RequestSpec("GET", "/api/v2/region/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "regionRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun regionRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): RegionDetail {
+        return SdkClient.request<RegionDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/region/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "regionRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

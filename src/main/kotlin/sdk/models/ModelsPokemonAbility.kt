@@ -3,140 +3,85 @@
 
 package sdk.models
 
-/**
- * Typed representation of the `AbilityChange` API schema.
- */
+/** Typed representation of the `AbilityChange` API schema. */
 data class AbilityChange(
-    /**
-     * Required object value serialized in the `version_group` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_group") val versionGroup: VersionGroupSummary,
-    /**
-     * Required array value serialized in the `effect_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries") val effectEntries: List<AbilityChangeEffectText>
+    /** Required object value serialized in the `version_group` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_group")
+    val versionGroup: VersionGroupSummary,
+    /** Required array value serialized in the `effect_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries")
+    val effectEntries: List<AbilityChangeEffectText>,
 )
 
-/**
- * Typed representation of the `AbilityChangeEffectText` API schema.
- */
+/** Typed representation of the `AbilityChangeEffectText` API schema. */
 data class AbilityChangeEffectText(
-    /**
-     * Required `string` value serialized in the `effect` wire field.
-     */
+    /** Required `string` value serialized in the `effect` wire field. */
     val effect: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
-)
-
-/**
- * Typed representation of the `AbilityDetail` API schema.
- */
-data class AbilityDetail(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
-    val id: Int,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
-    val name: String,
-    /**
-     * Required object value serialized in the `generation` wire field.
-     */
-    val generation: GenerationSummary,
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
-    val names: List<AbilityName>,
-    /**
-     * Required array value serialized in the `effect_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries") val effectEntries: List<AbilityEffectText>,
-    /**
-     * Required array value serialized in the `effect_changes` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("effect_changes") val effectChanges: List<AbilityChange>,
-    /**
-     * Required array value serialized in the `flavor_text_entries` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries") val flavorTextEntries: List<AbilityFlavorText>,
-    /**
-     * Required array value serialized in the `pokemon` wire field.
-     */
-    val pokemon: List<AbilityPokemonDetail>,
-    /**
-     * Optional `boolean` value serialized in the `is_main_series` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_main_series") val isMainSeries: Boolean? = null
-)
-
-/**
- * Typed representation of the `AbilityEffectText` API schema.
- */
-data class AbilityEffectText(
-    /**
-     * Required `string` value serialized in the `effect` wire field.
-     */
-    val effect: String,
-    /**
-     * Required `string` value serialized in the `short_effect` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("short_effect") val shortEffect: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
-)
-
-/**
- * Typed representation of the `AbilityFlavorText` API schema.
- */
-data class AbilityFlavorText(
-    /**
-     * Required `string` value serialized in the `flavor_text` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text") val flavorText: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
+    /** Required object value serialized in the `language` wire field. */
     val language: LanguageSummary,
-    /**
-     * Required object value serialized in the `version_group` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_group") val versionGroup: VersionGroupSummary
 )
 
-/**
- * Typed representation of the `AbilityName` API schema.
- */
-data class AbilityName(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+/** Typed representation of the `AbilityDetail` API schema. */
+data class AbilityDetail(
+    /** Required `integer` value serialized in the `id` wire field. */
+    val id: Int,
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `language` wire field.
-     */
-    val language: LanguageSummary
+    /** Required object value serialized in the `generation` wire field. */
+    val generation: GenerationSummary,
+    /** Required array value serialized in the `names` wire field. */
+    val names: List<AbilityName>,
+    /** Required array value serialized in the `effect_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("effect_entries")
+    val effectEntries: List<AbilityEffectText>,
+    /** Required array value serialized in the `effect_changes` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("effect_changes")
+    val effectChanges: List<AbilityChange>,
+    /** Required array value serialized in the `flavor_text_entries` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text_entries")
+    val flavorTextEntries: List<AbilityFlavorText>,
+    /** Required array value serialized in the `pokemon` wire field. */
+    val pokemon: List<AbilityPokemonDetail>,
+    /** Optional `boolean` value serialized in the `is_main_series` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_main_series")
+    val isMainSeries: Boolean? = null,
 )
 
-/**
- * Typed representation of the `AbilityPokemonDetail` API schema.
- */
+/** Typed representation of the `AbilityEffectText` API schema. */
+data class AbilityEffectText(
+    /** Required `string` value serialized in the `effect` wire field. */
+    val effect: String,
+    /** Required `string` value serialized in the `short_effect` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("short_effect") val shortEffect: String,
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
+)
+
+/** Typed representation of the `AbilityFlavorText` API schema. */
+data class AbilityFlavorText(
+    /** Required `string` value serialized in the `flavor_text` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("flavor_text") val flavorText: String,
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
+    /** Required object value serialized in the `version_group` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_group")
+    val versionGroup: VersionGroupSummary,
+)
+
+/** Typed representation of the `AbilityName` API schema. */
+data class AbilityName(
+    /** Required `string` value serialized in the `name` wire field. */
+    val name: String,
+    /** Required object value serialized in the `language` wire field. */
+    val language: LanguageSummary,
+)
+
+/** Typed representation of the `AbilityPokemonDetail` API schema. */
 data class AbilityPokemonDetail(
-    /**
-     * Required `integer` value serialized in the `slot` wire field.
-     */
+    /** Required `integer` value serialized in the `slot` wire field. */
     val slot: Int,
-    /**
-     * Required object value serialized in the `pokemon` wire field.
-     */
+    /** Required object value serialized in the `pokemon` wire field. */
     val pokemon: PokemonSummary,
-    /**
-     * Optional `boolean` value serialized in the `is_hidden` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_hidden") val isHidden: Boolean? = null
+    /** Optional `boolean` value serialized in the `is_hidden` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_hidden") val isHidden: Boolean? = null,
 )

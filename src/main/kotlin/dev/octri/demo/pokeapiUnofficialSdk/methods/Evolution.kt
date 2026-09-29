@@ -18,44 +18,86 @@ import dev.octri.demo.pokeapiUnofficialSdk.SdkClient
 
 object Evolution {
 
-
     /**
-     * Lists evolution chains, which describe Pokémon family trees from their earliest stage through subsequent evolutions. Use `limit` and `offset` to control the result page, or search chain names with `q`, which is available only on local deployments.
+     * Lists evolution chains, which describe Pokémon family trees from their earliest stage through
+     * subsequent evolutions. Use `limit` and `offset` to control the result page, or search chain
+     * names with `q`, which is available only on local deployments.
      *
-     * Evolution chains are essentially family trees. They start with the lowest stage within a family and detail evolution conditions for each as well as Pokémon they can evolve into up through the hierarchy.
+     * Evolution chains are essentially family trees. They start with the lowest stage within a
+     * family and detail evolution conditions for each as well as Pokémon they can evolve into up
+     * through the hierarchy.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun evolutionChainList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEvolutionChainSummaryList {
-        return SdkClient.request<PaginatedEvolutionChainSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/evolution-chain/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "evolutionChainList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun evolutionChainList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEvolutionChainSummaryList {
+        return SdkClient.request<PaginatedEvolutionChainSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/evolution-chain/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "evolutionChainList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists evolution chains, which describe Pokémon family trees from their earliest stage through subsequent evolutions. Use `limit` and `offset` to control the result page, or search chain names with `q`, which is available only on local deployments.
+     * Lists evolution chains, which describe Pokémon family trees from their earliest stage through
+     * subsequent evolutions. Use `limit` and `offset` to control the result page, or search chain
+     * names with `q`, which is available only on local deployments.
      *
-     * Evolution chains are essentially family trees. They start with the lowest stage within a family and detail evolution conditions for each as well as Pokémon they can evolve into up through the hierarchy.
+     * Evolution chains are essentially family trees. They start with the lowest stage within a
+     * family and detail evolution conditions for each as well as Pokémon they can evolve into up
+     * through the hierarchy.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun evolutionChainListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EvolutionChainSummary) -> Boolean) {
-        var page: PaginatedEvolutionChainSummaryList = evolutionChainList(clientConfig, limit, offset, q, options)
+    fun evolutionChainListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EvolutionChainSummary) -> Boolean,
+    ) {
+        var page: PaginatedEvolutionChainSummaryList =
+            evolutionChainList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedEvolutionChainSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "evolutionChainList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEvolutionChainSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "evolutionChainList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -65,74 +107,143 @@ object Evolution {
         val hasMore: Boolean,
     )
 
-    fun evolutionChainListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EvolutionChainListPage) -> Boolean) {
-        var page: PaginatedEvolutionChainSummaryList = evolutionChainList(clientConfig, limit, offset, q, options)
+    fun evolutionChainListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EvolutionChainListPage) -> Boolean,
+    ) {
+        var page: PaginatedEvolutionChainSummaryList =
+            evolutionChainList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(EvolutionChainListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedEvolutionChainSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "evolutionChainList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEvolutionChainSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "evolutionChainList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a specific evolution chain, which describes a Pokémon family tree and the conditions for progressing through its stages. Use `id` to select the chain and retrieve its evolution details.
+     * Retrieves a specific evolution chain, which describes a Pokémon family tree and the
+     * conditions for progressing through its stages. Use `id` to select the chain and retrieve its
+     * evolution details.
      *
-     * Evolution chains are essentially family trees. They start with the lowest stage within a family and detail evolution conditions for each as well as Pokémon they can evolve into up through the hierarchy.
+     * Evolution chains are essentially family trees. They start with the lowest stage within a
+     * family and detail evolution conditions for each as well as Pokémon they can evolve into up
+     * through the hierarchy.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun evolutionChainRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EvolutionChainDetail {
-        return SdkClient.request<EvolutionChainDetail>(SdkClient.RequestSpec("GET", "/api/v2/evolution-chain/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "evolutionChainRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun evolutionChainRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EvolutionChainDetail {
+        return SdkClient.request<EvolutionChainDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/evolution-chain/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "evolutionChainRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists the events and conditions that can cause a Pokémon to evolve. Use `limit` and `offset` to control the result page, or search trigger names with `q`, which is available only on local deployments.
+     * Lists the events and conditions that can cause a Pokémon to evolve. Use `limit` and `offset`
+     * to control the result page, or search trigger names with `q`, which is available only on
+     * local deployments.
      *
-     * Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out Bulbapedia for greater detail.
+     * Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out
+     * Bulbapedia for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun evolutionTriggerList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEvolutionTriggerSummaryList {
-        return SdkClient.request<PaginatedEvolutionTriggerSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/evolution-trigger/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "evolutionTriggerList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun evolutionTriggerList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEvolutionTriggerSummaryList {
+        return SdkClient.request<PaginatedEvolutionTriggerSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/evolution-trigger/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "evolutionTriggerList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists the events and conditions that can cause a Pokémon to evolve. Use `limit` and `offset` to control the result page, or search trigger names with `q`, which is available only on local deployments.
+     * Lists the events and conditions that can cause a Pokémon to evolve. Use `limit` and `offset`
+     * to control the result page, or search trigger names with `q`, which is available only on
+     * local deployments.
      *
-     * Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out Bulbapedia for greater detail.
+     * Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out
+     * Bulbapedia for greater detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun evolutionTriggerListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EvolutionTriggerSummary) -> Boolean) {
-        var page: PaginatedEvolutionTriggerSummaryList = evolutionTriggerList(clientConfig, limit, offset, q, options)
+    fun evolutionTriggerListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EvolutionTriggerSummary) -> Boolean,
+    ) {
+        var page: PaginatedEvolutionTriggerSummaryList =
+            evolutionTriggerList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedEvolutionTriggerSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "evolutionTriggerList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEvolutionTriggerSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "evolutionTriggerList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -142,74 +253,144 @@ object Evolution {
         val hasMore: Boolean,
     )
 
-    fun evolutionTriggerListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EvolutionTriggerListPage) -> Boolean) {
-        var page: PaginatedEvolutionTriggerSummaryList = evolutionTriggerList(clientConfig, limit, offset, q, options)
+    fun evolutionTriggerListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EvolutionTriggerListPage) -> Boolean,
+    ) {
+        var page: PaginatedEvolutionTriggerSummaryList =
+            evolutionTriggerList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(EvolutionTriggerListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedEvolutionTriggerSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "evolutionTriggerList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEvolutionTriggerSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "evolutionTriggerList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a specific evolution trigger, such as an event or condition that causes a Pokémon to evolve. Use `id` to retrieve the trigger's localized names and the Pokémon species associated with it.
+     * Retrieves a specific evolution trigger, such as an event or condition that causes a Pokémon
+     * to evolve. Use `id` to retrieve the trigger's localized names and the Pokémon species
+     * associated with it.
      *
-     * Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out Bulbapedia for greater detail.
+     * Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out
+     * Bulbapedia for greater detail.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun evolutionTriggerRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EvolutionTriggerDetail {
-        return SdkClient.request<EvolutionTriggerDetail>(SdkClient.RequestSpec("GET", "/api/v2/evolution-trigger/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "evolutionTriggerRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun evolutionTriggerRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EvolutionTriggerDetail {
+        return SdkClient.request<EvolutionTriggerDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/evolution-trigger/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "evolutionTriggerRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists variables used in boolean expressions for form-branching evolutions, such as Encryption Constant and Personality Value. Use `limit` and `offset` to control the result page, or search variable names with `q`, which is available only on local deployments.
+     * Lists variables used in boolean expressions for form-branching evolutions, such as Encryption
+     * Constant and Personality Value. Use `limit` and `offset` to control the result page, or
+     * search variable names with `q`, which is available only on local deployments.
      *
-     * Evolution variables represent parameters (such as Encryption Constant and Personality Value) used in boolean expressions for form-branching evolutions. Check out Bulbapedia for greater detail.
+     * Evolution variables represent parameters (such as Encryption Constant and Personality Value)
+     * used in boolean expressions for form-branching evolutions. Check out Bulbapedia for greater
+     * detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun evolutionVariableList(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null): PaginatedEvolutionVariableSummaryList {
-        return SdkClient.request<PaginatedEvolutionVariableSummaryList>(SdkClient.RequestSpec("GET", "/api/v2/evolution-variable/", config = clientConfig, query = mapOf("limit" to SdkClient.queryValue(limit, "form", true), "offset" to SdkClient.queryValue(offset, "form", true), "q" to SdkClient.queryValue(q, "form", true)), operationId = "evolutionVariableList", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun evolutionVariableList(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+    ): PaginatedEvolutionVariableSummaryList {
+        return SdkClient.request<PaginatedEvolutionVariableSummaryList>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/evolution-variable/",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "limit" to SdkClient.queryValue(limit, "form", true),
+                            "offset" to SdkClient.queryValue(offset, "form", true),
+                            "q" to SdkClient.queryValue(q, "form", true),
+                        ),
+                    operationId = "evolutionVariableList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
     /**
-     * Lists variables used in boolean expressions for form-branching evolutions, such as Encryption Constant and Personality Value. Use `limit` and `offset` to control the result page, or search variable names with `q`, which is available only on local deployments.
+     * Lists variables used in boolean expressions for form-branching evolutions, such as Encryption
+     * Constant and Personality Value. Use `limit` and `offset` to control the result page, or
+     * search variable names with `q`, which is available only on local deployments.
      *
-     * Evolution variables represent parameters (such as Encryption Constant and Personality Value) used in boolean expressions for form-branching evolutions. Check out Bulbapedia for greater detail.
+     * Evolution variables represent parameters (such as Encryption Constant and Personality Value)
+     * used in boolean expressions for form-branching evolutions. Check out Bulbapedia for greater
+     * detail.
      *
      * @param limit Number of results to return per page.
      * @param offset The initial index from which to return the results.
-     * @param q > Only available locally and not at pokeapi.co Case-insensitive query
-     *   applied on the `name` property.
+     * @param q > Only available locally and not at pokeapi.co Case-insensitive query applied on the
+     *   `name` property.
      */
-    fun evolutionVariableListPaginated(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldFn: (EvolutionVariableSummary) -> Boolean) {
-        var page: PaginatedEvolutionVariableSummaryList = evolutionVariableList(clientConfig, limit, offset, q, options)
+    fun evolutionVariableListPaginated(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldFn: (EvolutionVariableSummary) -> Boolean,
+    ) {
+        var page: PaginatedEvolutionVariableSummaryList =
+            evolutionVariableList(clientConfig, limit, offset, q, options)
         while (true) {
             for (item in page.results.orEmpty()) {
                 if (!yieldFn(item)) return
             }
             val nextUrl = page.next ?: return
-            page = SdkClient.request<PaginatedEvolutionVariableSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "evolutionVariableList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEvolutionVariableSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "evolutionVariableList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
@@ -219,35 +400,62 @@ object Evolution {
         val hasMore: Boolean,
     )
 
-    fun evolutionVariableListPages(clientConfig: ClientConfig, limit: Int? = null, offset: Int? = null, q: String? = null, options: RequestOptions? = null, yieldPage: (EvolutionVariableListPage) -> Boolean) {
-        var page: PaginatedEvolutionVariableSummaryList = evolutionVariableList(clientConfig, limit, offset, q, options)
+    fun evolutionVariableListPages(
+        clientConfig: ClientConfig,
+        limit: Int? = null,
+        offset: Int? = null,
+        q: String? = null,
+        options: RequestOptions? = null,
+        yieldPage: (EvolutionVariableListPage) -> Boolean,
+    ) {
+        var page: PaginatedEvolutionVariableSummaryList =
+            evolutionVariableList(clientConfig, limit, offset, q, options)
         while (true) {
             val items = page.results.orEmpty()
             val nextUrl = page.next
             val hasMore = !nextUrl.isNullOrEmpty()
             if (!yieldPage(EvolutionVariableListPage(page, items, hasMore))) return
             if (!hasMore) return
-            page = SdkClient.request<PaginatedEvolutionVariableSummaryList>(SdkClient.RequestSpec(method = "GET", path = nextUrl, operationId = "evolutionVariableList", config = clientConfig, options = options)).data
+            page =
+                SdkClient.request<PaginatedEvolutionVariableSummaryList>(
+                        SdkClient.RequestSpec(
+                            method = "GET",
+                            path = nextUrl,
+                            operationId = "evolutionVariableList",
+                            config = clientConfig,
+                            options = options,
+                        )
+                    )
+                    .data
         }
     }
 
-
-
     /**
-     * Retrieves a specific evolution variable used in boolean expressions for form-branching evolutions. Use `id` to retrieve its symbol, data type, source, version group, localized names, and descriptions.
+     * Retrieves a specific evolution variable used in boolean expressions for form-branching
+     * evolutions. Use `id` to retrieve its symbol, data type, source, version group, localized
+     * names, and descriptions.
      *
-     * Evolution variables represent parameters (such as Encryption Constant and Personality Value) used in boolean expressions for form-branching evolutions. Check out Bulbapedia for greater detail.
+     * Evolution variables represent parameters (such as Encryption Constant and Personality Value)
+     * used in boolean expressions for form-branching evolutions. Check out Bulbapedia for greater
+     * detail.
      *
      * @param id This parameter can be a string or an integer.
      */
-    fun evolutionVariableRetrieve(clientConfig: ClientConfig, id: String, options: RequestOptions? = null): EvolutionVariableDetail {
-        return SdkClient.request<EvolutionVariableDetail>(SdkClient.RequestSpec("GET", "/api/v2/evolution-variable/${SdkClient.encodePathSegment(id)}/", config = clientConfig, operationId = "evolutionVariableRetrieve", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun evolutionVariableRetrieve(
+        clientConfig: ClientConfig,
+        id: String,
+        options: RequestOptions? = null,
+    ): EvolutionVariableDetail {
+        return SdkClient.request<EvolutionVariableDetail>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/api/v2/evolution-variable/${SdkClient.encodePathSegment(id)}/",
+                    config = clientConfig,
+                    operationId = "evolutionVariableRetrieve",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

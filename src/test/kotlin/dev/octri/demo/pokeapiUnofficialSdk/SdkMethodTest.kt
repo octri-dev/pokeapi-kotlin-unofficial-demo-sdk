@@ -3,10 +3,9 @@
 
 package dev.octri.demo.pokeapiUnofficialSdk
 
-
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.JavaType
 import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import java.io.File
@@ -43,11 +42,12 @@ class SdkMethodTest {
         value: JsonNode?,
         name: String,
     ): JsonNode? =
-        value?.get(name) ?: value
-            ?.fields()
-            ?.asSequence()
-            ?.firstOrNull { normalized(it.key) == normalized(name) }
-            ?.value
+        value?.get(name)
+            ?: value
+                ?.fields()
+                ?.asSequence()
+                ?.firstOrNull { normalized(it.key) == normalized(name) }
+                ?.value
 
     // A parameter object standing in for the whole argument list, whose fields the
     // fixture states at the top level under no name of its own. It is declared
@@ -55,11 +55,9 @@ class SdkMethodTest {
     // typed as a model whose name happens to end the same way.
     private fun aggregate(raw: Class<*>): Boolean =
         raw.enclosingClass != null &&
-            (
-                raw.simpleName.endsWith("Request") ||
-                    raw.simpleName.endsWith("Params") ||
-                    raw.simpleName.endsWith("Options")
-            )
+            (raw.simpleName.endsWith("Request") ||
+                raw.simpleName.endsWith("Params") ||
+                raw.simpleName.endsWith("Options"))
 
     private fun absentValue(raw: Class<*>): Any? =
         when (raw) {
@@ -67,8 +65,7 @@ class SdkMethodTest {
             java.lang.Integer.TYPE,
             java.lang.Long.TYPE,
             java.lang.Double.TYPE,
-            java.lang.Float.TYPE,
-            -> 0
+            java.lang.Float.TYPE -> 0
             else -> null
         }
 
@@ -118,9 +115,7 @@ class SdkMethodTest {
         // alongside the primary constructor; only the primary one lines up with
         // the declared fields.
         val constructor =
-            raw.declaredConstructors
-                .filter { !it.isSynthetic }
-                .maxByOrNull { it.parameterCount }
+            raw.declaredConstructors.filter { !it.isSynthetic }.maxByOrNull { it.parameterCount }
                 ?: return mapper.convertValue(value, javaType)
         val fields =
             raw.declaredFields.filter {
@@ -135,7 +130,8 @@ class SdkMethodTest {
             constructor.genericParameterTypes
                 .mapIndexed { index, parameterType ->
                     convert(parameterType, byName(value, fields[index].name))
-                }.toTypedArray()
+                }
+                .toTypedArray()
         return constructor.newInstance(*values)
     }
 
@@ -148,9 +144,12 @@ class SdkMethodTest {
         return when {
             value == null || value.isNull -> absentValue(raw)
             type is ParameterizedType && raw == List::class.java -> listValue(type, value)
-            raw.isPrimitive || raw.isEnum || raw.name.startsWith("java.") || raw == Any::class.java ->
+            raw.isPrimitive ||
+                raw.isEnum ||
+                raw.name.startsWith("java.") ||
+                raw == Any::class.java -> mapper.convertValue(value, javaType)
+            type is ParameterizedType && raw == Map::class.java ->
                 mapper.convertValue(value, javaType)
-            type is ParameterizedType && raw == Map::class.java -> mapper.convertValue(value, javaType)
             raw.simpleName == "UploadFile" -> uploadFile(raw, value)
             !value.isObject && raw.simpleName != "SdkOptional" ->
                 // Only an object node has properties to match against constructor
@@ -172,17 +171,14 @@ class SdkMethodTest {
         if (actual == null || !actual.isObject) {
             "$path: expected an object, decoded $actual"
         } else {
-            expected
-                .fields()
-                .asSequence()
-                .firstNotNullOfOrNull { (name, value) ->
-                    val child = byName(actual, name)
-                    if (child == null) {
-                        "$path.$name: missing from the decoded response"
-                    } else {
-                        mismatch(child, value, "$path.$name")
-                    }
+            expected.fields().asSequence().firstNotNullOfOrNull { (name, value) ->
+                val child = byName(actual, name)
+                if (child == null) {
+                    "$path.$name: missing from the decoded response"
+                } else {
+                    mismatch(child, value, "$path.$name")
                 }
+            }
         }
 
     private fun arrayMismatch(
@@ -200,7 +196,10 @@ class SdkMethodTest {
                 }
         }
 
-    private fun instant(value: String): Instant? = runCatching { OffsetDateTime.parse(value).toInstant() }.getOrNull()
+    private fun instant(value: String): Instant? = runCatching {
+        OffsetDateTime.parse(value).toInstant()
+    }
+        .getOrNull()
 
     private fun mismatch(
         actual: JsonNode?,
@@ -209,7 +208,8 @@ class SdkMethodTest {
     ): String? =
         when {
             expected == null || expected.isNull ->
-                if (actual == null || actual.isNull) null else "$path: expected null, decoded $actual"
+                if (actual == null || actual.isNull) null
+                else "$path: expected null, decoded $actual"
             expected.isObject -> objectMismatch(actual, expected, path)
             expected.isArray -> arrayMismatch(actual, expected, path)
             // A number is compared by value: a field typed as a floating point
@@ -223,24 +223,33 @@ class SdkMethodTest {
             }
             // A timestamp is compared as an instant: the mock states whatever
             // precision the API documents, and the SDK writes its own.
-            expected.isTextual && actual != null && actual.isTextual &&
-                instant(expected.asText()).let { it != null && it == instant(actual.asText()) } -> null
+            expected.isTextual &&
+                actual != null &&
+                actual.isTextual &&
+                instant(expected.asText()).let { it != null && it == instant(actual.asText()) } ->
+                null
             // Decoded bytes stay a binary node; their text is the base64 the mock sent.
             expected.isTextual && actual != null && actual.isBinary ->
-                if (expected.asText() == actual.asText()) null else "$path: decoded $actual, the mock states $expected"
-            else -> if (actual == expected) null else "$path: decoded $actual, the mock states $expected"
+                if (expected.asText() == actual.asText()) null
+                else "$path: decoded $actual, the mock states $expected"
+            else ->
+                if (actual == expected) null
+                else "$path: decoded $actual, the mock states $expected"
         }
 
     // Under the suspending surface (ktor) a method's last parameter is its
     // continuation, and a stream is a coroutine Flow. Both are driven with the
     // standard library, and the Flow is read through the coroutine library by
     // name, so the suite still compiles for the blocking surface, which has none.
-    private val firstOfFlow: Method? =
-        runCatching {
-            Class
-                .forName("kotlinx.coroutines.flow.FlowKt")
-                .getMethod("firstOrNull", Class.forName("kotlinx.coroutines.flow.Flow"), Continuation::class.java)
-        }.getOrNull()
+    private val firstOfFlow: Method? = runCatching {
+        Class.forName("kotlinx.coroutines.flow.FlowKt")
+            .getMethod(
+                "firstOrNull",
+                Class.forName("kotlinx.coroutines.flow.Flow"),
+                Continuation::class.java,
+            )
+    }
+        .getOrNull()
 
     private fun invokeSuspending(
         method: Method,
@@ -253,7 +262,11 @@ class SdkMethodTest {
                 method.invoke(instance, *values.toTypedArray(), continuation)
             }
         }
-        call.startCoroutine(Continuation(EmptyCoroutineContext) { it.fold(result::complete, result::completeExceptionally) })
+        call.startCoroutine(
+            Continuation(EmptyCoroutineContext) {
+                it.fold(result::complete, result::completeExceptionally)
+            }
+        )
         return result.get()
     }
 
@@ -285,13 +298,16 @@ class SdkMethodTest {
                             else -> {
                                 val input =
                                     byName(arguments, method.parameters[index].name)
-                                        ?: order.get(positional++)?.let { byName(arguments, it.asText()) }
+                                        ?: order.get(positional++)?.let {
+                                            byName(arguments, it.asText())
+                                        }
                                 convert(type, input)
                             }
                         }
                     }
             var actual =
-                if (suspending) invokeSuspending(method, instance, values) else method.invoke(instance, *values.toTypedArray())
+                if (suspending) invokeSuspending(method, instance, values)
+                else method.invoke(instance, *values.toTypedArray())
             // A method with no response body returns Unit, which reflection hands
             // back as a value rather than as the absence of one.
             if (actual == Unit) actual = null
@@ -321,7 +337,8 @@ class SdkMethodTest {
                 else ->
                     assertNull(
                         mismatch(mapper.valueToTree(actual), response.get("expected")),
-                        caseData.get("id").asText() + " decoded a response that differs from the mock",
+                        caseData.get("id").asText() +
+                            " decoded a response that differs from the mock",
                     )
             }
         }
