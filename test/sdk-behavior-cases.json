@@ -1,0 +1,293 @@
+{
+  "baseUrl": "https://behavior.test",
+  "operationCount": 102,
+  "credentials": {
+    "bearer": "behavior-bearer-token",
+    "apiKey": "behavior-api-key",
+    "basicUser": "behavior-user",
+    "basicPassword": "behavior-password",
+    "basicHeader": "Basic YmVoYXZpb3ItdXNlcjpiZWhhdmlvci1wYXNzd29yZA=="
+  },
+  "authHeaders": {},
+  "cases": [
+    {
+      "id": "behavior-1",
+      "operationId": "meta_retrieve",
+      "kinds": [
+        "auth-application",
+        "json-response"
+      ],
+      "request": {
+        "method": "GET",
+        "pathTemplate": "/api/v2/meta/",
+        "pathParameters": {},
+        "query": [],
+        "headers": {},
+        "bodyKind": null,
+        "contentType": null,
+        "security": [
+          {}
+        ]
+      },
+      "expect": {
+        "method": "GET",
+        "path": "/api/v2/meta/",
+        "query": "",
+        "url": "https://behavior.test/api/v2/meta/",
+        "headers": {},
+        "bodyText": null,
+        "multipartFields": null
+      },
+      "response": {
+        "kind": "json",
+        "status": 200,
+        "mediaType": "application/json",
+        "body": "{\"deploy_date\":\"2024-01-01T00:00:00Z\",\"hash\":\"hash\",\"tag\":\"tag\"}",
+        "value": {
+          "deploy_date": "2024-01-01T00:00:00Z",
+          "hash": "hash",
+          "tag": "tag"
+        }
+      }
+    },
+    {
+      "id": "behavior-2",
+      "operationId": "ability_list",
+      "kinds": [
+        "auth-application",
+        "json-response",
+        "pagination",
+        "query-serialization"
+      ],
+      "request": {
+        "method": "GET",
+        "pathTemplate": "/api/v2/ability/",
+        "pathParameters": {},
+        "query": [
+          {
+            "name": "limit",
+            "style": "form",
+            "explode": true,
+            "value": 1,
+            "serialized": "1"
+          },
+          {
+            "name": "offset",
+            "style": "form",
+            "explode": true,
+            "value": 1,
+            "serialized": "1"
+          },
+          {
+            "name": "q",
+            "style": "form",
+            "explode": true,
+            "value": "q",
+            "serialized": "q"
+          }
+        ],
+        "headers": {},
+        "bodyKind": null,
+        "contentType": null,
+        "security": [
+          {}
+        ]
+      },
+      "expect": {
+        "method": "GET",
+        "path": "/api/v2/ability/",
+        "query": "limit=1&offset=1&q=q",
+        "url": "https://behavior.test/api/v2/ability/?limit=1&offset=1&q=q",
+        "headers": {},
+        "bodyText": null,
+        "multipartFields": null
+      },
+      "response": {
+        "kind": "json",
+        "status": 200,
+        "mediaType": "application/json",
+        "body": "{\"count\":123,\"next\":\"http://api.example.org/accounts/?offset=400&limit=100\",\"previous\":\"http://api.example.org/accounts/?offset=200&limit=100\",\"results\":[{\"name\":\"Example Name\",\"url\":\"https://example.com\"}]}",
+        "value": {
+          "count": 123,
+          "next": "http://api.example.org/accounts/?offset=400&limit=100",
+          "previous": "http://api.example.org/accounts/?offset=200&limit=100",
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "behavior-3",
+      "operationId": "ability_retrieve",
+      "kinds": [
+        "auth-application",
+        "json-response",
+        "path-serialization"
+      ],
+      "request": {
+        "method": "GET",
+        "pathTemplate": "/api/v2/ability/{id}/",
+        "pathParameters": {
+          "id": "id-1"
+        },
+        "query": [],
+        "headers": {},
+        "bodyKind": null,
+        "contentType": null,
+        "security": [
+          {}
+        ]
+      },
+      "expect": {
+        "method": "GET",
+        "path": "/api/v2/ability/id-1/",
+        "query": "",
+        "url": "https://behavior.test/api/v2/ability/id-1/",
+        "headers": {},
+        "bodyText": null,
+        "multipartFields": null
+      },
+      "response": {
+        "kind": "json",
+        "status": 200,
+        "mediaType": "application/json",
+        "body": "{\"id\":1,\"name\":\"Example Name\",\"is_main_series\":false,\"generation\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"},\"names\":[{\"name\":\"Example Name\",\"language\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"}}],\"effect_entries\":[{\"effect\":\"effect\",\"short_effect\":\"short_effect\",\"language\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"}}],\"effect_changes\":[{\"version_group\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"},\"effect_entries\":[{\"effect\":\"effect\",\"language\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"}}]}],\"flavor_text_entries\":[{\"flavor_text\":\"flavor_text\",\"language\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"},\"version_group\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"}}],\"pokemon\":[{\"is_hidden\":false,\"slot\":-2147483648,\"pokemon\":{\"name\":\"Example Name\",\"url\":\"https://example.com\"}}]}",
+        "value": {
+          "id": 1,
+          "name": "Example Name",
+          "is_main_series": false,
+          "generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "effect_entries": [
+            {
+              "effect": "effect",
+              "short_effect": "short_effect",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "effect_changes": [
+            {
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "effect_entries": [
+                {
+                  "effect": "effect",
+                  "language": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon": [
+            {
+              "is_hidden": false,
+              "slot": -2147483648,
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "behavior-4",
+      "operationId": "location_area_list",
+      "kinds": [
+        "auth-application",
+        "json-response",
+        "pagination",
+        "query-serialization"
+      ],
+      "request": {
+        "method": "GET",
+        "pathTemplate": "/api/v2/location-area/",
+        "pathParameters": {},
+        "query": [
+          {
+            "name": "limit",
+            "style": "form",
+            "explode": true,
+            "value": 1,
+            "serialized": "1"
+          },
+          {
+            "name": "offset",
+            "style": "form",
+            "explode": true,
+            "value": 1,
+            "serialized": "1"
+          }
+        ],
+        "headers": {},
+        "bodyKind": null,
+        "contentType": null,
+        "security": [
+          {}
+        ]
+      },
+      "expect": {
+        "method": "GET",
+        "path": "/api/v2/location-area/",
+        "query": "limit=1&offset=1",
+        "url": "https://behavior.test/api/v2/location-area/?limit=1&offset=1",
+        "headers": {},
+        "bodyText": null,
+        "multipartFields": null
+      },
+      "response": {
+        "kind": "json",
+        "status": 200,
+        "mediaType": "application/json",
+        "body": "{\"count\":123,\"next\":\"http://api.example.org/accounts/?offset=400&limit=100\",\"previous\":\"http://api.example.org/accounts/?offset=200&limit=100\",\"results\":[{\"name\":\"Example Name\",\"url\":\"https://example.com\"}]}",
+        "value": {
+          "count": 123,
+          "next": "http://api.example.org/accounts/?offset=400&limit=100",
+          "previous": "http://api.example.org/accounts/?offset=200&limit=100",
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

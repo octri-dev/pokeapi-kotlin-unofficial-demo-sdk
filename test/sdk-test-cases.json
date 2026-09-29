@@ -1,0 +1,273 @@
+[
+  {
+    "id": "behavior-1",
+    "operationId": "meta_retrieve",
+    "method": "GET",
+    "path": "/api/v2/meta/",
+    "signature": "{\"errors\":[],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[],\"request\":[],\"response\":[\"json\"],\"security\":[{}],\"streaming\":false}",
+    "kinds": [
+      "auth-application",
+      "json-response"
+    ],
+    "parameters": [],
+    "request": null,
+    "response": {
+      "mediaType": "application/json",
+      "kind": "json",
+      "value": {
+        "deploy_date": "2024-01-01T00:00:00Z",
+        "hash": "hash",
+        "tag": "tag"
+      }
+    },
+    "security": [
+      {}
+    ],
+    "securitySchemes": [],
+    "pagination": null
+  },
+  {
+    "id": "behavior-2",
+    "operationId": "ability_list",
+    "method": "GET",
+    "path": "/api/v2/ability/",
+    "signature": "{\"errors\":[],\"method\":\"GET\",\"nullable\":false,\"pagination\":\"url\",\"parameters\":[{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{}],\"streaming\":false}",
+    "kinds": [
+      "auth-application",
+      "json-response",
+      "pagination",
+      "query-serialization"
+    ],
+    "parameters": [
+      {
+        "name": "limit",
+        "location": "query",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "jsonContent": false,
+        "value": 1
+      },
+      {
+        "name": "offset",
+        "location": "query",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "jsonContent": false,
+        "value": 1
+      },
+      {
+        "name": "q",
+        "location": "query",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "jsonContent": false,
+        "value": "q"
+      }
+    ],
+    "request": null,
+    "response": {
+      "mediaType": "application/json",
+      "kind": "json",
+      "value": {
+        "count": 123,
+        "next": "http://api.example.org/accounts/?offset=400&limit=100",
+        "previous": "http://api.example.org/accounts/?offset=200&limit=100",
+        "results": [
+          {
+            "name": "Example Name",
+            "url": "https://example.com"
+          }
+        ]
+      }
+    },
+    "security": [
+      {}
+    ],
+    "securitySchemes": [],
+    "pagination": {
+      "type": "url",
+      "results": [
+        "results"
+      ],
+      "url": {
+        "next": [
+          "next"
+        ],
+        "previous": [
+          "previous"
+        ]
+      }
+    }
+  },
+  {
+    "id": "behavior-3",
+    "operationId": "ability_retrieve",
+    "method": "GET",
+    "path": "/api/v2/ability/{id}/",
+    "signature": "{\"errors\":[],\"method\":\"GET\",\"nullable\":false,\"pagination\":null,\"parameters\":[{\"array\":false,\"explode\":false,\"location\":\"path\",\"required\":true,\"style\":\"simple\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{}],\"streaming\":false}",
+    "kinds": [
+      "auth-application",
+      "json-response",
+      "path-serialization"
+    ],
+    "parameters": [
+      {
+        "name": "id",
+        "location": "path",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "jsonContent": false,
+        "value": "id-1"
+      }
+    ],
+    "request": null,
+    "response": {
+      "mediaType": "application/json",
+      "kind": "json",
+      "value": {
+        "id": 1,
+        "name": "Example Name",
+        "is_main_series": false,
+        "generation": {
+          "name": "Example Name",
+          "url": "https://example.com"
+        },
+        "names": [
+          {
+            "name": "Example Name",
+            "language": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          }
+        ],
+        "effect_entries": [
+          {
+            "effect": "effect",
+            "short_effect": "short_effect",
+            "language": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          }
+        ],
+        "effect_changes": [
+          {
+            "version_group": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            },
+            "effect_entries": [
+              {
+                "effect": "effect",
+                "language": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              }
+            ]
+          }
+        ],
+        "flavor_text_entries": [
+          {
+            "flavor_text": "flavor_text",
+            "language": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            },
+            "version_group": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          }
+        ],
+        "pokemon": [
+          {
+            "is_hidden": false,
+            "slot": -2147483648,
+            "pokemon": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          }
+        ]
+      }
+    },
+    "security": [
+      {}
+    ],
+    "securitySchemes": [],
+    "pagination": null
+  },
+  {
+    "id": "behavior-4",
+    "operationId": "location_area_list",
+    "method": "GET",
+    "path": "/api/v2/location-area/",
+    "signature": "{\"errors\":[],\"method\":\"GET\",\"nullable\":false,\"pagination\":\"url\",\"parameters\":[{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"},{\"array\":false,\"explode\":true,\"location\":\"query\",\"required\":false,\"style\":\"form\"}],\"request\":[],\"response\":[\"json\"],\"security\":[{}],\"streaming\":false}",
+    "kinds": [
+      "auth-application",
+      "json-response",
+      "pagination",
+      "query-serialization"
+    ],
+    "parameters": [
+      {
+        "name": "limit",
+        "location": "query",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "jsonContent": false,
+        "value": 1
+      },
+      {
+        "name": "offset",
+        "location": "query",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "jsonContent": false,
+        "value": 1
+      }
+    ],
+    "request": null,
+    "response": {
+      "mediaType": "application/json",
+      "kind": "json",
+      "value": {
+        "count": 123,
+        "next": "http://api.example.org/accounts/?offset=400&limit=100",
+        "previous": "http://api.example.org/accounts/?offset=200&limit=100",
+        "results": [
+          {
+            "name": "Example Name",
+            "url": "https://example.com"
+          }
+        ]
+      }
+    },
+    "security": [
+      {}
+    ],
+    "securitySchemes": [],
+    "pagination": {
+      "type": "url",
+      "results": [
+        "results"
+      ],
+      "url": {
+        "next": [
+          "next"
+        ],
+        "previous": [
+          "previous"
+        ]
+      }
+    }
+  }
+]

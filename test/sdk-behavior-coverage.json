@@ -1,0 +1,10 @@
+{
+  "renderedCases": 4,
+  "kinds": [
+    "auth-application",
+    "json-response",
+    "pagination",
+    "path-serialization",
+    "query-serialization"
+  ]
+}

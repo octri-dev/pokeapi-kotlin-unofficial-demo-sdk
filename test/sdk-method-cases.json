@@ -1,0 +1,4875 @@
+{
+  "cases": [
+    {
+      "id": "ability_list:abilityList",
+      "operationId": "ability_list",
+      "methodName": "abilityList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "ability_retrieve:abilityRetrieve",
+      "operationId": "ability_retrieve",
+      "methodName": "abilityRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "is_main_series": false,
+          "generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "effect_entries": [
+            {
+              "effect": "effect",
+              "short_effect": "short_effect",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "effect_changes": [
+            {
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "effect_entries": [
+                {
+                  "effect": "effect",
+                  "language": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon": [
+            {
+              "is_hidden": false,
+              "slot": -2147483648,
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "berry_firmness_list:berryFirmnessList",
+      "operationId": "berry_firmness_list",
+      "methodName": "berryFirmnessList",
+      "namespace": [
+        "berries"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Berries",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "berry_firmness_retrieve:berryFirmnessRetrieve",
+      "operationId": "berry_firmness_retrieve",
+      "methodName": "berryFirmnessRetrieve",
+      "namespace": [
+        "berries"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Berries",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "berries": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "berry_flavor_list:berryFlavorList",
+      "operationId": "berry_flavor_list",
+      "methodName": "berryFlavorList",
+      "namespace": [
+        "berries"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Berries",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "berry_flavor_retrieve:berryFlavorRetrieve",
+      "operationId": "berry_flavor_retrieve",
+      "methodName": "berryFlavorRetrieve",
+      "namespace": [
+        "berries"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Berries",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "berries": [
+            {
+              "potency": -2147483648,
+              "berry": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "contest_type": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "berry_list:berryList",
+      "operationId": "berry_list",
+      "methodName": "berryList",
+      "namespace": [
+        "berries"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Berries",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "berry_retrieve:berryRetrieve",
+      "operationId": "berry_retrieve",
+      "methodName": "berryRetrieve",
+      "namespace": [
+        "berries"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Berries",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "growth_time": -2147483648,
+          "max_harvest": -2147483648,
+          "natural_gift_power": -2147483648,
+          "size": -2147483648,
+          "smoothness": -2147483648,
+          "soil_dryness": -2147483648,
+          "firmness": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "flavors": [
+            {
+              "potency": -2147483648,
+              "flavor": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "item": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "natural_gift_type": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "characteristic_list:characteristicList",
+      "operationId": "characteristic_list",
+      "methodName": "characteristicList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "characteristic_retrieve:characteristicRetrieve",
+      "operationId": "characteristic_retrieve",
+      "methodName": "characteristicRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "gene_modulo": 1,
+          "possible_values": [
+            1
+          ],
+          "highest_stat": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "contest_effect_list:contestEffectList",
+      "operationId": "contest_effect_list",
+      "methodName": "contestEffectList",
+      "namespace": [
+        "contests"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Contests",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "contest_effect_retrieve:contestEffectRetrieve",
+      "operationId": "contest_effect_retrieve",
+      "methodName": "contestEffectRetrieve",
+      "namespace": [
+        "contests"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Contests",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "appeal": -2147483648,
+          "jam": -2147483648,
+          "effect_entries": [
+            {
+              "effect": "effect",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "contest_type_list:contestTypeList",
+      "operationId": "contest_type_list",
+      "methodName": "contestTypeList",
+      "namespace": [
+        "contests"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Contests",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "contest_type_retrieve:contestTypeRetrieve",
+      "operationId": "contest_type_retrieve",
+      "methodName": "contestTypeRetrieve",
+      "namespace": [
+        "contests"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Contests",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "berry_flavor": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "color": "color",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "currency_list:currencyList",
+      "operationId": "currency_list",
+      "methodName": "currencyList",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "currency_retrieve:currencyRetrieve",
+      "operationId": "currency_retrieve",
+      "methodName": "currencyRetrieve",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "egg_group_list:eggGroupList",
+      "operationId": "egg_group_list",
+      "methodName": "eggGroupList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "egg_group_retrieve:eggGroupRetrieve",
+      "operationId": "egg_group_retrieve",
+      "methodName": "eggGroupRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "encounter_condition_list:encounterConditionList",
+      "operationId": "encounter_condition_list",
+      "methodName": "encounterConditionList",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "encounter_condition_retrieve:encounterConditionRetrieve",
+      "operationId": "encounter_condition_retrieve",
+      "methodName": "encounterConditionRetrieve",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "values": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "encounter_condition_value_list:encounterConditionValueList",
+      "operationId": "encounter_condition_value_list",
+      "methodName": "encounterConditionValueList",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "encounter_condition_value_retrieve:encounterConditionValueRetrieve",
+      "operationId": "encounter_condition_value_retrieve",
+      "methodName": "encounterConditionValueRetrieve",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "condition": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "encounter_method_list:encounterMethodList",
+      "operationId": "encounter_method_list",
+      "methodName": "encounterMethodList",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "encounter_method_retrieve:encounterMethodRetrieve",
+      "operationId": "encounter_method_retrieve",
+      "methodName": "encounterMethodRetrieve",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "order": -2147483648,
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "evolution_chain_list:evolutionChainList",
+      "operationId": "evolution_chain_list",
+      "methodName": "evolutionChainList",
+      "namespace": [
+        "evolution"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Evolution",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "evolution_chain_retrieve:evolutionChainRetrieve",
+      "operationId": "evolution_chain_retrieve",
+      "methodName": "evolutionChainRetrieve",
+      "namespace": [
+        "evolution"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Evolution",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "baby_trigger_item": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "chain": {
+            "is_baby": false,
+            "species": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            },
+            "evolution_details": [
+              {
+                "version_group": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "is_default": false,
+                "item": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "trigger": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "gender": 1,
+                "held_item": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "known_move": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "known_move_type": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "location": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "min_level": -2147483648,
+                "min_happiness": -2147483648,
+                "min_beauty": -2147483648,
+                "min_affection": -2147483648,
+                "near_special_rock": false,
+                "needs_multiplayer": false,
+                "needs_overworld_rain": false,
+                "party_species": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "party_type": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "relative_physical_stats": -2147483648,
+                "time_of_day": "2024-01-01",
+                "trade_species": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "turn_upside_down": false,
+                "region": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "required_pokemon_form": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "evolved_pokemon_form": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "used_move": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "min_move_count": -2147483648,
+                "min_steps": -2147483648,
+                "min_damage_taken": -2147483648,
+                "allowed_natures": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ],
+                "condition_expression": {
+                  "expression": "expression",
+                  "percentage_chance": 30,
+                  "variables": [
+                    {
+                      "name": "Example Name",
+                      "url": "https://example.com"
+                    }
+                  ]
+                }
+              }
+            ],
+            "evolves_to": [
+              {
+                "key": null
+              }
+            ]
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "evolution_trigger_list:evolutionTriggerList",
+      "operationId": "evolution_trigger_list",
+      "methodName": "evolutionTriggerList",
+      "namespace": [
+        "evolution"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Evolution",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "evolution_trigger_retrieve:evolutionTriggerRetrieve",
+      "operationId": "evolution_trigger_retrieve",
+      "methodName": "evolutionTriggerRetrieve",
+      "namespace": [
+        "evolution"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Evolution",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "evolution_variable_list:evolutionVariableList",
+      "operationId": "evolution_variable_list",
+      "methodName": "evolutionVariableList",
+      "namespace": [
+        "evolution"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Evolution",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "evolution_variable_retrieve:evolutionVariableRetrieve",
+      "operationId": "evolution_variable_retrieve",
+      "methodName": "evolutionVariableRetrieve",
+      "namespace": [
+        "evolution"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Evolution",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "symbol": "symbol",
+          "data_type": "data_type",
+          "source": "source",
+          "version_group": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "gender_list:genderList",
+      "operationId": "gender_list",
+      "methodName": "genderList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "gender_retrieve:genderRetrieve",
+      "operationId": "gender_retrieve",
+      "methodName": "genderRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "pokemon_species_details": [
+            {
+              "rate": 1,
+              "pokemon_species": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "required_for_evolution": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "generation_list:generationList",
+      "operationId": "generation_list",
+      "methodName": "generationList",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "generation_retrieve:generationRetrieve",
+      "operationId": "generation_retrieve",
+      "methodName": "generationRetrieve",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "abilities": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "main_region": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "types": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "version_groups": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "growth_rate_list:growthRateList",
+      "operationId": "growth_rate_list",
+      "methodName": "growthRateList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "growth_rate_retrieve:growthRateRetrieve",
+      "operationId": "growth_rate_retrieve",
+      "methodName": "growthRateRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "formula": "formula",
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "levels": [
+            {
+              "level": -2147483648,
+              "experience": -2147483648
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_attribute_list:itemAttributeList",
+      "operationId": "item_attribute_list",
+      "methodName": "itemAttributeList",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_attribute_retrieve:itemAttributeRetrieve",
+      "operationId": "item_attribute_retrieve",
+      "methodName": "itemAttributeRetrieve",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "items": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_category_list:itemCategoryList",
+      "operationId": "item_category_list",
+      "methodName": "itemCategoryList",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_category_retrieve:itemCategoryRetrieve",
+      "operationId": "item_category_retrieve",
+      "methodName": "itemCategoryRetrieve",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "items": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pocket": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_fling_effect_list:itemFlingEffectList",
+      "operationId": "item_fling_effect_list",
+      "methodName": "itemFlingEffectList",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_fling_effect_retrieve:itemFlingEffectRetrieve",
+      "operationId": "item_fling_effect_retrieve",
+      "methodName": "itemFlingEffectRetrieve",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "effect_entries": [
+            {
+              "effect": "effect",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "items": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_list:itemList",
+      "operationId": "item_list",
+      "methodName": "itemList",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_pocket_list:itemPocketList",
+      "operationId": "item_pocket_list",
+      "methodName": "itemPocketList",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_pocket_retrieve:itemPocketRetrieve",
+      "operationId": "item_pocket_retrieve",
+      "methodName": "itemPocketRetrieve",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "categories": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "item_retrieve:itemRetrieve",
+      "operationId": "item_retrieve",
+      "methodName": "itemRetrieve",
+      "namespace": [
+        "items"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Items",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "fling_power": -2147483648,
+          "fling_effect": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "attributes": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "category": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "effect_entries": [
+            {
+              "effect": "effect",
+              "short_effect": "short_effect",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "text": "text",
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "game_indices": [
+            {
+              "game_index": -2147483648,
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "prices": [
+            {
+              "purchase_price": -2147483648,
+              "sell_price": -2147483648,
+              "currency": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "held_by_pokemon": [
+            {
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_details": [
+                {
+                  "rarity": 1,
+                  "version": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "sprites": {
+            "default": "default"
+          },
+          "baby_trigger_for": {
+            "url": "https://example.com"
+          },
+          "machines": [
+            {
+              "machine": {
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "language_list:languageList",
+      "operationId": "language_list",
+      "methodName": "languageList",
+      "namespace": [
+        "utility"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Utility",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "language_retrieve:languageRetrieve",
+      "operationId": "language_retrieve",
+      "methodName": "languageRetrieve",
+      "namespace": [
+        "utility"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Utility",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "official": false,
+          "iso639": "iso639",
+          "iso3166": "is",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "location_area_list:locationAreaList",
+      "operationId": "location_area_list",
+      "methodName": "locationAreaList",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "limit": 1,
+        "offset": 1
+      },
+      "argumentOrder": [
+        "limit",
+        "offset"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "location_area_retrieve:locationAreaRetrieve",
+      "operationId": "location_area_retrieve",
+      "methodName": "locationAreaRetrieve",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "game_index": -2147483648,
+          "encounter_method_rates": [
+            {
+              "encounter_method": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_details": [
+                {
+                  "rate": 1,
+                  "version": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "location": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_encounters": [
+            {
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_details": [
+                {
+                  "version": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  },
+                  "max_chance": 1,
+                  "encounter_details": [
+                    {
+                      "min_level": 1,
+                      "max_level": 1,
+                      "chance": 0,
+                      "method": {
+                        "name": "Example Name",
+                        "url": "https://example.com"
+                      },
+                      "condition_values": [
+                        {
+                          "name": "Example Name",
+                          "url": "https://example.com"
+                        }
+                      ],
+                      "pokemon_details": {
+                        "min_perfect_ivs": null,
+                        "always_shiny": false,
+                        "never_shiny": false,
+                        "is_alpha": false
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "location_list:locationList",
+      "operationId": "location_list",
+      "methodName": "locationList",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "location_retrieve:locationRetrieve",
+      "operationId": "location_retrieve",
+      "methodName": "locationRetrieve",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "region": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "game_indices": [
+            {
+              "game_index": -2147483648,
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "areas": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "machine_list:machineList",
+      "operationId": "machine_list",
+      "methodName": "machineList",
+      "namespace": [
+        "machines"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Machines",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "machine_retrieve:machineRetrieve",
+      "operationId": "machine_retrieve",
+      "methodName": "machineRetrieve",
+      "namespace": [
+        "machines"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Machines",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "item": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "version_group": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "move": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "meta_retrieve:metaRetrieve",
+      "operationId": "meta_retrieve",
+      "methodName": "metaRetrieve",
+      "namespace": [
+        "utility"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Utility",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "deploy_date": "2024-01-01T00:00:00Z",
+          "hash": "hash",
+          "tag": "tag"
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_ailment_list:moveAilmentList",
+      "operationId": "move_ailment_list",
+      "methodName": "moveAilmentList",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_ailment_retrieve:moveAilmentRetrieve",
+      "operationId": "move_ailment_retrieve",
+      "methodName": "moveAilmentRetrieve",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_battle_style_list:moveBattleStyleList",
+      "operationId": "move_battle_style_list",
+      "methodName": "moveBattleStyleList",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_battle_style_retrieve:moveBattleStyleRetrieve",
+      "operationId": "move_battle_style_retrieve",
+      "methodName": "moveBattleStyleRetrieve",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_category_list:moveCategoryList",
+      "operationId": "move_category_list",
+      "methodName": "moveCategoryList",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_category_retrieve:moveCategoryRetrieve",
+      "operationId": "move_category_retrieve",
+      "methodName": "moveCategoryRetrieve",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_damage_class_list:moveDamageClassList",
+      "operationId": "move_damage_class_list",
+      "methodName": "moveDamageClassList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_damage_class_retrieve:moveDamageClassRetrieve",
+      "operationId": "move_damage_class_retrieve",
+      "methodName": "moveDamageClassRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_learn_method_list:moveLearnMethodList",
+      "operationId": "move_learn_method_list",
+      "methodName": "moveLearnMethodList",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_learn_method_retrieve:moveLearnMethodRetrieve",
+      "operationId": "move_learn_method_retrieve",
+      "methodName": "moveLearnMethodRetrieve",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "version_groups": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_list:moveList",
+      "operationId": "move_list",
+      "methodName": "moveList",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_retrieve:moveRetrieve",
+      "operationId": "move_retrieve",
+      "methodName": "moveRetrieve",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "accuracy": -2147483648,
+          "effect_chance": 1,
+          "pp": -2147483648,
+          "priority": -2147483648,
+          "power": -2147483648,
+          "contest_combos": {
+            "normal": {
+              "use_before": [
+                {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              ],
+              "use_after": [
+                {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              ]
+            },
+            "super": {
+              "use_before": [
+                {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              ],
+              "use_after": [
+                {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              ]
+            }
+          },
+          "contest_type": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "contest_effect": {
+            "url": "https://example.com"
+          },
+          "damage_class": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "effect_entries": [
+            {
+              "effect": "effect",
+              "short_effect": "short_effect",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "effect_changes": [
+            {
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "effect_entries": [
+                {
+                  "effect": "effect",
+                  "language": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "meta": {
+            "ailment": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            },
+            "category": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            },
+            "min_hits": -2147483648,
+            "max_hits": -2147483648,
+            "min_turns": -2147483648,
+            "max_turns": -2147483648,
+            "drain": -2147483648,
+            "healing": -2147483648,
+            "crit_rate": -2147483648,
+            "ailment_chance": -2147483648,
+            "flinch_chance": -2147483648,
+            "stat_chance": -2147483648
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "past_values": [
+            {
+              "accuracy": -2147483648,
+              "power": -2147483648,
+              "pp": -2147483648,
+              "effect_chance": 1,
+              "effect_entries": [
+                {
+                  "effect": "effect",
+                  "short_effect": "short_effect",
+                  "language": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ],
+              "type": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "stat_changes": [
+            {
+              "change": -2147483648,
+              "stat": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "super_contest_effect": {
+            "url": "https://example.com"
+          },
+          "target": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "type": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "machines": [
+            {
+              "machine": {
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_group": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "learned_by_pokemon": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_target_list:moveTargetList",
+      "operationId": "move_target_list",
+      "methodName": "moveTargetList",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "move_target_retrieve:moveTargetRetrieve",
+      "operationId": "move_target_retrieve",
+      "methodName": "moveTargetRetrieve",
+      "namespace": [
+        "moves"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Moves",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "nature_list:natureList",
+      "operationId": "nature_list",
+      "methodName": "natureList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "nature_retrieve:natureRetrieve",
+      "operationId": "nature_retrieve",
+      "methodName": "natureRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "decreased_stat": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "increased_stat": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "likes_flavor": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "hates_flavor": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "berries": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "pokeathlon_stat_changes": [
+            {
+              "max_change": -2147483648,
+              "pokeathlon_stat": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "move_battle_style_preferences": [
+            {
+              "low_hp_preference": -2147483648,
+              "high_hp_preference": -2147483648,
+              "move_battle_style": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pal_park_area_list:palParkAreaList",
+      "operationId": "pal_park_area_list",
+      "methodName": "palParkAreaList",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pal_park_area_retrieve:palParkAreaRetrieve",
+      "operationId": "pal_park_area_retrieve",
+      "methodName": "palParkAreaRetrieve",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_encounters": [
+            {
+              "base_score": -2147483648,
+              "rate": -2147483648,
+              "pokemon_species": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokeathlon_stat_list:pokeathlonStatList",
+      "operationId": "pokeathlon_stat_list",
+      "methodName": "pokeathlonStatList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokeathlon_stat_retrieve:pokeathlonStatRetrieve",
+      "operationId": "pokeathlon_stat_retrieve",
+      "methodName": "pokeathlonStatRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "affecting_natures": {
+            "increase": [
+              {
+                "max_change": -2147483648,
+                "nature": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              }
+            ],
+            "decrease": [
+              {
+                "max_change": -2147483648,
+                "nature": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              }
+            ]
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokedex_list:pokedexList",
+      "operationId": "pokedex_list",
+      "methodName": "pokedexList",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokedex_retrieve:pokedexRetrieve",
+      "operationId": "pokedex_retrieve",
+      "methodName": "pokedexRetrieve",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "is_main_series": false,
+          "descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_entries": [
+            {
+              "entry_number": 1,
+              "pokemon_species": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "region": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "version_groups": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_color_list:pokemonColorList",
+      "operationId": "pokemon_color_list",
+      "methodName": "pokemonColorList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_color_retrieve:pokemonColorRetrieve",
+      "operationId": "pokemon_color_retrieve",
+      "methodName": "pokemonColorRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_encounters_list:pokemonEncountersList",
+      "operationId": "pokemon_encounters_list",
+      "methodName": "pokemonEncountersList",
+      "namespace": [
+        "encounters"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Encounters",
+      "arguments": {
+        "pokemonId": "0"
+      },
+      "argumentOrder": [
+        "pokemonId"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": [
+          {
+            "location_area": {
+              "name": "Example Name",
+              "url": "https://example.com"
+            },
+            "version_details": [
+              {
+                "version": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                },
+                "max_chance": 1,
+                "encounter_details": [
+                  {
+                    "chance": 1,
+                    "condition_values": [
+                      {
+                        "name": "Example Name",
+                        "url": "https://example.com"
+                      }
+                    ],
+                    "max_level": 1,
+                    "method": {
+                      "name": "Example Name",
+                      "url": "https://example.com"
+                    },
+                    "min_level": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_form_list:pokemonFormList",
+      "operationId": "pokemon_form_list",
+      "methodName": "pokemonFormList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_form_retrieve:pokemonFormRetrieve",
+      "operationId": "pokemon_form_retrieve",
+      "methodName": "pokemonFormRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "order": -2147483648,
+          "form_order": -2147483648,
+          "is_default": false,
+          "is_battle_only": false,
+          "is_mega": false,
+          "form_name": "Example Name",
+          "pokemon": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "sprites": {
+            "sprites": null
+          },
+          "version_group": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "form_names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "types": [
+            {
+              "slot": -2147483648,
+              "type": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "trigger_conditions": [
+            {
+              "trigger": "trigger",
+              "base_form": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_habitat_list:pokemonHabitatList",
+      "operationId": "pokemon_habitat_list",
+      "methodName": "pokemonHabitatList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_habitat_retrieve:pokemonHabitatRetrieve",
+      "operationId": "pokemon_habitat_retrieve",
+      "methodName": "pokemonHabitatRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_list:pokemonList",
+      "operationId": "pokemon_list",
+      "methodName": "pokemonList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_retrieve:pokemonRetrieve",
+      "operationId": "pokemon_retrieve",
+      "methodName": "pokemonRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "base_experience": -2147483648,
+          "height": -2147483648,
+          "is_default": false,
+          "order": -2147483648,
+          "weight": -2147483648,
+          "abilities": [
+            {
+              "is_hidden": false,
+              "slot": -2147483648,
+              "ability": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "past_abilities": [
+            {
+              "abilities": [
+                {
+                  "is_hidden": false,
+                  "slot": -2147483648,
+                  "ability": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ],
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "forms": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "game_indices": [
+            {
+              "game_index": -2147483648,
+              "version": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "held_items": [
+            {
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_details": [
+                {
+                  "rarity": 1,
+                  "version": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "location_area_encounters": "location_area_encounters",
+          "moves": [
+            {
+              "move": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version_group_details": [
+                {
+                  "level_learned_at": 1,
+                  "move_learn_method": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  },
+                  "version_group": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  },
+                  "order": 1
+                }
+              ]
+            }
+          ],
+          "species": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "sprites": {
+            "front_default": "front_default"
+          },
+          "cries": {
+            "latest": "latest",
+            "legacy": "legacy"
+          },
+          "stats": [
+            {
+              "base_stat": -2147483648,
+              "effort": -2147483648,
+              "stat": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "past_stats": [
+            {
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "stats": [
+                {
+                  "base_stat": -2147483648,
+                  "effort": -2147483648,
+                  "stat": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ],
+          "types": [
+            {
+              "slot": -2147483648,
+              "type": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "past_types": [
+            {
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "types": [
+                {
+                  "slot": -2147483648,
+                  "pokemon": {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_shape_list:pokemonShapeList",
+      "operationId": "pokemon_shape_list",
+      "methodName": "pokemonShapeList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_shape_retrieve:pokemonShapeRetrieve",
+      "operationId": "pokemon_shape_retrieve",
+      "methodName": "pokemonShapeRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "awesome_names": [
+            {
+              "awesome_name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon_species": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_species_list:pokemonSpeciesList",
+      "operationId": "pokemon_species_list",
+      "methodName": "pokemonSpeciesList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "pokemon_species_retrieve:pokemonSpeciesRetrieve",
+      "operationId": "pokemon_species_retrieve",
+      "methodName": "pokemonSpeciesRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "order": -2147483648,
+          "gender_rate": -2147483648,
+          "capture_rate": -2147483648,
+          "base_happiness": -2147483648,
+          "is_baby": false,
+          "is_legendary": false,
+          "is_mythical": false,
+          "hatch_counter": -2147483648,
+          "has_gender_differences": false,
+          "forms_switchable": false,
+          "growth_rate": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "pokedex_numbers": [
+            {
+              "entry_number": 1,
+              "pokedex": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "egg_groups": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "color": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "shape": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "evolves_from_species": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "evolution_chain": {
+            "url": "https://example.com"
+          },
+          "habitat": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pal_park_encounters": [
+            {
+              "base_score": -2147483648,
+              "rate": -2147483648,
+              "area": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "form_descriptions": [
+            {
+              "description": "example text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "version": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "genera": [
+            {
+              "genus": "genus",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "varieties": [
+            {
+              "is_default": false,
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "region_list:regionList",
+      "operationId": "region_list",
+      "methodName": "regionList",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "region_retrieve:regionRetrieve",
+      "operationId": "region_retrieve",
+      "methodName": "regionRetrieve",
+      "namespace": [
+        "location"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Location",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "locations": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "main_generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokedexes": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "version_groups": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "stat_list:statList",
+      "operationId": "stat_list",
+      "methodName": "statList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "stat_retrieve:statRetrieve",
+      "operationId": "stat_retrieve",
+      "methodName": "statRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "game_index": -2147483648,
+          "is_battle_only": false,
+          "affecting_moves": {
+            "increase": [
+              {
+                "change": -2147483648,
+                "move": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              }
+            ],
+            "decrease": [
+              {
+                "change": -2147483648,
+                "move": {
+                  "name": "Example Name",
+                  "url": "https://example.com"
+                }
+              }
+            ]
+          },
+          "affecting_natures": {
+            "increase": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ],
+            "decrease": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ]
+          },
+          "affecting_items": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "characteristics": [
+            {
+              "url": "https://example.com"
+            }
+          ],
+          "move_damage_class": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "super_contest_effect_list:superContestEffectList",
+      "operationId": "super_contest_effect_list",
+      "methodName": "superContestEffectList",
+      "namespace": [
+        "contests"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Contests",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "super_contest_effect_retrieve:superContestEffectRetrieve",
+      "operationId": "super_contest_effect_retrieve",
+      "methodName": "superContestEffectRetrieve",
+      "namespace": [
+        "contests"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Contests",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "appeal": -2147483648,
+          "flavor_text_entries": [
+            {
+              "flavor_text": "flavor_text",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "type_list:typeList",
+      "operationId": "type_list",
+      "methodName": "typeList",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "type_retrieve:typeRetrieve",
+      "operationId": "type_retrieve",
+      "methodName": "typeRetrieve",
+      "namespace": [
+        "pokemon"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Pokemon",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "damage_relations": {
+            "no_damage_to": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ],
+            "half_damage_to": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ],
+            "double_damage_to": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ],
+            "no_damage_from": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ],
+            "half_damage_from": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ],
+            "double_damage_from": [
+              {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            ]
+          },
+          "past_damage_relations": [
+            {
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              },
+              "damage_relations": {
+                "no_damage_to": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ],
+                "half_damage_to": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ],
+                "double_damage_to": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ],
+                "no_damage_from": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ],
+                "half_damage_from": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ],
+                "double_damage_from": [
+                  {
+                    "name": "Example Name",
+                    "url": "https://example.com"
+                  }
+                ]
+              }
+            }
+          ],
+          "game_indices": [
+            {
+              "game_index": -2147483648,
+              "generation": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "move_damage_class": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "pokemon": [
+            {
+              "slot": -2147483648,
+              "pokemon": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "moves": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "sprites": {
+            "sprites": null
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "version_group_list:versionGroupList",
+      "operationId": "version_group_list",
+      "methodName": "versionGroupList",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "version_group_retrieve:versionGroupRetrieve",
+      "operationId": "version_group_retrieve",
+      "methodName": "versionGroupRetrieve",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "order": -2147483648,
+          "generation": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          },
+          "move_learn_methods": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "pokedexes": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "regions": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ],
+          "versions": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "version_list:versionList",
+      "operationId": "version_list",
+      "methodName": "versionList",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "limit": 1,
+        "offset": 1,
+        "q": "q"
+      },
+      "argumentOrder": [
+        "limit",
+        "offset",
+        "q"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "count": 123,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "Example Name",
+              "url": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "version_retrieve:versionRetrieve",
+      "operationId": "version_retrieve",
+      "methodName": "versionRetrieve",
+      "namespace": [
+        "games"
+      ],
+      "mode": "normal",
+      "owner": "dev.octri.demo.pokeapiUnofficialSdk.methods.Games",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "name": "Example Name",
+          "names": [
+            {
+              "name": "Example Name",
+              "language": {
+                "name": "Example Name",
+                "url": "https://example.com"
+              }
+            }
+          ],
+          "version_group": {
+            "name": "Example Name",
+            "url": "https://example.com"
+          }
+        },
+        "byteLength": 0
+      }
+    }
+  ]
+}
