@@ -16,7 +16,7 @@ This API will always be publicly available and will never require any extensive 
 
 Created by [**Paul Hallett**](https://github.com/phalt) and other [**PokéAPI contributors**](https://github.com/PokeAPI/pokeapi#contributing) around the world. Pokémon and Pokémon character names are trademarks of Nintendo.
 
-> Package `sdk:sdk` · Version `2.10.0` · 102 operations
+> Package `dev.octri.demo:pokeapiUnofficialSdk` · Version `2.10.1` · 102 operations
 
 ## Installation
 
@@ -34,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    implementation("sdk:sdk:2.10.0")
+    implementation("dev.octri.demo:pokeapiUnofficialSdk:2.10.1")
 }
 ```
 
@@ -43,7 +43,7 @@ dependencies {
 The example calls `meta_retrieve` (GET `/api/v2/meta/`), a low-friction operation that requires no request arguments.
 
 ```kotlin
-import sdk.*
+import dev.octri.demo.pokeapiUnofficialSdk.*
 
 fun main() {
     val config = ClientConfig(
@@ -95,8 +95,8 @@ Pagination follows the cursor, offset, page-number, or next-URL contract declare
 
 ## Project layout and API discovery
 
-- Operation implementations are grouped under `src/main/kotlin/sdk/methods/`.
-- 278 component models are split by API domain under `src/main/kotlin/sdk/models/Models<Domain>.kt` or `models/<tag path>/Models.kt`; real declarations follow those model packages and `sdk.Models.kt` provides compatibility aliases.
+- Operation implementations are grouped under `src/main/kotlin/dev/octri/demo/pokeapiUnofficialSdk/methods/`.
+- 278 component models are split by API domain under `src/main/kotlin/dev/octri/demo/pokeapiUnofficialSdk/models/Models<Domain>.kt` or `models/<tag path>/Models.kt`; real declarations follow those model packages and `dev.octri.demo.pokeapiUnofficialSdk.Models.kt` provides compatibility aliases.
 - Component schemas can choose a nested model folder with `x-octri-sdk-tags: ["Billing/Invoices"]`; the first tag owns the model and `/` creates nesting.
 - [`sdk-manifest.json`](sdk-manifest.json) is the language-neutral public API index: operations, request/response modes, model properties, enum values, and generation settings.
 - Public barrel/module exports are the compatibility boundary. Import public model names from those exports; internal domain filenames may evolve without changing model names.

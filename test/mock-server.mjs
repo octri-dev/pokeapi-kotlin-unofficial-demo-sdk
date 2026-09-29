@@ -97,7 +97,7 @@ function sendMode(res, mode, requestedStatus) {
     mode.decoderKind === "json"
       ? JSON.stringify(mode.example)
       : mode.decoderKind === "ndjson"
-        ? JSON.stringify(mode.example) + "\n"
+        ? jsonRecord(mode.mediaType, mode.example)
         : String(mode.example === null || mode.example === undefined ? "" : mode.example);
   const contentType = mode.mediaType || (mode.decoderKind === "json" ? "application/json" : "text/plain");
   writeHeaders(res, status, contentType, Buffer.byteLength(payload));
@@ -144,9 +144,26 @@ function parseMultipartFields(raw, contentType) {
   return result;
 }
 
-function parseBody(raw, contentType) {
+// One JSON record per line; a JSON text sequence also starts each with RS.
+function jsonRecord(mediaType, value) {
+  return (/^application\/json-seq/i.test(mediaType || "") ? "\x1e" : "") + JSON.stringify(value) + "\n";
+}
+
+function parseBody(raw, contentType, requestMode) {
   if (raw.length === 0) return null;
   const normalized = contentType.toLowerCase();
+  if (requestMode?.encoderKind === "ndjson" && normalized.startsWith(requestMode.mediaType.toLowerCase())) {
+    const text = raw.toString("utf8");
+    try {
+      return text
+        .split("\n")
+        .map((line) => line.replace("\x1e", "").trim())
+        .filter((line) => line !== "")
+        .map((line) => JSON.parse(line));
+    } catch {
+      return { __unparseable: text };
+    }
+  }
   if (normalized.includes("json")) {
     try {
       return JSON.parse(raw.toString("utf8"));
@@ -194,6 +211,73 @@ function selectResponseMode(route, url, req, body) {
     if (selected) return selected;
   }
   return route.responseModes[route.defaultResponseIndex] || route.responseModes[0];
+}
+
+function parseCookies(header) {
+  const cookies = new Map();
+  for (const pair of String(header || "").split(";")) {
+    const index = pair.indexOf("=");
+    if (index < 0) continue;
+    const name = pair.slice(0, index).trim();
+    let value = pair.slice(index + 1).trim();
+    try {
+      value = decodeURIComponent(value);
+    } catch {
+      // A value that is not percent-encoded is read as sent.
+    }
+    cookies.set(name, [...(cookies.get(name) || []), value]);
+  }
+  return cookies;
+}
+
+// An exploded object cookie arrives as one pair per member; they are folded
+// back into the exploded simple form, "k=v,k2=v2". With no declared members
+// its pairs cannot be told apart from other cookies, so it is never found.
+function cookieValue(cookies, parameter) {
+  if (parameter.shape === "object" && parameter.explode && !parameter.jsonContent) {
+    const members = parameter.members.filter((member) => cookies.has(member));
+    return members.length ? members.map((member) => member + "=" + cookies.get(member)[0]).join(",") : undefined;
+  }
+  return cookies.get(parameter.wireName)?.join(",");
+}
+
+function isUnlocatableCookie(parameter) {
+  return parameter.shape === "object" && parameter.explode && !parameter.jsonContent && parameter.members.length === 0;
+}
+
+const TEMPORAL_WIRE_VALUE = {
+  date: /^\d{4}-\d{2}-\d{2}$/,
+  "date-time": /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/i,
+};
+
+// Whether a sent value decodes to its declared shape. JSON content must parse to
+// it. Simple-style text never parses as a JSON array or object: an array is its
+// items comma-joined, an object "k,v" pairs, or "k=v" members when exploded. A
+// date or date-time value, or each array item, is in its RFC 3339 form.
+function wireValueMatches(parameter, value) {
+  const text = String(value);
+  let decoded;
+  let parsed = true;
+  try {
+    decoded = JSON.parse(text);
+  } catch {
+    parsed = false;
+  }
+  const isObject = decoded !== null && typeof decoded === "object" && !Array.isArray(decoded);
+  if (parameter.jsonContent) {
+    if (!parsed) return false;
+    if (parameter.shape === "object") return isObject;
+    return parameter.shape !== "array" || Array.isArray(decoded);
+  }
+  if (parameter.format) return text.split(",").every((part) => TEMPORAL_WIRE_VALUE[parameter.format].test(part));
+  if (parameter.shape === "scalar" || text === "") return true;
+  if (Array.isArray(decoded) || isObject) return false;
+  if (parameter.shape === "array") return true;
+  const parts = text.split(",");
+  const isMember = (name) => parameter.members.length === 0 || parameter.members.includes(name);
+  return parameter.explode
+    ? parts.every((part) => part.includes("=") && isMember(part.slice(0, part.indexOf("="))))
+    : parts.length % 2 === 0 && parts.every((part, index) => index % 2 === 1 || isMember(part));
 }
 
 function sendValidationError(res, details) {
@@ -249,21 +333,37 @@ const server = createServer(async (req, res) => {
   const missingHeaders = route.headerParameters
     .filter((parameter) => parameter.required && req.headers[parameter.wireName.toLowerCase()] === undefined)
     .map((parameter) => ({ field: parameter.wireName, type: "required", message: "missing required header" }));
-  if (missingQuery.length || missingHeaders.length) {
-    sendValidationError(res, [...missingQuery, ...missingHeaders]);
+  const cookies = parseCookies(req.headers.cookie);
+  const missingCookies = route.cookieParameters
+    .filter((parameter) => parameter.required && !isUnlocatableCookie(parameter) && cookieValue(cookies, parameter) === undefined)
+    .map((parameter) => ({ field: parameter.wireName, type: "required", message: "missing required cookie" }));
+  const malformed = [
+    ...route.queryParameters.filter((parameter) => parameter.jsonContent).map((parameter) => [parameter, url.searchParams.get(parameter.wireName) ?? undefined, "query parameter"]),
+    ...route.queryParameters
+      .filter((parameter) => parameter.format && !parameter.jsonContent && url.searchParams.has(parameter.wireName))
+      .map((parameter) => [parameter, url.searchParams.getAll(parameter.wireName).join(","), "query parameter"]),
+    ...route.headerParameters.map((parameter) => [parameter, req.headers[parameter.wireName.toLowerCase()], "header"]),
+    ...route.cookieParameters.map((parameter) => [parameter, cookieValue(cookies, parameter), "cookie"]),
+  ]
+    .filter(([parameter, value]) => value !== undefined && !wireValueMatches(parameter, value))
+    .map(([parameter, value, location]) => ({ field: parameter.wireName, type: "format", message: "malformed " + location + " value " + JSON.stringify(value) }));
+  if (missingQuery.length || missingHeaders.length || missingCookies.length || malformed.length) {
+    sendValidationError(res, [...missingQuery, ...missingHeaders, ...missingCookies, ...malformed]);
     return;
   }
 
   const contentType = String(req.headers["content-type"] || "");
   const rawBody = await readRawBody(req);
-  const body = parseBody(rawBody, contentType);
   const requestMode = selectRequestMode(route, contentType);
+  const body = parseBody(rawBody, contentType, requestMode);
   if (requestMode?.required && body === null) {
     sendValidationError(res, [{ field: "body", type: "required", message: "missing required request body" }]);
     return;
   }
-  const missingBody = (requestMode?.requiredFields || [])
-    .filter((field) => !body || typeof body !== "object" || body[field] === undefined)
+  const records = requestMode?.encoderKind === "ndjson" && Array.isArray(body) ? body : [body];
+  // XML and other raw bodies arrive unparsed, so they have no fields to check.
+  const missingBody = (Buffer.isBuffer(body) ? [] : requestMode?.requiredFields || [])
+    .filter((field) => records.some((record) => !record || typeof record !== "object" || record[field] === undefined))
     .map((field) => ({ field, type: "required", message: "missing required body field" }));
   if (missingBody.length) {
     sendValidationError(res, missingBody);

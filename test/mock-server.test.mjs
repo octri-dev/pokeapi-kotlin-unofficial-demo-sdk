@@ -14,6 +14,11 @@ let stderr = "";
 let checks = 0;
 let testedResponseModes = 0;
 
+// One JSON record per line; a JSON text sequence also starts each with RS.
+function jsonRecord(mediaType, value) {
+  return (/^application\/json-seq/i.test(mediaType || "") ? "\x1e" : "") + JSON.stringify(value) + "\n";
+}
+
 function assert(condition, message) {
   checks += 1;
   if (!condition) throw new Error(message);
@@ -66,6 +71,10 @@ function startServer() {
 
 function serializeQuery(url, parameter) {
   const value = parameter.example;
+  if (parameter.jsonContent) {
+    url.searchParams.set(parameter.wireName, JSON.stringify(value));
+    return;
+  }
   if (Array.isArray(value)) {
     if (parameter.style === "form" && parameter.explode) {
       for (const item of value) url.searchParams.append(parameter.wireName, String(item));
@@ -76,6 +85,32 @@ function serializeQuery(url, parameter) {
     return;
   }
   url.searchParams.set(parameter.wireName, String(value ?? ""));
+}
+
+// The simple-style text of a header or cookie value.
+function simpleText(parameter, value) {
+  if (parameter.jsonContent) return JSON.stringify(value);
+  if (Array.isArray(value)) return value.map(String).join(",");
+  if (value !== null && typeof value === "object") {
+    return Object.entries(value).map(([key, member]) => key + (parameter.explode ? "=" : ",") + String(member)).join(",");
+  }
+  return String(value ?? "value");
+}
+
+function cookieHeader(parameters) {
+  const pairs = [];
+  for (const parameter of parameters) {
+    const value = parameter.example;
+    const add = (name, text) => pairs.push(name + "=" + encodeURIComponent(text));
+    if (parameter.explode && !parameter.jsonContent && Array.isArray(value)) {
+      for (const item of value) add(parameter.wireName, String(item));
+    } else if (parameter.explode && !parameter.jsonContent && value !== null && typeof value === "object") {
+      for (const [key, member] of Object.entries(value)) add(key, String(member));
+    } else {
+      add(parameter.wireName, simpleText({ ...parameter, explode: false }, value));
+    }
+  }
+  return pairs.join("; ");
 }
 
 function requestBody(mode) {
@@ -106,6 +141,10 @@ function requestBody(mode) {
     }
     return { headers: {}, body: form };
   }
+  if (mode.encoderKind === "ndjson") {
+    const records = Array.isArray(mode.example) ? mode.example : [mode.example];
+    return { headers: { "content-type": mode.mediaType }, body: records.map((record) => jsonRecord(mode.mediaType, record)).join("") };
+  }
   const body = typeof mode.example === "string" ? mode.example : JSON.stringify(mode.example);
   return { headers: { "content-type": mode.mediaType }, body };
 }
@@ -125,8 +164,10 @@ async function probe(baseUrl, route, responseMode, requestMode, forcedStatus) {
   if (forcedStatus) url.searchParams.set("__mockStatus", forcedStatus);
   const init = requestBody(requestMode);
   for (const parameter of route.headerParameters.filter((item) => item.required)) {
-    init.headers[parameter.wireName] = String(parameter.example ?? "value");
+    init.headers[parameter.wireName] = simpleText(parameter, parameter.example);
   }
+  const cookies = cookieHeader(route.cookieParameters.filter((item) => item.required));
+  if (cookies) init.headers.cookie = cookies;
   const response = await fetch(url, { method: route.method, headers: init.headers, body: init.body });
   let expectedExample = responseMode.example;
   if (
@@ -138,9 +179,16 @@ async function probe(baseUrl, route, responseMode, requestMode, forcedStatus) {
   ) {
     expectedExample = structuredClone(expectedExample);
     for (const [key, value] of Object.entries(pathValues)) {
-      if (key in expectedExample) expectedExample[key] = value;
+      if (key in expectedExample && echoable(expectedExample[key], value))
+        expectedExample[key] = value;
     }
-    if (requestMode?.example && typeof requestMode.example === "object") {
+    // The server echoes only the bodies it parses into fields; an XML or other
+    // raw body reaches it as bytes.
+    if (
+      ["json", "form", "multipart"].includes(requestMode?.encoderKind) &&
+      requestMode.example &&
+      typeof requestMode.example === "object"
+    ) {
       for (const [key, value] of Object.entries(requestMode.example)) {
         if (key in expectedExample && echoable(expectedExample[key], value))
           expectedExample[key] = value;
@@ -188,7 +236,7 @@ async function probe(baseUrl, route, responseMode, requestMode, forcedStatus) {
     assert(actual.equals(expected), route.operationId + " returned different binary response bytes");
   } else if (responseMode.decoderKind === "ndjson") {
     assert(
-      (await response.text()) === JSON.stringify(responseMode.example) + "\n",
+      (await response.text()) === jsonRecord(responseMode.mediaType, responseMode.example),
       route.operationId + " returned a different NDJSON record",
     );
   } else {

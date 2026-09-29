@@ -7,8 +7,8 @@ plugins {
     id("dev.detekt") version "2.0.0-alpha.5"
 }
 
-group = "sdk"
-version = "2.10.0"
+group = "dev.octri.demo"
+version = "2.10.1"
 
 repositories {
     mavenCentral()
@@ -35,24 +35,31 @@ tasks.register<Copy>("prepareKtfmt") {
     into(layout.buildDirectory.dir("tooling/ktfmt"))
 }
 
-tasks.register<JavaExec>("ktfmtFormat") {
-    group = "formatting"
-    description = "Formats generated Kotlin sources with ktfmt."
+fun JavaExec.runKtfmt(vararg arguments: String) {
     classpath = ktfmt
     maxHeapSize = "384m"
     jvmArgs("-XX:ActiveProcessorCount=2")
     mainClass.set("com.facebook.ktfmt.cli.Main")
-    args("--kotlinlang-style", "--quiet", "src")
+    args(*arguments)
+}
+
+// ktfmt can wrap an outer expression and leave an inner one for the next pass,
+// so formatting runs it twice to reach the output ktfmtCheck accepts.
+val ktfmtFirstPass = tasks.register<JavaExec>("ktfmtFirstPass") {
+    runKtfmt("--kotlinlang-style", "--quiet", "src")
+}
+
+tasks.register<JavaExec>("ktfmtFormat") {
+    group = "formatting"
+    description = "Formats generated Kotlin sources with ktfmt."
+    dependsOn(ktfmtFirstPass)
+    runKtfmt("--kotlinlang-style", "--quiet", "src")
 }
 
 tasks.register<JavaExec>("ktfmtCheck") {
     group = "verification"
     description = "Checks generated Kotlin sources with ktfmt."
-    classpath = ktfmt
-    maxHeapSize = "384m"
-    jvmArgs("-XX:ActiveProcessorCount=2")
-    mainClass.set("com.facebook.ktfmt.cli.Main")
-    args(
+    runKtfmt(
         "--kotlinlang-style",
         "--dry-run",
         "--set-exit-if-changed",
@@ -101,7 +108,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-            artifactId = "sdk"
+            artifactId = "pokeapiUnofficialSdk"
         }
     }
 }
